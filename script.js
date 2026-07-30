@@ -1,3 +1,4 @@
+if (document.body.classList.contains('page-home')) {
 const menuToggle = document.getElementById("menuToggle");
 const navClose   = document.getElementById("navClose");
 const navOverlay = document.getElementById("navOverlay");
@@ -74,6 +75,10 @@ heroTrack.addEventListener('touchend', function(e) {
 });
 
 
+
+}
+
+
 const filterBtn      = document.getElementById("filterBtn");
 const filterDropdown = document.getElementById("filterDropdown");
 
@@ -89,6 +94,9 @@ document.addEventListener("click", function(e) {
   }
 });
 
+// const searchbar = document.querySelector(".search-bar")
+// alert(searchbar.offsetWidth);
+
 
 const wishlistButtons = document.querySelectorAll(".wishlist-btn");
 
@@ -101,3 +109,88 @@ wishlistButtons.forEach(btn => {
     : "img/icons/heart-outline.png";
   });
 });
+
+// <==== collection page ====>
+
+if (document.body.classList.contains("page-collections")) {
+  const backBtn =document.getElementById("backBtn");
+
+  
+  backBtn.addEventListener("click", function() {
+    history.back();
+  });
+  
+
+
+  const optionsButtons = document.querySelectorAll(".options-btn");
+
+  optionsButtons.forEach(btn => {
+    const dropdown = btn.nextElementSibling;
+
+    btn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      dropdown.classList.toggle("is-open");
+    });
+  });
+
+  document.addEventListener("click", () => {
+    document.querySelectorAll(".options-dropdown.is-open").forEach(d => {
+      d.classList.remove("is-open");
+    });
+  })
+
+
+
+  const shareButtons = document.querySelectorAll(".option-share");
+
+  shareButtons.forEach(btn => {
+    btn.addEventListener("click", function() {
+      const card        = btn.closest(".outfit-card");
+      const outfitName  = card.querySelector("h3").textContent;
+      const message     = `Check out this outfit: ${outfitName} — ${window.location.href}`
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    });
+  });
+
+  const copyButtons = document.querySelectorAll(".option-copy");
+
+  copyButtons.forEach(btn => {
+    btn.addEventListener("click", function() {
+      console.log('copy button clicked');
+
+      navigator.clipboard.writeText(window.location.href);
+      btn.textContent = "Copied";
+      setTimeout(() => {
+        btn.textContent = "Copy Link";
+      }, 1500);
+    });
+  });
+
+
+  const outfitCards = document.querySelectorAll(".outfit-card");
+  const filterOptions = document.querySelectorAll(".filter-option");
+
+  function filterByCategory(category) {
+    outfitCards.forEach(card => {
+      if (category === "all" || card.dataset.category === category) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+  filterOptions.forEach(btn => {
+    btn.addEventListener("click", function() {
+      const category = btn.dataset.category;
+      filterByCategory(category);
+      filterDropdown.classList.remove("is-open");
+    });
+  });
+
+  const urlParams       = new URLSearchParams(window.location.search);
+  const initialCategory = urlParams.get("category") || "all";
+  filterByCategory(initialCategory);
+
+}
