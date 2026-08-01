@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Findstyle — Find Your Style</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="icon" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="page-pdp">
+    
+    <header class="header">
+    <button class="back-btn" id="backBtn" aria-label="Go back">
+        <img src="img/icons/left-arrow.png" alt="backBtn">
+    </button>
+
+    <a href="index.html" class="logo">
+        <img src="img/general/logo.svg" alt="Findstyle">
+    </a>
+
+    <button class="cart-btn" id="cartBtn">
+        <img src="img/icons/cart.png" alt="Cart">
+        <span class="cart-count" id="cartCount" >0</span>
+    </button>
+    </header>
+
+
+    <section class="pdp-gallery">
+        <div class="gallery-track" id="galleryTrack">
+            <div class="gallery-slide">
+                <img src="img/shoes/Airjordan4MilitaryBlack.png" alt="air jordan">
+            </div>
+            <div class="gallery-slide">
+                <img src="img/shoes/BrownAirJordan.webp" alt="air jordan">
+            </div>
+            <div class="gallery-slide">
+                <img src="img/shoes/BrownAirJordan.webp" alt="air jordan">
+            </div>
+            <div class="gallery-slide">
+                <img src="img/shoes/BrownAirJordan.webp" alt="air jordan">
+            </div>
+        </div>
+
+        <div class="gallery-dots" id="galleryDots">
+            <button class="dot is-active" data-ind="0"></button>
+            <button class="dot" data-ind="1"></button>
+            <button class="dot" data-ind="2"></button>
+            <button class="dot" data-ind="3"></button>
+        </div>
+
+        <button class="wishlist-btn wishlist-btn-pdp">
+            <img src="img/icons/heart-outline.png" alt="">
+        </button>
+    </section>
+
+
+    <section class="product-info">
+        <h1>Air Jordan 4 Retro "Military Black"</h1>
+
+        <div class="price-block">
+            <span class="price-now">NOW $120</span>
+            <s class="price-was">Was $180</s>
+        </div>
+
+        <div class="rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">5 (9)</span>
+        </div>
+    </section>
+
+    <section class="product-details">
+        <h3>More Details:</h3>
+        <p>
+            A monochromatic, high-contrast take on an iconic silhouette,
+            combining smooth white leather, neutral grey suede, and bold black accents.
+        </p>
+            <ul class="features-list">
+                <li><strong>Premium Build: </strong>Smooth white leather upper with a neutral grey suede toe panel.</li>
+                <li><strong>Signature Accents: </strong>Distinctive black molded TPU wings, eyelets, and rear heel tab.</li>
+                <li><strong>Breathable Panels: </strong>Classic quarter-panel netting for maximum ventilation.</li>
+                <li><strong>Cushioned Ride: </strong>Visible heel Air-sole unit for lightweight comfort.</li>
+                <li><strong>Herringbone Grip: </strong>Durable rubber outsole providing classic multidirectional traction.</li>
+            </ul>
+        
+    </section>
+
+    <div class="size-selector">
+        <label for="sizeSelect">Size:</label>
+        <select name="size" id="sizeSelect">
+            <option value="" disabled selected>Please select</option>
+            <option value="39">39</option>
+            <option value="40">40</option>
+            <option value="41">41</option>
+            <option value="42">42</option>
+            <option value="43">43</option>
+            <option value="45">45</option>
+        </select>
+    </div>
+
+
+    <div class="addTo-cart">
+        <button class="addCart-btn" id="addCartBtn">ADD TO CART</button>
+
+        <a href="shop.html" class="show-cart" id="cartToggle"><img src="img/icons/cart.png" alt=""></a>
+    </div>
+
+
+
+    <section class="related-products">
+        <h2>RELATED PRODUCTS</h2>
+
+        <div class="related-grid">
+
+            <article class="product-card">
+                <div class="product-img">
+                    <img src="img/shoes/BrownAirJordan.webp" alt="Timberland boots">
+                    <button class="wishlist-btn" aria-label="Add to wishlist">
+                        <img src="img/icons/heart-outline.png" alt="">
+                    </button>
+                </div>
+                <h3>Timberland Boots</h3>
+                <div class="product-meta">
+                    <span class="price">$19.99</span>
+                    <span class="rating"><span class="star">★</span> 4.8 (243)</span>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-img">
+                    <img src="img/shoes/BrownAirJordan.webp" alt="Timberland boots">
+                    <button class="wishlist-btn" aria-label="Add to wishlist">
+                        <img src="img/icons/heart-outline.png" alt="">
+                    </button>
+                </div>
+                <h3>Timberland Boots</h3>
+                <div class="product-meta">
+                    <span class="price">$19.99</span>
+                    <span class="rating"><span class="star">★</span> 4.8 (243)</span>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-img">
+                    <img src="img/shoes/BrownAirJordan.webp" alt="Timberland boots">
+                    <button class="wishlist-btn" aria-label="Add to wishlist">
+                        <img src="img/icons/heart-outline.png" alt="">
+                    </button>
+                </div>
+                <h3>Timberland Boots</h3>
+                <div class="product-meta">
+                    <span class="price">$19.99</span>
+                    <span class="rating"><span class="star">★</span> 4.8 (243)</span>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-img">
+                    <img src="img/shoes/BrownAirJordan.webp" alt="Timberland boots">
+                    <button class="wishlist-btn" aria-label="Add to wishlist">
+                        <img src="img/icons/heart-outline.png" alt="">
+                    </button>
+                </div>
+                <h3>Timberland Boots</h3>
+                <div class="product-meta">
+                    <span class="price">$19.99</span>
+                    <span class="rating"><span class="star">★</span> 4.8 (243)</span>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-img">
+                    <img src="img/shoes/BrownAirJordan.webp" alt="Timberland boots">
+                    <button class="wishlist-btn" aria-label="Add to wishlist">
+                        <img src="img/icons/heart-outline.png" alt="">
+                    </button>
+                </div>
+                <h3>Timberland Boots</h3>
+                <div class="product-meta">
+                    <span class="price">$19.99</span>
+                    <span class="rating"><span class="star">★</span> 4.8 (243)</span>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-img">
+                    <img src="img/shoes/BrownAirJordan.webp" alt="Timberland boots">
+                    <button class="wishlist-btn" aria-label="Add to wishlist">
+                        <img src="img/icons/heart-outline.png" alt="">
+                    </button>
+                </div>
+                <h3>Timberland Boots</h3>
+                <div class="product-meta">
+                    <span class="price">$19.99</span>
+                    <span class="rating"><span class="star">★</span> 4.8 (243)</span>
+                </div>
+            </article>
+
+        </div>
+
+    </section>
+
+
+      <!-- ===== MOBULE FOOTER ===== -->
+<footer class="site-footer">
+
+    <div class="newsletter">
+        <h2>Get 15% off your first order</h2>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email addess" required>
+            <button type="submit">JOIN</button>
+        </form>
+    </div>
+
+    <div class="footer-links">
+        <div class="footer-col">
+            <h3>SHOP</h3>
+            <ul>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Trending Outfits</a></li>
+                <li><a href="#">Footwear</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>HELP</h3>
+            <ul>
+                <li><a href="#">Order Status</a></li>
+                <li><a href="#">Shipping &amp; Returns</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <p class="footer-copyright">&copy; 2026 Findstyle, Inc. All rights reserved</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+</body>

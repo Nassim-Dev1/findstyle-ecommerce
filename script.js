@@ -82,7 +82,7 @@ heroTrack.addEventListener('touchend', function(e) {
 const filterBtn      = document.getElementById("filterBtn");
 const filterDropdown = document.getElementById("filterDropdown");
 
-
+if (filterBtn && filterDropdown) {
 filterBtn.addEventListener("click", function(e) {
   e.stopPropagation();
   filterDropdown.classList.toggle("is-open");
@@ -93,7 +93,7 @@ document.addEventListener("click", function(e) {
     filterDropdown.classList.remove("is-open");
   }
 });
-
+}
 // const searchbar = document.querySelector(".search-bar")
 // alert(searchbar.offsetWidth);
 
@@ -192,5 +192,144 @@ if (document.body.classList.contains("page-collections")) {
   const urlParams       = new URLSearchParams(window.location.search);
   const initialCategory = urlParams.get("category") || "all";
   filterByCategory(initialCategory);
+
+}
+
+
+
+if (document.body.classList.contains("page-pdp")) {
+
+  const galleryTrack = document.getElementById("gallery-track");
+  const galleryDots  = document.querySelectorAll(".gallery-dots .dot");
+  let currentImg = 0;
+
+
+  function goToImage(index) {
+    currentImg = index;
+    galleryTrack.style.transform = `translateX(-${index * 100}%)`;
+
+    galleryDots.forEach((dot, i) => {
+      dot.classList.toggle("is-active", i === index);
+    });
+  }
+
+
+  galleryDots.forEach(dot => {
+    dot.addEventListener("click", function() {
+      goToImage(Number(dot.dataset.index));
+    });
+  });
+
+  
+
+  // let startX = 0;
+  // let currentX = 0;
+  // let isDragging = false;
+
+  // galleryTrack.addEventListener("touchstart", (e) => {
+  //   startX = e.touches[0].clientX;
+  //   isDragging = true;
+  //   galleryTrack.style.transition = none
+  // });
+
+
+
+  // galleryTrack.addEventListener("touchmove", (e) => {
+  //   if (!isDragging) return;
+
+  //   const currentX = e.touches[0].clientX;
+  //   const diffX = e.touches[0].clientX - startX;
+  //   if (Math.abs(diffX) < 25) return;
+
+  //   const prnstDiff = (diffX / galleryTrack) * 100;
+  //   galleryTrack.style.transform = `translateX(clac(-${currentImg * 100}% + ${percentDiff}))`;
+
+  // });
+
+
+
+  // galleryTrack.addEventListener("touchend", () => {
+  //   isDragging=false;
+  //   galleryTrack.style.transition = "transform 0.4s ease";
+
+  //   const diff = currentX - startX;
+  //   const threshold = 50;
+
+
+  //   if (diff > threshold && currentImg > 0) {
+  //     goToImage(currentImg - 1);
+  //   } else if (diff < - threshold && currentImg < galleryDots.length - 1) {
+  //     goToImage(currentImg + 1);
+  //   } else {
+  //     goToImage(currentImg)
+  //   }
+  // });
+
+
+
+if (document.body.classList.contains("page-pdp")) {
+
+  const galleryTrack = document.getElementById('galleryTrack');
+  const galleryDots = document.querySelectorAll('.gallery-dots .dot');
+  let currentImage = 0;
+
+  function goToImage(index) {
+    currentImage = index;
+    galleryTrack.style.transform = `translateX(-${index * 100}%)`;
+
+    galleryDots.forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === index);
+    });
+  }
+
+  galleryDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      goToImage(Number(dot.dataset.ind));
+    });
+  });
+
+  // Swipe support — same pattern as hero slider
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+
+  galleryTrack.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    galleryTrack.style.transition = 'none';
+  });
+
+  galleryTrack.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX;
+    const diff = currentX - startX;
+
+    if (Math.abs(diff) < 10) return;
+
+    const percentDiff = (diff / galleryTrack.offsetWidth) * 100;
+    galleryTrack.style.transform = `translateX(calc(-${currentImage * 100}% + ${percentDiff}%))`;
+  });
+
+  galleryTrack.addEventListener('touchend', () => {
+    isDragging = false;
+    galleryTrack.style.transition = 'transform 0.4s ease';
+
+    const diff = currentX - startX;
+    const threshold = 50;
+
+    if (diff > threshold && currentImage > 0) {
+      goToImage(currentImage - 1);
+    } else if (diff < -threshold && currentImage < galleryDots.length - 1) {
+      goToImage(currentImage + 1);
+    } else {
+      goToImage(currentImage);
+    }
+  });
+
+}
+
+
+
+
 
 }

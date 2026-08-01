@@ -484,6 +484,7 @@ a {
     font-style: italic;
     font-weight: 500;
     padding-inline: 6px;
+    margin-bottom: 16px;
 }
 
 .product-meta {
@@ -491,7 +492,7 @@ a {
     justify-content: space-between;
     align-items: center;
     font-size: 12px;
-    margin-bottom: 4px;
+    margin-bottom: 10px;
     padding-inline: 6px;
 }
 
@@ -856,3 +857,286 @@ a {
     font-weight: 700;
     letter-spacing: 1px;
 }
+
+
+
+
+
+/* <===== PDP page =====> */
+
+
+.pdp-gallery {
+    margin-top: 64px;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-track {
+    display: flex;
+    transition: transform 0.4s ease;
+}
+
+.gallery-slide {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #000;
+
+    
+    img {
+        width: 100%;
+        object-fit: contain;
+    }
+}
+
+.gallery-dots {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+.gallery-dots .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.gallery-dots .dot.is-active {
+    background:  #111;
+}
+
+.wishlist-btn-pdp {
+    position: absolute;
+    top: auto;
+    bottom: 18px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+
+    img {
+        height: 16px;
+        width: 16px;
+    }
+}
+
+
+
+.product-info {
+    padding: 20px 16px;
+
+    h1 {
+        font-size: 20px;
+        font-style: italic;
+        font-weight: 600;
+        margin-bottom: 12px;
+
+    }
+}
+
+.price-block {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.price-now {
+    font-size: 22px;
+    font-weight: 700;
+    font-style: italic;
+    color: #d32f2f;
+}
+
+.price-was {
+    font-size: 15px;
+    color: #999;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+}
+
+.stars {
+    color: #d4b100;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.rating-count {
+    font-size:  14px;
+    color: #555;
+}
+
+.product-details {
+    padding: 20px 16px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+ss
+    h3 {
+        font-size: 17px;
+        font-weight: 700;
+        font-style: italic;
+        margin-bottom: 12px;
+    }
+}
+
+.product-details > p {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+
+.features-list {
+    list-style: none;
+
+    li {
+        font-size: 14px;
+        color: #444;
+        line-height: 1.6;
+        margin-bottom: 10px;
+    }
+
+    strong {
+        color: #111;
+    }
+}
+
+
+
+.size-selector {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+
+    label {
+        font-size: 16px;
+        font-weight: 300;
+        font-style: italic;
+    }
+
+    select {
+        width: 100%;
+        border: 1.5px solid #555;
+        border-radius: 8px;
+        padding: 10px 16px;
+        color: #333333;
+    }
+
+    option {
+        font-size: 15px;
+    }
+}
+
+.addTo-cart {
+    display: flex;
+    align-items: center;
+    padding: 4px 16px;
+    gap: 10px;
+
+}
+
+
+.addCart-btn {
+    flex: 1;
+    letter-spacing: 1px;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    background: #111;
+    color: #fff;
+    padding: 12px 0;
+}
+
+.show-cart {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+
+    img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+
+.related-products {
+    padding: 24px 16px;
+    margin-bottom: 24px;
+
+    h2 {
+        font-size: 20px;
+        font-style: italic;
+        margin-bottom: 16px;
+
+    }
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+
+    .product-card {
+        width: 100%;
+
+        h3 {
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+    }
+
+    .product-img {
+        height: 100px;
+    }
+
+    .product-meta {
+        font-size: 10px;
+    }
+
+    .price {
+        font-size: 11px;
+    }
+
+    .rating {
+        font-size: 10px;
+        gap: 2px;
+    }
+
+    .wishlist-btn {
+        width: 20px;
+        height: 20px;
+
+        img {
+            width: 10px;
+            height: 10px;
+        }
+    }
+}
+
