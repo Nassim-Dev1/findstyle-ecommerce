@@ -11,6 +11,191 @@ function initWishlistButtons() {
     });
 }
 
+function getCart() {
+  return JSON.parse(localStorage.getItem('cart')) || [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartCount();
+}
+
+function addToCart(productId, size, quantity = 1) {
+  const cart = getCart();
+  const existingItem = cart.find(item => item.productId === productId && item.size === size);
+  if (existingItem) {
+    existingItem.quantity += quantity;
+  } else {
+    cart.push({ productId, size, quantity });
+  }
+  saveCart(cart);
+}
+
+function removeFromCart(productId, size) {
+  let cart = getCart();
+  cart = cart.filter(item => !(item.productId === productId && item.size === size));
+  saveCart(cart);
+}
+
+function updateCartCount() {
+  const cart = getCart();
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.querySelectorAll('.cart-count').forEach(el => {
+    el.textContent = totalItems;
+  });
+}
+
+function renderCartDrawer() {
+  const cart = getCart();
+  const cartItemsEl = document.getElementById("cartItems");
+  const cartTotalEl = document.getElementById("cartTotal");
+  const checkoutBtn = document.getElementById("checkoutBtn");
+
+  cartItemsEl.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartItemsEl.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+    cartTotalEl.textContent = "$0";
+    return;
+  }
+
+  let total = 0;
+
+  cart.forEach(item => {
+    const product = products[item.productId];
+    if (!product) return;
+
+    const lineTotal = product.priceNow * item.quantity;
+    total += lineTotal;
+
+    const row = document.createElement("div");
+    row.className = "cart-item";
+    row.innerHTML = `
+    <img src="${product.images[0]}" alt="${product.name}">
+      <div class="cart-item-info">
+        <h4>${product.name}</h4>
+        <span class="cart-item-size">Size: ${item.size}</span>
+        <span class="cart-item-qty">Qty: ${item.quantity}</span>
+        <span class="cart-item-price">$${lineTotal}</span>
+      </div>
+      <button class="cart-item-remove" data-id="${item.productId}" data-size="${item.size}" aria-label="Remove">✕</button>
+    `;
+
+    cartItemsEl.appendChild(row);
+  });
+
+
+  cartTotalEl.textContent = `$${total}`;
+
+  document.querySelectorAll(".cart-item-remove").forEach(btn => {
+    btn.addEventListener("click", function() {
+      removeFromCart(btn.dataset.id, btn.dataset.size);
+      renderCartDrawer();
+    });
+  });
+
+  const message = cart.map(item => {
+    const p = products[item.productId];
+    return `${p.name} (Size ${item.size}) x${item.quantity} - $${p.priceNow * item.quantity}`;
+  }).join('\n');
+
+  const fullMessage = `Hi, I'd like to order:\n\n${message}\n\nTotal: $${total}`;
+  checkoutBtn.href = `https://wa.me/213559959122?text=${encodeURIComponent(fullMessage)}`;
+
+}
+
+function renderProductRow(row) {
+  const category = row.dataset.category;
+  const scrollContainer = row.querySelector(".product-scroll");
+
+  let matchingProducts;
+
+  if (category === "bestsellers") {
+    matchingProducts = Object.values(products).filter(p => p.bestSeller);
+  } else {
+    matchingProducts = Object.values(products).filter(p => p.category === category);
+  }
+
+  scrollContainer.innerHTML = "";
+
+  matchingProducts.forEach(product => {
+    const card = document.createElement("article");
+    card.className = "product-card";
+
+    card.innerHTML = `
+    <a href="product.html?id=${product.id}" class="product-link">
+      <div class="product-img">
+        <img src="${product.images[0]}" alt="${product.name}">
+      </div>
+      <h3>${product.name}</h3>
+      <div class="product-meta">
+        <span class="price">$${product.priceNow}</span>
+        <span class="rating">★ ${product.rating} (${product.reviewCount})</span>
+      </div>
+    </a>
+
+    <button class="wishlist-btn" aria-label="Add to wishlist">
+      <img src="img/icons/heart-outline.png" alt="">
+    </button>
+    `;
+
+    scrollContainer.appendChild(card);
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+updateCartCount();
+
+const filterBtn      = document.getElementById("filterBtn");
+const filterDropdown = document.getElementById("filterDropdown");
+
+if (filterBtn && filterDropdown) {
+filterBtn.addEventListener("click", function(e) {
+  e.stopPropagation();
+  filterDropdown.classList.toggle("is-open");
+});
+
+document.addEventListener("click", function(e) {
+  if (!filterDropdown.contains(e.target)) {
+    filterDropdown.classList.remove("is-open");
+  }
+});
+}
+
+initWishlistButtons();
+
+
+const cartBtn = document.getElementById("cartBtn");
+const cartDrawer = document.getElementById("cartDrawer");
+const cartOverlay = document.getElementById("cartOverlay");
+const cartDrawerClose = document.getElementById("cartDrawerClose");
+
+if (cartBtn) {
+  cartBtn.addEventListener("click", function() {
+    renderCartDrawer();
+    cartDrawer.classList.add("is-open");
+    cartOverlay.classList.add('is-visible');
+  });
+}
+
+if (cartDrawerClose) {
+  cartDrawerClose.addEventListener("click", function() {
+    cartDrawer.classList.remove("is-open");
+    cartOverlay.classList.remove("is-visible");
+  });
+}
+
+
 
 if (document.body.classList.contains('page-home')) {
 
@@ -61,6 +246,9 @@ function goToSlide(index) {
   });
 }
 
+initWishlistButtons();
+
+
 let startX = 0;
 let currentX = 0;
 let isDragging = false;
@@ -105,26 +293,11 @@ initWishlistButtons();
 }
 
 
-const filterBtn      = document.getElementById("filterBtn");
-const filterDropdown = document.getElementById("filterDropdown");
 
-if (filterBtn && filterDropdown) {
-filterBtn.addEventListener("click", function(e) {
-  e.stopPropagation();
-  filterDropdown.classList.toggle("is-open");
-});
-
-document.addEventListener("click", function(e) {
-  if (!filterDropdown.contains(e.target)) {
-    filterDropdown.classList.remove("is-open");
-  }
-});
-}
 // const searchbar = document.querySelector(".search-bar")
 // alert(searchbar.offsetWidth);
 
-
-initWishlistButtons();
+;
 
 // <==== collection page ====>
 
@@ -222,7 +395,7 @@ if (document.body.classList.contains("page-collections")) {
   
 
   const outfitPanal = document.getElementById("outfitPanal");
-  const outfitPanalOverlay = document.getElementById("outfitPanelOverlay");
+  const outfitPanalOverlay = document.getElementById("outfitPanalOverlay");
   const outfitPanalItems = document.getElementById("outfitPanalItems");
   const outfitPanalClose = document.getElementById("outfitPanalClose"); 
 
@@ -441,7 +614,7 @@ initWishlistButtons();
 
     galleryDots.forEach(dot => {
       dot.addEventListener('click', () => {
-        goToImage(Number(dot.dataset.ind));
+        goToImage(Number(dot.dataset.index));
       });
     });
 
@@ -492,52 +665,42 @@ initWishlistButtons();
 
   
 
+  const addToCartBtn = document.getElementById("addToCartBtn");
+  const sizeSelect = document.getElementById("sizeSelect");
 
-}
+  if (addToCartBtn) {
+    addToCartBtn.addEventListener("click", function() {
+      const selectedSize = sizeSelect.value;
 
+      if (!selectedSize) {
+        alert("Please select a size first");
+        return;
+      }
 
-
-
-
-
-function renderProductRow(row) {
-  const category = row.dataset.category;
-  const scrollContainer = row.querySelector(".product-scroll");
-
-  let matchingProducts;
-
-  if (category === "bestsellers") {
-    matchingProducts = Object.values(products).filter(p => p.bestSeller);
-  } else {
-    matchingProducts = Object.values(products).filter(p => p.category === category);
+      addToCart(product.id, selectedSize);
+      alert("Added to cart!");
+    });
   }
 
-  scrollContainer.innerHTML = "";
 
-  matchingProducts.forEach(product => {
-    const card = document.createElement("article");
-    card.classList = "product-card";
+  const cartToggle = document.getElementById("cartToggle");
+  if (cartToggle) {
+    cartToggle.addEventListener("click", function() {
+      renderCartDrawer();
+      cartDrawer.classList.add("is-open");
+      cartOverlay.classList.add("is-visible");
+    });
+  }
 
-    card.innerHTML = `
-    <a href="product.html?id=${product.id}" class="product-link">
-      <div class="product-img">
-        <img src="${product.images[0]}" alt="${product.name}">
-      </div>
-      <h3>${product.name}</h3>
-      <div class="product-meta">
-        <span class="price">$${product.priceNow}</span>
-        <span class="rating">★ ${product.rating} (${product.reviewCount})</span>
-      </div>
-    </a>
 
-    <button class="wishlist-btn" aria-label="Add to wishlist">
-      <img src="img/icons/heart-outline.png" alt="">
-    </button>
-    `;
-
-    scrollContainer.appendChild(card);
-  });
 }
+
+
+
+
+
+
+
 
 
 
@@ -548,7 +711,7 @@ if (document.body.classList.contains("page-shop")) {
 
   if (backBtn) {
     backBtn.addEventListener("click", function() {
-      if (history.lenght > 1) {
+      if (history.length > 1) {
         history.back();
       } else {
         window.location.href = "index.html";
@@ -626,3 +789,11 @@ if (document.body.classList.contains("page-shop")) {
 
 
 }
+
+
+
+
+
+
+
+

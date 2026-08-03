@@ -45,10 +45,10 @@
         </div>
 
         <div class="gallery-dots" id="galleryDots">
-            <button class="dot is-active" data-ind="0"></button>
-            <button class="dot" data-ind="1"></button>
-            <button class="dot" data-ind="2"></button>
-            <button class="dot" data-ind="3"></button>
+            <button class="dot is-active" data-index="0"></button>
+            <button class="dot" data-index="1"></button>
+            <button class="dot" data-index="2"></button>
+            <button class="dot" data-index="3"></button>
         </div>
 
         <button class="wishlist-btn wishlist-btn-pdp">
@@ -101,9 +101,11 @@
 
 
     <div class="addTo-cart">
-        <button class="addCart-btn" id="addCartBtn">ADD TO CART</button>
+        <button class="addCart-btn" id="addToCartBtn">ADD TO CART</button>
 
-        <a href="shop.html" class="show-cart" id="cartToggle"><img src="img/icons/cart.png" alt=""></a>
+        <button class="show-cart" id="cartToggle" aria-label="View cart">
+            <img src="img/icons/cart.png" alt="">
+        </button>
     </div>
 
 
@@ -235,24 +237,46 @@
         <div class="footer-col">
             <h3>SHOP</h3>
             <ul>
-                <li><a href="#">New Arrivals</a></li>
-                <li><a href="#">Trending Outfits</a></li>
-                <li><a href="#">Footwear</a></li>
+                <li><a href="shop.html?category=all">New Arrivals</a></li>
+                <li><a href="collections.html">Trending Outfits</a></li>
+                <li><a href="shop.html?category=shoes">Footwear</a></li>
             </ul>
         </div>
 
         <div class="footer-col">
             <h3>HELP</h3>
             <ul>
-                <li><a href="#">Order Status</a></li>
+                <li><a href="https://wa.me/213559959122">Order Status</a></li>
                 <li><a href="#">Shipping &amp; Returns</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="https://wa.me/213559959122">Contact Us</a></li>
             </ul>
         </div>
     </div>
 
     <p class="footer-copyright">&copy; 2026 Findstyle, Inc. All rights reserved</p>
 </footer>
+
+
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+        <h3>Your Cart</h3>
+        <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
+    </div>
+
+    <div class="cart-items" id="cartItems">
+        <!-- filled dynamically by JS -->
+    </div>
+
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotal">$0</span>
+        </div>
+        <a href="https://wa.me/213559959122" class="btn-checkout" id="checkoutBtn" target="_blank">Order via WhatsApp</a>
+    </div>
+</div>
 
 
 <script src="products.js"></script>

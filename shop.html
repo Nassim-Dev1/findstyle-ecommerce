@@ -64,18 +64,18 @@
             <div class="footer-col">
                 <h3>SHOP</h3>
                 <ul>
-                    <li><a href="#">New Arrivals</a></li>
-                    <li><a href="#">Trending Outfits</a></li>
-                    <li><a href="#">Footwear</a></li>
+                    <li><a href="shop.html?category=all">New Arrivals</a></li>
+                    <li><a href="collections.html">Trending Outfits</a></li>
+                    <li><a href="shop.html?category=shoes">Footwear</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
                 <h3>HELP</h3>
                 <ul>
-                    <li><a href="#">Order Status</a></li>
+                    <li><a href="https://wa.me/213559959122">Order Status</a></li>
                     <li><a href="#">Shipping &amp; Returns</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="https://wa.me/213559959122">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -83,6 +83,27 @@
         <p class="footer-copyright">&copy; 2026 Findstyle, Inc. All rights reserved</p>
     </footer>
 
+
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+        <h3>Your Cart</h3>
+        <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
+    </div>
+
+    <div class="cart-items" id="cartItems">
+        <!-- filled dynamically by JS -->
+    </div>
+
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotal">$0</span>
+        </div>
+        <a href="https://wa.me/213559959122" class="btn-checkout" id="checkoutBtn" target="_blank">Order via WhatsApp</a>
+    </div>
+</div>
 
     <script src="products.js"></script>
     <script src="script.js"></script>
