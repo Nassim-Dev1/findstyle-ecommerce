@@ -1,4 +1,28 @@
+function initWishlistButtons() {
+    const wishlistButtons = document.querySelectorAll(".wishlist-btn");
+    wishlistButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.classList.toggle("is-active");
+        const img = btn.querySelector("img");
+        img.src = btn.classList.contains("is-active")
+          ? "img/icons/heart-filled.png"
+          : "img/icons/heart-outline.png";
+      });
+    });
+}
+
+
 if (document.body.classList.contains('page-home')) {
+
+  document.querySelectorAll('.category-row').forEach(row => {
+    console.log('rendering:', row.dataset.category);   // ← this is the ONE new line
+    renderProductRow(row);
+  });
+
+  initWishlistButtons();
+
+
+
 const menuToggle = document.getElementById("menuToggle");
 const navClose   = document.getElementById("navClose");
 const navOverlay = document.getElementById("navOverlay");
@@ -75,6 +99,8 @@ heroTrack.addEventListener('touchend', function(e) {
 });
 
 
+initWishlistButtons();
+
 
 }
 
@@ -98,17 +124,7 @@ document.addEventListener("click", function(e) {
 // alert(searchbar.offsetWidth);
 
 
-const wishlistButtons = document.querySelectorAll(".wishlist-btn");
-
-wishlistButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    btn.classList.toggle("is-active");
-    const img = btn.querySelector("img");
-    img.src = btn.classList.contains("is-active")
-    ? "img/icons/heart-filled.png"
-    : "img/icons/heart-outline.png";
-  });
-});
+initWishlistButtons();
 
 // <==== collection page ====>
 
@@ -116,9 +132,17 @@ if (document.body.classList.contains("page-collections")) {
   const backBtn =document.getElementById("backBtn");
 
   
-  backBtn.addEventListener("click", function() {
-    history.back();
+  if (backBtn) {
+    backBtn.addEventListener("click", function() {
+      if (history.length > 1) {
+        history.back();
+      } else {
+        window.location.href = "index.html";
+      }
   });
+  } else {
+    console.error("backBtn not found on this page");
+  }
   
 
 
@@ -133,13 +157,13 @@ if (document.body.classList.contains("page-collections")) {
     });
   });
 
-  document.addEventListener("click", () => {
+  document.addEventListener("click", function() {
     document.querySelectorAll(".options-dropdown.is-open").forEach(d => {
       d.classList.remove("is-open");
     });
   })
 
-
+  initWishlistButtons();
 
   const shareButtons = document.querySelectorAll(".option-share");
 
@@ -193,143 +217,412 @@ if (document.body.classList.contains("page-collections")) {
   const initialCategory = urlParams.get("category") || "all";
   filterByCategory(initialCategory);
 
-}
-
-
-
-if (document.body.classList.contains("page-pdp")) {
-
-  const galleryTrack = document.getElementById("gallery-track");
-  const galleryDots  = document.querySelectorAll(".gallery-dots .dot");
-  let currentImg = 0;
-
-
-  function goToImage(index) {
-    currentImg = index;
-    galleryTrack.style.transform = `translateX(-${index * 100}%)`;
-
-    galleryDots.forEach((dot, i) => {
-      dot.classList.toggle("is-active", i === index);
-    });
-  }
-
-
-  galleryDots.forEach(dot => {
-    dot.addEventListener("click", function() {
-      goToImage(Number(dot.dataset.index));
-    });
-  });
+  initWishlistButtons();
 
   
 
-  // let startX = 0;
-  // let currentX = 0;
-  // let isDragging = false;
+  const outfitPanal = document.getElementById("outfitPanal");
+  const outfitPanalOverlay = document.getElementById("outfitPanelOverlay");
+  const outfitPanalItems = document.getElementById("outfitPanalItems");
+  const outfitPanalClose = document.getElementById("outfitPanalClose"); 
 
-  // galleryTrack.addEventListener("touchstart", (e) => {
-  //   startX = e.touches[0].clientX;
-  //   isDragging = true;
-  //   galleryTrack.style.transition = none
-  // });
+  const orderButtons = document.querySelectorAll(".order-btn");
 
+  orderButtons.forEach(btn => {
+    btn.addEventListener("click", function() {
+      const outfitKey = btn.dataset.outfit;
+      const outfit = outfits[outfitKey];
 
+      if (!outfit) {
+        console.error("Outfit not found: ", outfitKey);
+        return;
+      }
 
-  // galleryTrack.addEventListener("touchmove", (e) => {
-  //   if (!isDragging) return;
+      outfitPanalItems.innerHTML = "";
 
-  //   const currentX = e.touches[0].clientX;
-  //   const diffX = e.touches[0].clientX - startX;
-  //   if (Math.abs(diffX) < 25) return;
+      outfit.pieces.forEach(pieceId => {
+        const product = products[pieceId];
+        if (!product) return;
 
-  //   const prnstDiff = (diffX / galleryTrack) * 100;
-  //   galleryTrack.style.transform = `translateX(clac(-${currentImg * 100}% + ${percentDiff}))`;
+        const item = document.createElement("a");
+        item.href = `product.html?id=${product.id}`;
+        item.className = "outfit-panal-item";
 
-  // });
+        item.innerHTML = `
+        <img src="${product.images[0]}" alt="${product.name}">
+        <div class="piece-info">
+          <h4>${product.name}</h4>
+          <span class="piece-price">$${product.priceNow}</span>
+        <div>
+        `;
 
+        outfitPanalItems.appendChild(item);
+      });
 
-
-  // galleryTrack.addEventListener("touchend", () => {
-  //   isDragging=false;
-  //   galleryTrack.style.transition = "transform 0.4s ease";
-
-  //   const diff = currentX - startX;
-  //   const threshold = 50;
-
-
-  //   if (diff > threshold && currentImg > 0) {
-  //     goToImage(currentImg - 1);
-  //   } else if (diff < - threshold && currentImg < galleryDots.length - 1) {
-  //     goToImage(currentImg + 1);
-  //   } else {
-  //     goToImage(currentImg)
-  //   }
-  // });
-
-
-
-if (document.body.classList.contains("page-pdp")) {
-
-  const galleryTrack = document.getElementById('galleryTrack');
-  const galleryDots = document.querySelectorAll('.gallery-dots .dot');
-  let currentImage = 0;
-
-  function goToImage(index) {
-    currentImage = index;
-    galleryTrack.style.transform = `translateX(-${index * 100}%)`;
-
-    galleryDots.forEach((dot, i) => {
-      dot.classList.toggle('is-active', i === index);
-    });
-  }
-
-  galleryDots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      goToImage(Number(dot.dataset.ind));
+      outfitPanal.classList.add("is-open");
+      outfitPanalOverlay.classList.add("is-visible");
     });
   });
 
-  // Swipe support — same pattern as hero slider
-  let startX = 0;
-  let currentX = 0;
-  let isDragging = false;
-
-  galleryTrack.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-    galleryTrack.style.transition = 'none';
+  outfitPanalClose.addEventListener("click", function() {
+    outfitPanal.classList.remove("is-open");
+    outfitPanalOverlay.classList.remove("is-visible");
   });
 
-  galleryTrack.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    currentX = e.touches[0].clientX;
-    const diff = currentX - startX;
-
-    if (Math.abs(diff) < 10) return;
-
-    const percentDiff = (diff / galleryTrack.offsetWidth) * 100;
-    galleryTrack.style.transform = `translateX(calc(-${currentImage * 100}% + ${percentDiff}%))`;
+  outfitPanalOverlay.addEventListener("click", function() {
+    outfitPanal.classList.remove("is-open");
+    outfitPanalOverlay.classList.remove("is-visible");
   });
 
-  galleryTrack.addEventListener('touchend', () => {
-    isDragging = false;
-    galleryTrack.style.transition = 'transform 0.4s ease';
 
-    const diff = currentX - startX;
-    const threshold = 50;
-
-    if (diff > threshold && currentImage > 0) {
-      goToImage(currentImage - 1);
-    } else if (diff < -threshold && currentImage < galleryDots.length - 1) {
-      goToImage(currentImage + 1);
-    } else {
-      goToImage(currentImage);
-    }
-  });
 
 }
 
 
 
+if (document.body.classList.contains("page-product")) {
+
+  const backBtn = document.getElementById("backBtn");
+
+  if (backBtn) {
+    backBtn.addEventListener("click", function() {
+      if (history.length > 1) {
+        history.back();
+      } else {
+        window.location.href = "shop.html";
+      }
+    });
+  } else {
+    console.error('backBtn does not found on product page');
+  }
+
+
+initWishlistButtons();
+
+  const utlParams = new URLSearchParams(window.location.search);
+  const productId = utlParams.get("id");
+  const product   = products[productId];
+
+
+  if (!product) {
+    console.error("Product not found: ", productId);
+  } else {
+    
+    document.querySelector(".product-info h1").textContent = product.name;
+    document.querySelector(".price-now").textContent = `NOW $${product.priceNow}`;
+
+    if (product.priceWas) {
+      document.querySelector(".price-was").textContent = `Was $${product.priceWas}`;
+    } else {
+      document.querySelector(".price-was").style.display = `none`;
+    }
+
+    document.querySelector(".rating-count").textContent = `${product.rating} (${product.reviewCount})`;
+
+
+    const galleryTrack = document.getElementById('galleryTrack');
+    galleryTrack.innerHTML = "";
+
+    product.images.forEach(imgSrc => {
+      const slide = document.createElement("div");
+      slide.classList = "gallery-slide";
+
+      const img = document.createElement("img");
+      img.src = imgSrc;
+      img.alt = product.name;
+
+      slide.appendChild(img);
+      galleryTrack.appendChild(slide);
+    });
+
+    const galleryDots = document.getElementById("galleryDots");
+    galleryDots.innerHTML = "";
+
+    product.images.forEach((imgSrc, index) => {
+      const dot = document.createElement("button");
+      dot.classList = index === 0 ? "dot is-active" : "dot";
+      dot.dataset.index = index;
+      galleryDots.appendChild(dot);
+    });
+
+    initGallerySlider();
+
+
+    document.querySelector(".product-details .short-desc").textContent = product.shortDescription;
+
+    const featuresList = document.querySelector(".features-list");
+
+    if (featuresList) {
+    featuresList.innerHTML = "";
+
+    product.features.forEach(feature => {
+      const li = document.createElement("li");
+
+      const strong = document.createElement("strong");
+      strong.textContent = feature.title + ": ";
+
+      li.appendChild(strong);
+      li.appendChild(document.createTextNode(feature.text));
+
+      featuresList.appendChild(li);
+    });
+  }
+
+    const sizeSelect = document.getElementById("sizeSelect");
+    sizeSelect.innerHTML = "";
+
+    const placeholderOption = document.createElement("option");
+    placeholderOption.value = "";
+    placeholderOption.textContent = "Please select";
+    placeholderOption.disabled = true;
+    placeholderOption.selected = true;
+    sizeSelect.appendChild(placeholderOption);
+
+    product.sizes.forEach(size => {
+      const option = document.createElement("option");
+      option.value = size;
+      option.textContent = size;
+      sizeSelect.appendChild(option);
+    });
+
+
+
+    const relatedGrid = document.querySelector(".related-grid");
+    relatedGrid.innerHTML = "";
+
+    const relatedProducts = Object.values(products)
+    .filter(p => p.category === product.category && p.id !== productId)
+    .slice(0, 9);
+
+    relatedProducts.forEach(p => {
+      const card = document.createElement("article");
+      card.classList = "product-card";
+
+      card.innerHTML = `
+        <a href="product.html?id=${p.id}" class="product-link">
+          <div class="product-img">
+            <img src="${p.images[0]}" alt="${p.name}">
+          </div>
+          <h3>${p.name}</h3>
+          <div class="product-meta">
+            <span class="price">$${p.priceNow}</span>
+            <span class="rating"><span class="star">★</span> ${p.rating} (${p.reviewCount})</span>
+          </div>
+        </a>
+
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <img src="img/icons/heart-outline.png" alt="">
+        </button>
+      `;
+
+      relatedGrid.appendChild(card);
+    });
+
+    initWishlistButtons();
+
+    
+  }
+
+  initWishlistButtons();
+  function initGallerySlider() {
+
+    const galleryTrack = document.getElementById('galleryTrack');
+    const galleryDots = document.querySelectorAll('.gallery-dots .dot');
+    let currentImage = 0;
+
+    function goToImage(index) {
+      currentImage = index;
+      galleryTrack.style.transform = `translateX(-${index * 100}%)`;
+
+      galleryDots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === index);
+      });
+    }
+
+    galleryDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        goToImage(Number(dot.dataset.ind));
+      });
+    });
+
+    // Swipe support — same pattern as hero slider
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+
+    galleryTrack.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+      isDragging = true;
+      galleryTrack.style.transition = 'none';
+    });
+
+    galleryTrack.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      currentX = e.touches[0].clientX;
+      const diff = currentX - startX;
+
+      if (Math.abs(diff) < 10) return;
+
+      const percentDiff = (diff / galleryTrack.offsetWidth) * 100;
+      galleryTrack.style.transform = `translateX(calc(-${currentImage * 100}% + ${percentDiff}%))`;
+    });
+
+    galleryTrack.addEventListener('touchend', () => {
+      isDragging = false;
+      galleryTrack.style.transition = 'transform 0.4s ease';
+
+      const diff = currentX - startX;
+      const threshold = 50;
+
+      if (diff > threshold && currentImage > 0) {
+        goToImage(currentImage - 1);
+      } else if (diff < -threshold && currentImage < galleryDots.length - 1) {
+        goToImage(currentImage + 1);
+      } else {
+        goToImage(currentImage);
+      }
+    });
+
+  }
+
+
+  
+  initWishlistButtons();
+
+
+  
+
+
+}
+
+
+
+
+
+
+function renderProductRow(row) {
+  const category = row.dataset.category;
+  const scrollContainer = row.querySelector(".product-scroll");
+
+  let matchingProducts;
+
+  if (category === "bestsellers") {
+    matchingProducts = Object.values(products).filter(p => p.bestSeller);
+  } else {
+    matchingProducts = Object.values(products).filter(p => p.category === category);
+  }
+
+  scrollContainer.innerHTML = "";
+
+  matchingProducts.forEach(product => {
+    const card = document.createElement("article");
+    card.classList = "product-card";
+
+    card.innerHTML = `
+    <a href="product.html?id=${product.id}" class="product-link">
+      <div class="product-img">
+        <img src="${product.images[0]}" alt="${product.name}">
+      </div>
+      <h3>${product.name}</h3>
+      <div class="product-meta">
+        <span class="price">$${product.priceNow}</span>
+        <span class="rating">★ ${product.rating} (${product.reviewCount})</span>
+      </div>
+    </a>
+
+    <button class="wishlist-btn" aria-label="Add to wishlist">
+      <img src="img/icons/heart-outline.png" alt="">
+    </button>
+    `;
+
+    scrollContainer.appendChild(card);
+  });
+}
+
+
+
+
+
+if (document.body.classList.contains("page-shop")) {
+  const backBtn = document.getElementById("backBtn");
+
+  if (backBtn) {
+    backBtn.addEventListener("click", function() {
+      if (history.lenght > 1) {
+        history.back();
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+  } else {
+    console.error("backBtn does found on the shop page");
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const category = urlParams.get("category") || "all";
+
+  const shopTitle = document.getElementById("shopTitle");
+  const shopGrid  = document.getElementById("shopGrid");
+
+  const categoryLabels = {
+    all: 'Shop All',
+    shoes: 'Shoes',
+    pants: 'Pants',
+    jackets: 'Jackets',
+    tshirts: 'T-shirts',
+    shirts: 'Shirts'
+  };
+  shopTitle.textContent = categoryLabels[category] || 'Shop All';
+
+  function renderShopGrid(cat) {
+    let matching;
+
+    if (cat === 'all') {
+      matching = Object.values(products);
+    } else if (cat === 'bestsellers') {
+      matching = Object.values(products).filter(p => p.bestSeller);
+    } else {
+      matching = Object.values(products).filter(p => p.category === cat);
+    };
+
+    shopGrid.innerHTML = "";
+
+    matching.forEach(product => {
+      const card = document.createElement("article");
+      card.className = "product-card";
+
+      card.innerHTML = `
+        <a href="product.html?id=${product.id}" class="product-link">
+          <div class="product-img">
+            <img src="${product.images[0]}" alt="${product.name}">
+          </div>
+          <h3>${product.name}</h3>
+          <div class="product-meta">
+            <span class="price">$${product.priceNow}</span>
+            <span class="rating"><span class="star">★</span> ${product.rating} (${product.reviewCount})</span>
+          </div>
+        </a>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <img src="img/icons/heart-outline.png" alt="">
+        </button>
+      `;
+
+      shopGrid.appendChild(card);
+    });
+
+    initWishlistButtons();
+  }
+
+  renderShopGrid(category);
+
+  const filterOptions = document.querySelectorAll(".filter-option");
+  filterOptions.forEach(btn => {
+    btn.addEventListener("click", function() {
+      renderShopGrid(btn.dataset.category);
+      shopTitle.textContent = categoryLabels[btn.dataset.category] || "Shop";
+      filterDropdown.classList.remove("is-open");
+    });
+  });
 
 
 }

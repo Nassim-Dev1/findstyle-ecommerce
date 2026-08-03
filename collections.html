@@ -67,7 +67,7 @@
 
         <img src="img/casual collection/CoastalWhiteFit.webp" alt="" class="outfit-img">
 
-        <a href="#" class="order-btn">ORDER</a>
+        <button class="order-btn" data-outfit="CoastalWhiteFit">Details</button>
     </article>
 
         <article class="outfit-card" data-category="classic">
@@ -91,7 +91,7 @@
 
         <img src="img/classic collection/CasualLuxuryFit.webp" alt="" class="outfit-img">
 
-        <a href="#" class="order-btn">ORDER</a>
+        <button class="order-btn" data-outfit="CasualLuxuryFit">Details</button>
     </article>
 
         <article class="outfit-card" data-category="classic">
@@ -115,7 +115,7 @@
 
         <img src="img/classic collection/WarmNeutralFit.webp" alt="" class="outfit-img">
 
-        <a href="#" class="order-btn">ORDER</a>
+        <button class="order-btn" data-outfit="WarmNeutralFit">Details</button>
     </article>
 
         <article class="outfit-card" data-category="casual">
@@ -139,7 +139,7 @@
 
         <img src="img/casual collection/WeekendBlueCombo.webp" alt="" class="outfit-img">
 
-        <a href="#" class="order-btn">ORDER</a>
+        <button class="order-btn" data-outfit="WeekendBlueCombo">Details</button>
     </article>
 
         <article class="outfit-card" data-category="casual">
@@ -163,7 +163,7 @@
 
         <img src="img/casual collection/CampusSoftLayer.webp" alt="" class="outfit-img">
 
-        <a href="#" class="order-btn">ORDER</a>
+        <button class="order-btn" data-outfit="CampusSoftLayer">Details</button>
     </article>
 
         <article class="outfit-card" data-category="classic">
@@ -187,7 +187,7 @@
 
         <img src="img/classic collection/ModernClassicSet.webp" alt="" class="outfit-img">
 
-        <a href="#" class="order-btn">ORDER</a>
+        <button class="order-btn" data-outfit="ModernClassicSet">Details</button>
     </article>
 
         <article class="outfit-card" data-category="classic">
@@ -211,7 +211,7 @@
 
         <img src="img/classic collection/ModernMinimalist.webp" alt="" class="outfit-img">
 
-        <a href="#" class="order-btn">ORDER</a>
+        <button class="order-btn" data-outfit="ModernMinimalist">Details</button>
     </article>
 
         <article class="outfit-card" data-category="casual">
@@ -235,7 +235,7 @@
 
         <img src="img/casual collection/SleekQuarter-Zip.webp" alt="" class="outfit-img">
 
-        <a href="#" class="order-btn">ORDER</a>
+        <button class="order-btn" data-outfit="SleekQuarter">Details</button>
     </article>
 
         <article class="outfit-card" data-category="casual">
@@ -259,7 +259,7 @@
 
         <img src="img/casual collection/CargoChillFit.webp" alt="" class="outfit-img">
 
-        <a href="#" class="order-btn">ORDER</a>
+        <button class="order-btn" data-outfit="CargoChillFit">Details</button>
     </article>
 
         <article class="outfit-card" data-category="classic">
@@ -283,7 +283,7 @@
 
         <img src="img/classic collection/UrbanTailoredFit.webp" alt="" class="outfit-img">
 
-        <a href="#" class="order-btn">ORDER</a>
+        <button class="order-btn" data-outfit="UrbanTailoredFit">Details</button>
     </article>
 
         <article class="outfit-card" data-category="classic">
@@ -307,7 +307,7 @@
 
         <img src="img/classic collection/OliveLinenElegance.webp" alt="" class="outfit-img">
 
-        <a href="#" class="order-btn">ORDER</a>
+        <button class="order-btn" data-outfit="OliveLinenElegance">Details</button>
     </article>
 
         <article class="outfit-card" data-category="casual">
@@ -316,7 +316,7 @@
                 <img src="img/icons/three-dot-menu.png" alt="">
             </button>
 
-            <div class="options-dropdown">
+            <div class="options-dropdown">  
                 <ul>
                     <li><button class="option-share">Share via WhatsApp</button></li>
                     <li><button class="option-copy">Copy Link</button></li>
@@ -331,7 +331,7 @@
 
         <img src="img/casual collection/StreetUtilityFit.webp" alt="" class="outfit-img">
 
-        <a href="#" class="order-btn">ORDER</a>
+        <button class="order-btn" data-outfit="StreetUtilityFit">Details</button>
     </article>
 
 </section>
@@ -372,6 +372,22 @@
     <p class="footer-copyright">&copy; 2026 Findstyle, Inc. All rights reserved</p>
 </footer>
 
+
+<div class="outfit-panal-overlay" id="outfitPanelOverlay"></div>
+
+<div class="outfit-panal" id="outfitPanal">
+    <div class="outfit-panal-header">
+        <h3>Shop This look</h3>
+        <button class="outfit-panal-close" id="outfitPanalClose" aria-label="Close">&times;</button>
+    </div>
+    <div class="outfit-panal-items" id="outfitPanalItems">
+        <!-- Outfit items will be dynamically added here -->
+    </div>
+
+
+
+
+<script src="products.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

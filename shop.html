@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Findstyle — Find Your Style</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="icon" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="page-shop">
+
+    <header class="header">
+        <button class="back-btn" id="backBtn" aria-label="Go back">
+            <img src="img/icons/left-arrow.png" alt="">
+        </button>
+        <a href="index.html" class="logo"><img src="img/general/logo.svg"></a>
+        <button class="cart-btn" id="cartBtn" aria-label="Cart">
+            <img src="img/icons/cart.png" alt="">
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+  </header>
+
+
+    <section class="search-bar search-bar-col">
+        <img src="img/icons/search-interface-symbol.png" class="search-icon" alt="">
+        <input type="search" placeholder="Search for products, brands and more ...">
+        <button class="filter-btn" id="filterBtn" aria-label="Filter">
+            <img src="img/icons/slideBar.png" class="filter-icon" alt="">
+        </button>
+        <div class="filter-dropdown" id="filterDropdown">
+            <ul>
+                <li><button class="filter-option" data-category="all">All</button></li>
+                <li><button class="filter-option" data-category="shoes">Shoes</button></li>
+                <li><button class="filter-option" data-category="pants">Pants</button></li>
+                <li><button class="filter-option" data-category="jackets">Jackets</button></li>
+                <li><button class="filter-option" data-category="T-shirts">T-shirts</button></li>
+                <li><button class="filter-option" data-category="shirts">Shirts</button></li>
+            </ul>
+        </div>   
+    </section>
+
+
+    <h2 class="shop-title" id="shopTitle">Shop</h2>
+
+    <div class="shop-grid" id="shopGrid">
+        <!-- filled dynamically by JS -->
+    </div>
+
+
+    <footer class="site-footer">
+
+        <div class="newsletter">
+            <h2>Get 15% off your first order</h2>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email addess" required>
+                <button type="submit">JOIN</button>
+            </form>
+        </div>
+
+        <div class="footer-links">
+            <div class="footer-col">
+                <h3>SHOP</h3>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Trending Outfits</a></li>
+                    <li><a href="#">Footwear</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>HELP</h3>
+                <ul>
+                    <li><a href="#">Order Status</a></li>
+                    <li><a href="#">Shipping &amp; Returns</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <p class="footer-copyright">&copy; 2026 Findstyle, Inc. All rights reserved</p>
+    </footer>
+
+
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
