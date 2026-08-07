@@ -1,111 +1,153 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Findstyle — Find Your Style</title>
-    <link rel="stylesheet" href="style.css"> 
-    <link rel="icon" href="favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body class="page-shop">
-
+  <body class="page-shop">
     <header class="header">
-        <button class="back-btn" id="backBtn" aria-label="Go back">
-            <img src="img/icons/left-arrow.png" alt="">
-        </button>
-        <a href="index.html" class="logo"><img src="img/general/logo.svg"></a>
-        <button class="cart-btn" id="cartBtn" aria-label="Cart">
-            <img src="img/icons/cart.png" alt="">
-            <span class="cart-count" id="cartCount">0</span>
-        </button>
-  </header>
+      <button class="back-btn" id="backBtn" aria-label="Go back">
+        <img src="img/icons/left-arrow.png" alt="" />
+      </button>
+      <a href="index.html" class="logo"><img src="img/general/logo.svg" /></a>
 
+      <div class="desktop-nav">
+        <div class="desktop-nav-links">
+          <ul>
+            <li><a class="active" href="index.html">HOME</a></li>
+            <li><a href="shop.html">SHOP</a></li>
+            <li><a href="collections.html">COLLECTIONS</a></li>
+            <li><a href="https://wa.me/213559959122">CONTACT</a></li>
+          </ul>
+        </div>
+
+        <button class="cart-btn" id="cartBtn">
+          <img src="img/icons/cart.png" alt="Cart" />
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </header>
 
     <section class="search-bar search-bar-col">
-        <img src="img/icons/search-interface-symbol.png" class="search-icon" alt="">
-        <input type="search" placeholder="Search for products, brands and more ...">
-        <button class="filter-btn" id="filterBtn" aria-label="Filter">
-            <img src="img/icons/slideBar.png" class="filter-icon" alt="">
-        </button>
-        <div class="filter-dropdown" id="filterDropdown">
-            <ul>
-                <li><button class="filter-option" data-category="all">All</button></li>
-                <li><button class="filter-option" data-category="shoes">Shoes</button></li>
-                <li><button class="filter-option" data-category="pants">Pants</button></li>
-                <li><button class="filter-option" data-category="jackets">Jackets</button></li>
-                <li><button class="filter-option" data-category="T-shirts">T-shirts</button></li>
-                <li><button class="filter-option" data-category="shirts">Shirts</button></li>
-            </ul>
-        </div>   
+      <img
+        src="img/icons/search-interface-symbol.png"
+        class="search-icon"
+        alt=""
+      />
+      <input
+        type="search"
+        placeholder="Search for products, brands and more ..."
+      />
+      <button class="filter-btn" id="filterBtn" aria-label="Filter">
+        <img src="img/icons/slideBar.png" class="filter-icon" alt="" />
+      </button>
+      <div class="filter-dropdown" id="filterDropdown">
+        <ul>
+          <li>
+            <button class="filter-option" data-category="all">All</button>
+          </li>
+          <li>
+            <button class="filter-option" data-category="shoes">Shoes</button>
+          </li>
+          <li>
+            <button class="filter-option" data-category="pants">Pants</button>
+          </li>
+          <li>
+            <button class="filter-option" data-category="jackets">
+              Jackets
+            </button>
+          </li>
+          <li>
+            <button class="filter-option" data-category="T-shirts">
+              T-shirts
+            </button>
+          </li>
+          <li>
+            <button class="filter-option" data-category="shirts">Shirts</button>
+          </li>
+        </ul>
+      </div>
     </section>
-
 
     <h2 class="shop-title" id="shopTitle">Shop</h2>
 
     <div class="shop-grid" id="shopGrid">
-        <!-- filled dynamically by JS -->
+      <!-- filled dynamically by JS -->
     </div>
-
 
     <footer class="site-footer">
+      <div class="newsletter">
+        <h2>Get 15% off your first order</h2>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email address" required />
+          <button type="submit">JOIN</button>
+        </form>
+      </div>
 
-        <div class="newsletter">
-            <h2>Get 15% off your first order</h2>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Enter your email addess" required>
-                <button type="submit">JOIN</button>
-            </form>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h3>SHOP</h3>
+          <ul>
+            <li><a href="shop.html?category=all">New Arrivals</a></li>
+            <li><a href="collections.html">Trending Outfits</a></li>
+            <li><a href="shop.html?category=shoes">Footwear</a></li>
+          </ul>
         </div>
 
-        <div class="footer-links">
-            <div class="footer-col">
-                <h3>SHOP</h3>
-                <ul>
-                    <li><a href="shop.html?category=all">New Arrivals</a></li>
-                    <li><a href="collections.html">Trending Outfits</a></li>
-                    <li><a href="shop.html?category=shoes">Footwear</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h3>HELP</h3>
-                <ul>
-                    <li><a href="https://wa.me/213559959122">Order Status</a></li>
-                    <li><a href="#">Shipping &amp; Returns</a></li>
-                    <li><a href="https://wa.me/213559959122">Contact Us</a></li>
-                </ul>
-            </div>
+        <div class="footer-col">
+          <h3>HELP</h3>
+          <ul>
+            <li><a href="https://wa.me/213559959122">Order Status</a></li>
+            <li><a href="#">Shipping &amp; Returns</a></li>
+            <li><a href="https://wa.me/213559959122">Contact Us</a></li>
+          </ul>
         </div>
+      </div>
 
-        <p class="footer-copyright">&copy; 2026 Findstyle, Inc. All rights reserved</p>
+      <p class="footer-copyright">
+        &copy; 2026 Findstyle, Inc. All rights reserved
+      </p>
     </footer>
 
+    <div class="cart-overlay" id="cartOverlay"></div>
 
-<div class="cart-overlay" id="cartOverlay"></div>
-
-<div class="cart-drawer" id="cartDrawer">
-    <div class="cart-drawer-header">
+    <div class="cart-drawer" id="cartDrawer">
+      <div class="cart-drawer-header">
         <h3>Your Cart</h3>
         <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
-    </div>
+      </div>
 
-    <div class="cart-items" id="cartItems">
+      <div class="cart-items" id="cartItems">
         <!-- filled dynamically by JS -->
-    </div>
+      </div>
 
-    <div class="cart-footer">
+      <div class="cart-footer">
         <div class="cart-total">
-            <span>Total:</span>
-            <span id="cartTotal">$0</span>
+          <span>Total:</span>
+          <span id="cartTotal">$0</span>
         </div>
-        <a href="https://wa.me/213559959122" class="btn-checkout" id="checkoutBtn" target="_blank">Order via WhatsApp</a>
+        <a
+          href="https://wa.me/213559959122"
+          class="btn-checkout"
+          id="checkoutBtn"
+          target="_blank"
+          >Order via WhatsApp</a
+        >
+      </div>
     </div>
-</div>
 
     <script src="products.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
+
+

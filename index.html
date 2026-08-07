@@ -1,905 +1,1003 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Findstyle — Find Your Style</title>
-    <link rel="stylesheet" href="style.css"> 
-    <link rel="icon" href="favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body class="page-home">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page-home">
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <button class="menu-toggle" id="menuToggle">
+        <img src="img/icons/menu.png" alt="Menu" />
+      </button>
 
-  <!-- ===== HEADER ===== -->
-  <header class="header">
-    <button class="menu-toggle" id="menuToggle">
-        <img src="img/icons/menu.png" alt="Menu">
-    </button>
+      <a href="index.html" class="logo">
+        <img src="img/general/logo.svg" alt="Findstyle" />
+      </a>
+      <div class="desktop-nav">
+        <div class="desktop-nav-links">
+          <ul>
+            <li><a class="active" href="index.html">HOME</a></li>
+            <li><a href="shop.html">SHOP</a></li>
+            <li><a href="collections.html">COLLECTIONS</a></li>
+            <li><a href="https://wa.me/213559959122">CONTACT</a></li>
+          </ul>
+        </div>
 
-    <a href="index.html" class="logo">
-        <img src="img/general/logo.svg" alt="Findstyle">
-    </a>
+        <button class="cart-btn" id="cartBtn">
+          <img src="img/icons/cart.png" alt="Cart" />
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+      
+    </header>
 
-    <button class="cart-btn" id="cartBtn">
-        <img src="img/icons/cart.png" alt="Cart">
-        <span class="cart-count" id="cartCount" >0</span>
-    </button>
-  </header>
-
-  <nav class="mobile-nav" id="mobileNav">
-    <button class="nav-close" id="navClose"><img src="img/icons/close.png" alt="Close menu"></button>
-    <ul>
+    <nav class="mobile-nav" id="mobileNav">
+      <button class="nav-close" id="navClose">
+        <img src="img/icons/close.png" alt="Close menu" />
+      </button>
+      <ul>
         <li><a href="index.html">HOME</a></li>
         <li><a href="shop.html">SHOP</a></li>
         <li><a href="collections.html">COLLECTIONS</a></li>
         <li><a href="https://wa.me/213559959122">CONTACT</a></li>
-    </ul>
-  </nav>
-  <div class="nav-overlay" id="navOverlay"></div>
+      </ul>
+    </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
 
- 
-  <!-- ===== HERO ===== -->
- <!-- <section class="hero">
-    <div class="hero-content">
-        <h1>FIND YOUR STYLE</h1>
-        <p>Good look, Good mood</p>
-        <button class="hero-btn" id="heroBtn"><a href="shop.html">Shop Now</a></button>
-    </div>
- </section> -->
+    <!-- ===== HERO ===== -->
 
-<section class="hero">
-    <div class="hero-track" id="heroTrack">
-        <div class="hero-slide" style="background-image: url('img/hero/Mhero1.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('img/hero/Mhero2.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('img/hero/Mhero3.jpg');"></div>
-    </div>
 
-    <div class="hero-content">
+    <section class="hero">
+      <div class="hero-track-mobile" id="heroTrackMobile">
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;img/hero/Mhero1.jpg&quot;)"
+        ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;img/hero/Mhero2.jpg&quot;)"
+        ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;img/hero/Mhero3.jpg&quot;)"
+        ></div>
+      </div>
+
+      <div class="hero-content">
         <h1>Find Your Style</h1>
         <p>Good look, Good mood</p>
         <a href="shop.html" class="hero-btn">Shop Now</a>
-    </div>
+      </div>
 
-    <div class="hero-dots" id="heroDots">
-        <button class="dot is-active" data-index="0" aria-label="Slide 1"></button>
+      <div class="hero-dots" id="heroDots">
+        <button
+          class="dot is-active"
+          data-index="0"
+          aria-label="Slide 1"
+        ></button>
         <button class="dot" data-index="1" aria-label="Slide 2"></button>
         <button class="dot" data-index="2" aria-label="Slide 3"></button>
-    </div>
-</section>
+      </div>
+    </section>
 
-
-  <!-- ===== COLLECTONS ===== -->
-<section class="collection">
-    <div class="collection-header">
+    <!-- ===== COLLECTONS ===== -->
+    <section class="collection">
+      <div class="collection-header">
         <h2>Welcome to our store</h2>
         <p>Which collection do you prefer</p>
-    </div>
+      </div>
 
-    <article class="collection-card">
-        <img src="img/general/classic1.webp" alt="classic outfit">
-        <div class="card-content classic-content">
+      <div class="collection-div">
+        <article class="collection-card">
+          <img src="img/general/classic1.webp" alt="classic outfit" />
+          <div class="card-content classic-content">
             <h3>Classic collection</h3>
             <p>Luxe &amp; Effortless</p>
-            <a href="collections.html?category=classic" class="collection-btn" style="background: #313148">Classic Shop</a>
-        </div>
-    </article>
-
-    <article class="collection-card">
-        <img src="img/general/casual1.webp" alt="casual outfit">
-         <div class="card-content casual-content">
+            <a
+              href="collections.html?category=classic"
+              class="collection-btn"
+              style="background: #313148"
+              >Classic Shop</a
+            >
+          </div>
+        </article>
+  
+        <article class="collection-card">
+          <img src="img/general/casual1.webp" alt="casual outfit" />
+          <div class="card-content casual-content">
             <h3>Casual collection</h3>
             <p>Trendy &amp; Comfortable</p>
-            <a href="collections.html?category=casual" class="collection-btn" style="background: #6A796B">Casual Shop</a>
-        </div>
-    </article>
-</section>
+            <a
+              href="collections.html?category=casual"
+              class="collection-btn"
+              style="background: #6a796b"
+              >Casual Shop</a
+            >
+          </div>
+        </article>
+      </div>
+    </section>
 
+    <!-- ===== SHOP SECTION ===== -->
+    <section class="search-bar">
+      <img
+        src="img/icons/search-interface-symbol.png"
+        class="search-icon"
+        alt=""
+      />
+      <input
+        type="search"
+        placeholder="Search for products, brands and more ..."
+      />
 
-  <!-- ===== SHOP SECTION ===== -->
-<section class="search-bar">
-    <img src="img/icons/search-interface-symbol.png" class="search-icon" alt="">
-    <input type="search" placeholder="Search for products, brands and more ...">
+      <button class="filter-btn" id="filterBtn">
+        <img src="img/icons/slideBar.png" class="filter-icon" alt="" />
+      </button>
 
-    <button class="filter-btn" id="filterBtn">
-        <img src="img/icons/slideBar.png" class="filter-icon" alt="">
-    </button>
-    
-    <div class="filter-dropdown" id="filterDropdown">
+      <div class="filter-dropdown" id="filterDropdown">
         <ul>
-            <li><button class="filter-option">All</button></li>
-            <li><button class="filter-option">Jackets</button></li>
-            <li><button class="filter-option">T-shirts</button></li>
-            <li><button class="filter-option">Pants</button></li>
-            <li><button class="filter-option">Shorts</button></li>
-            <li><button class="filter-option">Shoes</button></li>
+          <li><button class="filter-option">All</button></li>
+          <li><button class="filter-option">Jackets</button></li>
+          <li><button class="filter-option">T-shirts</button></li>
+          <li><button class="filter-option">Pants</button></li>
+          <li><button class="filter-option">Shorts</button></li>
+          <li><button class="filter-option">Shoes</button></li>
         </ul>
-    </div>
-</section>
+      </div>
+    </section>
 
-<section class="category-row" data-category="bestsellers">
-  <div class="category-header">
+    <section class="desk-search-div">
+      <div class="search-bar">
+          <img
+          src="img/icons/search-interface-symbol.png"
+          class="search-icon"
+          alt=""
+        >
+        <input
+          type="search"
+          placeholder="Search for products, brands and more ..."
+        />
+
+        <button class="filter-btn" id="filterBtn">
+          <img src="img/icons/slideBar.png" class="filter-icon" alt="" />
+        </button>
+      </div>
+
+      <div class="desk-catego">
+          <button class="filter-option">All</button>
+          <button class="filter-option">Jackets</button>
+          <button class="filter-option">T-shirts</button>
+          <button class="filter-option">Pants</button>
+          <button class="filter-option">Shorts</button>
+          <button class="filter-option">Shoes</button>
+      </div>
+    </section>
+
+    <section class="category-row" data-category="bestsellers">
+      <div class="category-header">
         <h2>Best Sellers</h2>
         <a href="shop.html?category=bestsellers" class="view-all">View All</a>
-  </div>
+      </div>
 
-  <div class="product-scroll">
+      <div class="product-scroll">
         <article class="product-card">
-            <a href="product.html?id=airForce1" class="product-link">
+          <a href="product.html?id=airForce1" class="product-link">
             <div class="product-img">
-                <img src="img/shoes/AirForce1.png" alt="Black jacket">
+              <img src="img/shoes/AirForce1.png" alt="Black jacket" />
             </div>
             <h3>Black T-shirt</h3>
             <div class="product-meta">
-                <span class="price">$49.99</span>
-                <span class="rating">★ 4.8 (243)</span>
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
             </div>
-            </a>
+          </a>
 
-            <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
 
         <article class="product-card">
-            <a href="product.html?id=blueJeans" class="product-link">
+          <a href="product.html?id=blueJeans" class="product-link">
             <div class="product-img">
-                <img src="img/pants/blueJeans.webp" alt="White sneakers">
+              <img src="img/pants/blueJeans.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=blackTshirt" class="product-link">
+          <a href="product.html?id=blackTshirt" class="product-link">
             <div class="product-img">
-                <img src="img/T-shirts/blackT-shirt.webp" alt="White sneakers">
+              <img src="img/T-shirts/blackT-shirt.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=creamyJacket" class="product-link">
+          <a href="product.html?id=creamyJacket" class="product-link">
             <div class="product-img">
-                <img src="img/Jackets/creamyJacket.webp" alt="White sneakers">
+              <img src="img/Jackets/creamyJacket.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=jordan4" class="product-link">
+          <a href="product.html?id=jordan4" class="product-link">
             <div class="product-img">
-                <img src="img/shoes/Airjordan4MilitaryBlack.png" alt="White sneakers">
+              <img
+                src="img/shoes/Airjordan4MilitaryBlack.png"
+                alt="White sneakers"
+              />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=jungelGreenTshirt" class="product-link">
+          <a href="product.html?id=jungelGreenTshirt" class="product-link">
             <div class="product-img">
-                <img src="img/T-shirts/jungelGreenT-shirt.webp" alt="White sneakers">
+              <img
+                src="img/T-shirts/jungelGreenT-shirt.webp"
+                alt="White sneakers"
+              />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
-  </div>
-</section>
-<section class="category-row" data-category="shoes">
-  <div class="category-header">
+      </div>
+    </section>
+    <section class="category-row" data-category="shoes">
+      <div class="category-header">
         <h2>Shoes</h2>
         <a href="shop.html?category=shoes" class="view-all">View All</a>
-  </div>
+      </div>
 
-  <div class="product-scroll">
+      <div class="product-scroll">
         <article class="product-card">
-            <a href="product.html?id=brownAirJordan" class="product-link">
+          <a href="product.html?id=brownAirJordan" class="product-link">
             <div class="product-img">
-                <img src="img/shoes/BrownAirJordan.webp" alt="Black jacket">
+              <img src="img/shoes/BrownAirJordan.webp" alt="Black jacket" />
             </div>
             <h3>Black T-shirt</h3>
             <div class="product-meta">
-                <span class="price">$49.99</span>
-                <span class="rating">★ 4.8 (243)</span>
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
             </div>
-            </a>
+          </a>
 
-            <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
 
         <article class="product-card">
-            <a href="product.html?id=luxeWhiteBlackShoe" class="product-link">
+          <a href="product.html?id=luxeWhiteBlackShoe" class="product-link">
             <div class="product-img">
-                <img src="img/shoes/luxeWHBLAShoe.webp" alt="White sneakers">
+              <img src="img/shoes/luxeWHBLAShoe.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=newBalance530" class="product-link">
+          <a href="product.html?id=newBalance530" class="product-link">
             <div class="product-img">
-                <img src="img/shoes/newBalance530.png" alt="White sneakers">
+              <img src="img/shoes/newBalance530.png" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=adidasSambaWhite" class="product-link">
+          <a href="product.html?id=adidasSambaWhite" class="product-link">
             <div class="product-img">
-                <img src="img/shoes/adidasSambaCouldWhite.png" alt="White sneakers">
+              <img
+                src="img/shoes/adidasSambaCouldWhite.png"
+                alt="White sneakers"
+              />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=jordan4RedThunder" class="product-link">
+          <a href="product.html?id=jordan4RedThunder" class="product-link">
             <div class="product-img">
-                <img src="img/shoes/Airjordan4RedThunder.png" alt="White sneakers">
+              <img
+                src="img/shoes/Airjordan4RedThunder.png"
+                alt="White sneakers"
+              />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=greenAirForce" class="product-link">
+          <a href="product.html?id=greenAirForce" class="product-link">
             <div class="product-img">
-                <img src="img/shoes/greenAirForce.webp" alt="White sneakers">
+              <img src="img/shoes/greenAirForce.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
-  </div>
-</section>
-<section class="category-row" data-category="T-shirts">
-  <div class="category-header">
+      </div>
+    </section>
+    <section class="category-row" data-category="T-shirts">
+      <div class="category-header">
         <h2>T-shirts</h2>
         <a href="shop.html?category=T-shirts" class="view-all">View All</a>
-  </div>
+      </div>
 
-  <div class="product-scroll">
+      <div class="product-scroll">
         <article class="product-card">
-            <a href="product.html?id=eternalTshirt" class="product-link">
+          <a href="product.html?id=eternalTshirt" class="product-link">
             <div class="product-img">
-                <img src="img/T-shirts/EternalT-shirt.webp" alt="Black jacket">
+              <img src="img/T-shirts/EternalT-shirt.webp" alt="Black jacket" />
             </div>
             <h3>Black T-shirt</h3>
             <div class="product-meta">
-                <span class="price">$49.99</span>
-                <span class="rating">★ 4.8 (243)</span>
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
             </div>
-            </a>
+          </a>
 
-            <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
 
         <article class="product-card">
-            <a href="product.html?id=greenTshirt" class="product-link">
+          <a href="product.html?id=greenTshirt" class="product-link">
             <div class="product-img">
-                <img src="img/T-shirts/greenT-shirt.webp" alt="White sneakers">
+              <img src="img/T-shirts/greenT-shirt.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=whiteTshirt" class="product-link">
+          <a href="product.html?id=whiteTshirt" class="product-link">
             <div class="product-img">
-                <img src="img/T-shirts/whiteT-shirt (1).webp" alt="White sneakers">
+              <img
+                src="img/T-shirts/whiteT-shirt (1).webp"
+                alt="White sneakers"
+              />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=jungelGreenTshirt" class="product-link">
+          <a href="product.html?id=jungelGreenTshirt" class="product-link">
             <div class="product-img">
-                <img src="img/T-shirts/jungelGreenT-shirt.webp" alt="White sneakers">
+              <img
+                src="img/T-shirts/jungelGreenT-shirt.webp"
+                alt="White sneakers"
+              />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=blackTshirt" class="product-link">
+          <a href="product.html?id=blackTshirt" class="product-link">
             <div class="product-img">
-                <img src="img/T-shirts/blackT-shirt.webp" alt="White sneakers">
+              <img src="img/T-shirts/blackT-shirt.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=creamyTshirt" class="product-link">
+          <a href="product.html?id=creamyTshirt" class="product-link">
             <div class="product-img">
-                <img src="img/T-shirts/creamyyyT-shirt.webp" alt="White sneakers">
+              <img
+                src="img/T-shirts/creamyyyT-shirt.webp"
+                alt="White sneakers"
+              />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
-  </div>
-</section>
-<section class="category-row" data-category="pants">
-  <div class="category-header">
+      </div>
+    </section>
+    <section class="category-row" data-category="pants">
+      <div class="category-header">
         <h2>Pants</h2>
         <a href="shop.html?category=pants" class="view-all">View All</a>
-  </div>
+      </div>
 
-  <div class="product-scroll">
+      <div class="product-scroll">
         <article class="product-card">
-            <a href="product.html?id=blackPants" class="product-link">
+          <a href="product.html?id=blackPants" class="product-link">
             <div class="product-img">
-                <img src="img/Pants/blackPants.webp" alt="Black jacket">
+              <img src="img/Pants/blackPants.webp" alt="Black jacket" />
             </div>
             <h3>Black T-shirt</h3>
             <div class="product-meta">
-                <span class="price">$49.99</span>
-                <span class="rating">★ 4.8 (243)</span>
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
             </div>
-            </a>
+          </a>
 
-            <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
 
         <article class="product-card">
-            <a href="product.html?id=greyJeans" class="product-link">
+          <a href="product.html?id=greyJeans" class="product-link">
             <div class="product-img">
-                <img src="img/Pants/greyJeans.webp" alt="White sneakers">
+              <img src="img/Pants/greyJeans.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=creamyPants" class="product-link">
+          <a href="product.html?id=creamyPants" class="product-link">
             <div class="product-img">
-                <img src="img/Pants/creamyyPants.webp" alt="White sneakers">
+              <img src="img/Pants/creamyyPants.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=blueJeans" class="product-link">
+          <a href="product.html?id=blueJeans" class="product-link">
             <div class="product-img">
-                <img src="img/Pants/blueJeans.webp" alt="White sneakers">
+              <img src="img/Pants/blueJeans.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=greenMilitaryCargo" class="product-link">
+          <a href="product.html?id=greenMilitaryCargo" class="product-link">
             <div class="product-img">
-                <img src="img/Pants/greenMilitaryCargo.webp" alt="White sneakers">
+              <img
+                src="img/Pants/greenMilitaryCargo.webp"
+                alt="White sneakers"
+              />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=greyPants" class="product-link">
+          <a href="product.html?id=greyPants" class="product-link">
             <div class="product-img">
-                <img src="img/Pants/greyPants.webp" alt="White sneakers">
+              <img src="img/Pants/greyPants.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
-  </div>
-</section>
-<section class="category-row" data-category="jackets">
-  <div class="category-header">
+      </div>
+    </section>
+    <section class="category-row" data-category="jackets">
+      <div class="category-header">
         <h2>Jackets</h2>
         <a href="shop.html?category=jackets" class="view-all">View All</a>
-  </div>
+      </div>
 
-  <div class="product-scroll">
+      <div class="product-scroll">
         <article class="product-card">
-            <a href="product.html?id=brownJacket" class="product-link">
+          <a href="product.html?id=brownJacket" class="product-link">
             <div class="product-img">
-                <img src="img/jackets/brownJacket.webp" alt="Black jacket">
+              <img src="img/jackets/brownJacket.webp" alt="Black jacket" />
             </div>
             <h3>Black T-shirt</h3>
             <div class="product-meta">
-                <span class="price">$49.99</span>
-                <span class="rating">★ 4.8 (243)</span>
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
             </div>
-            </a>
+          </a>
 
-            <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
 
         <article class="product-card">
-            <a href="product.html?id=blackJacket" class="product-link">
+          <a href="product.html?id=blackJacket" class="product-link">
             <div class="product-img">
-                <img src="img/jackets/blackJacket.webp" alt="White sneakers">
+              <img src="img/jackets/blackJacket.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=creamyJacket" class="product-link">
-            <div class="product-img">
-                <img src="img/jackets/creamyJacket.webp" alt="White sneakers">
+          <a href="product.html?id=creamyJacket" class="product-link">
+        <div class="product-img">
+              <img src="img/jackets/creamyJacket.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=luxeBlueJacket" class="product-link">
+          <a href="product.html?id=luxeBlueJacket" class="product-link">
             <div class="product-img">
-                <img src="img/jackets/luxeBlueJacket.webp" alt="White sneakers">
+              <img src="img/jackets/luxeBlueJacket.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=greyJacket" class="product-link">
+          <a href="product.html?id=greyJacket" class="product-link">
             <div class="product-img">
-                <img src="img/jackets/greyJacket.webp" alt="White sneakers">
+              <img src="img/jackets/greyJacket.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=militarygreenJacket" class="product-link">
+          <a href="product.html?id=militarygreenJacket" class="product-link">
             <div class="product-img">
-                <img src="img/jackets/militarygreenJacket.webp" alt="White sneakers">
+              <img
+                src="img/jackets/militarygreenJacket.webp"
+                alt="White sneakers"
+              />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
-  </div>
-</section>
-<section class="category-row" data-category="shirts">
-  <div class="category-header">
+      </div>
+    </section>
+    <section class="category-row" data-category="shirts">
+      <div class="category-header">
         <h2>Shirts</h2>
         <a href="shop.html?category=shirts" class="view-all">View All</a>
-  </div>
+      </div>
 
-  <div class="product-scroll">
+      <div class="product-scroll">
         <article class="product-card">
-            <a href="product.html?id=blackSquarShirt" class="product-link">
+          <a href="product.html?id=blackSquarShirt" class="product-link">
             <div class="product-img">
-                <img src="img/shirts/blackSquarShirt.webp" alt="Black jacket">
+              <img src="img/shirts/blackSquarShirt.webp" alt="Black jacket" />
             </div>
             <h3>Black T-shirt</h3>
             <div class="product-meta">
-                <span class="price">$49.99</span>
-                <span class="rating">★ 4.8 (243)</span>
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
             </div>
-            </a>
+          </a>
 
-            <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
 
         <article class="product-card">
-            <a href="product.html?id=blueSquarShirt" class="product-link">
+          <a href="product.html?id=blueSquarShirt" class="product-link">
             <div class="product-img">
-                <img src="img/shirts/blueSquarShirt.webp" alt="White sneakers">
+              <img src="img/shirts/blueSquarShirt.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=olliveGreenShirt" class="product-link">
+          <a href="product.html?id=olliveGreenShirt" class="product-link">
             <div class="product-img">
-                <img src="img/shirts/olliveGreenShirt.webp" alt="White sneakers">
+              <img
+                src="img/shirts/olliveGreenShirt.webp"
+                alt="White sneakers"
+              />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=whiteSquarShirt" class="product-link">
+          <a href="product.html?id=whiteSquarShirt" class="product-link">
             <div class="product-img">
-                <img src="img/shirts/whiteShirt.webp" alt="White sneakers">
+              <img src="img/shirts/whiteShirt.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=skySquarShirt" class="product-link">
+          <a href="product.html?id=skySquarShirt" class="product-link">
             <div class="product-img">
-                <img src="img/shirts/SkySquarShirt.webp" alt="White sneakers">
+              <img src="img/shirts/SkySquarShirt.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
+
         <article class="product-card">
-            <a href="product.html?id=redSquarShirt" class="product-link">
+          <a href="product.html?id=redSquarShirt" class="product-link">
             <div class="product-img">
-                <img src="img/shirts/red.webp" alt="White sneakers">
+              <img src="img/shirts/red.webp" alt="White sneakers" />
             </div>
-        <h3>Black T-shirt</h3>
-        <div class="product-meta">
-            <span class="price">$49.99</span>
-            <span class="rating">★ 4.8 (243)</span>
-        </div>
-        </a>
+            <h3>Black T-shirt</h3>
+            <div class="product-meta">
+              <span class="price">$49.99</span>
+              <span class="rating">★ 4.8 (243)</span>
+            </div>
+          </a>
 
-        <button class="wishlist-btn" aria-label="Add to wishlist">
-                    <img src="img/icons/heart-outline.png" alt="">
-                </button>
+          <button class="wishlist-btn" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="" />
+          </button>
         </article>
-        
-  </div>
-</section>
-
-
-  <!-- ===== JOIN SECTION ===== -->
-<section class="community">
-    <section class="community-content">
-        <h2>Join  Our Community</h2>
-        <div class="social-links">
-            <a href="#myinsta" target="_blank" aria-label="Instagram">
-                <img src="img/icons/instagram.png" alt="">
-            </a>
-            <a href="#" target="_blank" aria-label="Instagram">
-                <img src="img/icons/discord.png" alt="">
-            </a>
-            <a href="#mytelegram" target="_blank" aria-label="Instagram">
-                <img src="img/icons/telegram.png" alt="">
-            </a>
-        </div>
+      </div>
     </section>
-</section>
 
+    <!-- ===== JOIN SECTION ===== -->
+    <section class="desktop-community" id="desktopCommunity">
+      <div class="iphone-container">
+        <div class="dynamic-island"></div>
+        <div class="iphone-screen">
+          <div class="screen-content">
+            <h2>Join Our Community</h2>
+            <p>Follow us for behind-the-scenes and exclusive drops.</p>
+            <div class="social-links">
+              <a href="#myinsta" target="_blank" aria-label="Instagram" class="social-btn"><img src="img/icons/instagram.png"></a>
+              <a href="#mydisco" target="_blank" aria-label="Discord" class="social-btn"><img src="img/icons/discord.png"></a>
+              <a href="#mytelegram" target="_blank" aria-label="telegram" class="social-btn"><img src="img/icons/telegram.png"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- ===== FEATURES ===== -->
-<section class="featurs">
-    
-    <article class="feature-card">
-        <img src="img/icons/transport.png" alt="">
+    <!-- ===== FEATURES ===== -->
+    <section class="featurs">
+      <article class="feature-card">
+        <img src="img/icons/transport.png" alt="" />
         <h3>Free Shipping</h3>
         <p>On orders over $60</p>
-    </article>
-    <article class="feature-card">
-        <img src="img/icons/suport.png" alt="">
+      </article>
+      <article class="feature-card">
+        <img src="img/icons/suport.png" alt="" />
         <h3>24/7 Support</h3>
         <p>We are here to help</p>
-    </article>
-    <article class="feature-card">
-        <img src="img/icons/security.png" alt="">
+      </article>
+      <article class="feature-card">
+        <img src="img/icons/security.png" alt="" />
         <h3>Security</h3>
         <p>%100 protected</p>
-    </article>
-    <article class="feature-card">
-        <img src="img/icons/box.png" alt="">
+      </article>
+      <article class="feature-card">
+        <img src="img/icons/box.png" alt="" />
         <h3>Easy Returns</h3>
-        <p>30-day raturns</p>
-    </article>
-    
-</section>
+        <p>30-day returns</p>
+      </article>
+    </section>
 
-
-  <!-- ===== MOBULE FOOTER ===== -->
-<footer class="site-footer">
-
-    <div class="newsletter">
+    <!-- ===== MOBILE FOOTER ===== -->
+    <footer class="site-footer">
+      <div class="newsletter">
         <h2>Get 15% off your first order</h2>
         <form class="newsletter-form">
-            <input type="email" placeholder="Enter your email addess" required>
-            <button type="submit">JOIN</button>
+          <input type="email" placeholder="Enter your email address" required />
+          <button type="submit">JOIN</button>
         </form>
-    </div>
+      </div>
 
-    <div class="footer-links">
+      <div class="footer-links">
         <div class="footer-col">
-            <h3>SHOP</h3>
-            <ul>
-                <li><a href="shop.html?category=all">New Arrivals</a></li>
-                <li><a href="collections.html">Trending Outfits</a></li>
-                <li><a href="shop.html?category=shoes">Footwear</a></li>
-            </ul>
+          <h3>SHOP</h3>
+          <ul>
+            <li><a href="shop.html?category=all">New Arrivals</a></li>
+            <li><a href="collections.html">Trending Outfits</a></li>
+            <li><a href="shop.html?category=shoes">Footwear</a></li>
+          </ul>
         </div>
 
         <div class="footer-col">
-            <h3>HELP</h3>
-            <ul>
-                <li><a href="https://wa.me/213559959122">Order Status</a></li>
-                <li><a href="#">Shipping &amp; Returns</a></li>
-                <li><a href="https://wa.me/213559959122">Contact Us</a></li>
-            </ul>
+          <h3>HELP</h3>
+          <ul>
+            <li><a href="https://wa.me/213559959122">Order Status</a></li>
+            <li><a href="#">Shipping &amp; Returns</a></li>
+            <li><a href="https://wa.me/213559959122">Contact Us</a></li>
+          </ul>
         </div>
-    </div>
 
-    <p class="footer-copyright">&copy; 2026 Findstyle, Inc. All rights reserved</p>
-</footer>
+        <div class="footer-col desktop-footer-col">
+          <h3>COMPANY</h3>
+          <ul>
+            <li><a href="https://wa.me/213559959122">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="https://wa.me/213559959122">Terms of Service</a></li>
+          </ul>
+        </div>
 
+        <div class="desktop-payment">
+          <img src="img/general/baridimob.png" alt="" class="baridimob">
+          <img src="img/general/paypal.png" alt="" class="paypal">
+          <img src="img/general/visa.png" alt="" class="visa">
+        </div>
 
+      </div>
 
-<div class="cart-overlay" id="cartOverlay"></div>
+      <div class="footer-foot">
+        <p class="footer-copyright">
+          &copy; 2026 Findstyle, Inc. All rights reserved
+        </p>
+      </div>
+      
 
-<div class="cart-drawer" id="cartDrawer">
-    <div class="cart-drawer-header">
+    </footer>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <div class="cart-drawer" id="cartDrawer">
+      <div class="cart-drawer-header">
         <h3>Your Cart</h3>
         <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
-    </div>
+      </div>
 
-    <div class="cart-items" id="cartItems">
+      <div class="cart-items" id="cartItems">
         <!-- filled dynamically by JS -->
-    </div>
+      </div>
 
-    <div class="cart-footer">
+      <div class="cart-footer">
         <div class="cart-total">
-            <span>Total:</span>
-            <span id="cartTotal">$0</span>
+          <span>Total:</span>
+          <span id="cartTotal">$0</span>
         </div>
-        <a href="https://wa.me/213559959122" class="btn-checkout" id="checkoutBtn" target="_blank">Order via WhatsApp</a>
+        <a
+          href="https://wa.me/213559959122"
+          class="btn-checkout"
+          id="checkoutBtn"
+          target="_blank"
+          >Order via WhatsApp
+        </a>
+      </div>
     </div>
-</div>
 
-
-
-
-
-
-<script src="products.js"></script>
-<script src="script.js"></script>
-</body>
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
