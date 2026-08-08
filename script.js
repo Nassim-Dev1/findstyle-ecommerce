@@ -341,17 +341,6 @@ if (document.body.classList.contains("page-home")) {
 }
 
 
-  if (window.innerWidth >= 1024) {
-  document.querySelectorAll('.product-scroll').forEach(scrollEl => {
-    scrollEl.addEventListener('wheel', (e) => {
-      if (e.deltaY !== 0) {
-        e.preventDefault();
-        scrollEl.scrollLeft += e.deltaY;
-      }
-    });
-  });
-}
-
 }
 
 
@@ -603,8 +592,13 @@ if (document.body.classList.contains("page-product")) {
 
     initGallerySlider();
 
-    document.querySelector(".product-details .short-desc").textContent =
-      product.shortDescription;
+    const shortDescElement = document.querySelector(".product-details .short-desc");
+
+    if (shortDescElement) {
+      shortDescElement.textContent = product.shortDescription;
+    } else {
+      console.error("short description not found");
+    }
 
     const featuresList = document.querySelector(".features-list");
 
@@ -622,6 +616,8 @@ if (document.body.classList.contains("page-product")) {
 
         featuresList.appendChild(li);
       });
+    } else {
+      console.error("the features list not found");
     }
 
     const sizeSelect = document.getElementById("sizeSelect");
@@ -793,7 +789,7 @@ if (document.body.classList.contains("page-shop")) {
       }
     });
   } else {
-    console.error("backBtn does found on the shop page");
+    console.error("backBtn not found on the shop page");
   }
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -807,8 +803,8 @@ if (document.body.classList.contains("page-shop")) {
     shoes: "Shoes",
     pants: "Pants",
     jackets: "Jackets",
-    tshirts: "T-shirts",
-    shirts: "Shirts",
+    "T-shirts": "T-shirts",
+    shirts: "Shirts"
   };
   shopTitle.textContent = categoryLabels[category] || "Shop All";
 

@@ -4,12 +4,21 @@
   margin: 0;
 }
 
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #1a1a1a;
   display: flex;
   flex-direction: column;
   align-content: center;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 a {
@@ -48,7 +57,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #ddd;
   padding: clamp(8px, 1.5vw, 10px) clamp(14px, 3vw, 18px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   position: fixed;
@@ -160,7 +169,8 @@ a {
   width: 33.3333%;
   height: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: 90%;
+  background-repeat: no-repeat;
   flex-shrink: 0;
 }
 
@@ -451,7 +461,7 @@ a {
   width: 150px;
   scroll-snap-align: start;
   background: #f8f8f8;
-  border: 1px solid #888;
+  border: 1px solid #ccc;
   border-radius: 10px;
   padding-bottom: 6px;
   transition:
@@ -824,7 +834,7 @@ desktop-community {
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 1px;
-    margin-bottom: 16px;
+    margin-bottom: 35px;
   }
 
   ul {
@@ -878,7 +888,7 @@ desktop-community {
 
 .outfit-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 16px;
   padding: 16px;
 }
@@ -894,6 +904,7 @@ desktop-community {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   margin-bottom: 8px;
   gap: 30px;
   padding: 4px 10px;
@@ -991,18 +1002,18 @@ desktop-community {
 }
 
 .order-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 120px;
-  text-align: center;
-  background: #111;
-  color: #fff;
   padding: 10px;
   border-radius: 8px;
+  letter-spacing: 1px;
+  width: 100%;
+  max-width: 11rem;
+  padding: 0.5rem 1rem;
+  color: #fff;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 1px;
+  text-align: center;
+  background: #111;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 /* <===== PDP page =====> */
@@ -1369,7 +1380,7 @@ desktop-community {
 
 .shop-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 12px;
   padding: 16px;
 
@@ -1753,7 +1764,7 @@ desktop-community {
   .search-bar-col {
     margin-inline: clamp(14px, 4vw, 18px);
     margin-bottom: clamp(18px, 4vw, 24px);
-    margin-top: clamp(62px, 15vw, 86px);
+    margin-top: clamp(80px, 14vw, 100px);
   }
 
   .outfit-grid {
@@ -1801,7 +1812,7 @@ desktop-community {
   }
 
   .outfit-img {
-    height: clamp(180px, 35vw, 220px);
+    height: clamp(220px, 35vw, 235px);
   }
 
   .order-btn {
@@ -2009,6 +2020,7 @@ desktop-community {
   }
 
   .shop-grid {
+    grid-template-columns: repeat(auto-fit, minmax(142px, 1fr));
     gap: clamp(10px, 3vw, 14px);
     padding: clamp(12px, 4vw, 18px);
   }
@@ -2084,6 +2096,10 @@ desktop-community {
 
   .desktop-footer-col {
     display: none;
+  }
+
+  .outfit-grid {
+    grid-template-columns: repeat(auto-fit, minmax(144px, 1fr));
   }
 }
 
@@ -2362,7 +2378,7 @@ desktop-community {
 
   .footer-col h3 {
     font-size: clamp(14px, 2.5vw, 15px);
-    margin-bottom: clamp(14px, 2.5vw, 16px);
+    margin-bottom: clamp(23px, 2.5vw, 33px);
   }
 
   .footer-col li {
@@ -2395,9 +2411,10 @@ desktop-community {
   }
 
   .outfit-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
     gap: clamp(14px, 3vw, 18px);
     padding: clamp(16px, 3vw, 20px);
+    margin-block: clamp(16px, 3vw, 20px);
   }
 
   .card-header {
@@ -2440,7 +2457,7 @@ desktop-community {
   }
 
   .outfit-img {
-    height: clamp(200px, 32vw, 240px);
+    height: clamp(230px, 32vw, 245px);
   }
 
   .order-btn {
@@ -2662,9 +2679,10 @@ desktop-community {
   }
 
   .shop-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: clamp(12px, 3vw, 16px);
     padding: clamp(16px, 3vw, 20px);
+    margin-block: clamp(16px, 3vw, 20px);
   }
 
   .cart-drawer {
@@ -2750,7 +2768,7 @@ desktop-community {
 
 }
 
-@media (min-width: 1024px) and (max-width: 1399px) {
+@media (min-width: 1024px) and (max-width: 1439px) {
   body {
     font-size: clamp(14px, 2vw, 16px);
   }
@@ -2759,10 +2777,14 @@ desktop-community {
     padding: clamp(16px, 3.5vw, 18px);
   }
 
+  .back-btn {
+    display: none;
+  }
+
   .header {
     display: flex;
     justify-content: space-between;
-    padding: clamp(8px, 2vw, 10px) clamp(16px, 3.5vw, 20px);
+    padding: 2px clamp(16px, 3.5vw, 20px);
   }
 
   .menu-toggle {
@@ -2925,10 +2947,17 @@ desktop-community {
     display: none;
   }
 
+  .desk-search-div-col {
+    justify-content: left;
+    gap: min(4rem, 5vw);
+    margin-top: clamp(6rem, 4.5vw, 7.5rem);
+  }
+
   .desk-search-div {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: left;
+    gap: min(4rem, 5vw);
     padding-inline: clamp(18px, 4vw, 26px);
 
     .search-bar {
@@ -3012,8 +3041,10 @@ desktop-community {
   }
 
   .product-scroll {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
     padding: 0 clamp(18px, 4vw, 22px);
-    gap: clamp(14px, 3vw, 18px);
+    gap: clamp(8px, 2vw, 16px);
   }
 
   .product-card {
@@ -3227,8 +3258,7 @@ desktop-community {
   }
 
   .footer-links {
-    position: relative;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
 
     gap: clamp(20px, 4vw, 24px);
     margin-bottom: clamp(36px, 7vw, 40px);
@@ -3236,7 +3266,7 @@ desktop-community {
 
   .footer-col h3 {
     font-size: clamp(14px, 2.5vw, 15px);
-    margin-bottom: clamp(14px, 2.5vw, 16px);
+    margin-bottom: clamp(30px, 3.5vw, 35px);
   }
 
   .footer-col li {
@@ -3247,10 +3277,7 @@ desktop-community {
     font-size: clamp(13px, 2.5vw, 14px);
   }
 
-  .desktop-payment{
-    position: absolute;
-    right: 15%;
-    top: -10%;
+  .desktop-payment {
     display: flex;
     flex-direction: column;
     gap: clamp(10px, 2.5vw, 12px);
@@ -3289,9 +3316,10 @@ desktop-community {
   }
 
   .outfit-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: clamp(14px, 3vw, 18px);
     padding: clamp(16px, 3vw, 20px);
+    margin-block: clamp(16px, 3vw, 20px);
   }
 
   .card-header {
@@ -3334,7 +3362,7 @@ desktop-community {
   }
 
   .outfit-img {
-    height: clamp(200px, 32vw, 240px);
+    height: clamp(245px, 32vw, 255px);
   }
 
   .order-btn {
@@ -3343,17 +3371,42 @@ desktop-community {
     font-size: clamp(10px, 2.5vw, 11px);
   }
 
+
+  .desk-product {
+    display: flex;
+    gap: clamp(14px, 3vw, 18px);
+    margin-bottom: clamp(24px, 4vw, 28px);
+    padding: clamp(12px, 2.5vw, 14px);
+  }
+
+  .desk-product-details {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 2.5vw, 14px);
+    padding-top: clamp(4rem, 4vw, 6rem);
+    padding-left: clamp(3rem, 4vw, 5rem);
+  }
+
   .pdp-gallery {
-    margin-top: clamp(56px, 10vw, 64px);
+    margin-left: clamp(3rem, 5vw, 6rem);
+    margin-top: clamp(4rem, 4vw, 6rem);
+    min-width: min(38vw, 36%);
+    max-width: min(38vw, 36%);
+    aspect-ratio: 1;
+  }
+
+  .gallery-track {
+    position: relative;
   }
 
   .gallery-slide {
+    width: 100%;
     border-bottom: 1px solid #000;
+  
   }
 
   .gallery-dots {
-    bottom: clamp(20px, 3vw, 24px);
-    gap: clamp(6px, 1.5vw, 8px);
+    display: none;
   }
 
   .gallery-dots .dot {
@@ -3362,7 +3415,7 @@ desktop-community {
   }
 
   .wishlist-btn-pdp {
-    bottom: clamp(16px, 3vw, 18px);
+    bottom: 92%;
     right: clamp(14px, 3vw, 16px);
     width: clamp(36px, 8vw, 38px);
     height: clamp(36px, 8vw, 38px);
@@ -3388,11 +3441,11 @@ desktop-community {
   }
 
   .price-now {
-    font-size: clamp(20px, 4vw, 22px);
+    font-size: clamp(16px, 4vw, 18px);
   }
 
   .price-was {
-    font-size: clamp(14px, 2.5vw, 15px);
+    font-size: clamp(10px, 2.5vw, 11px);
   }
 
   .rating {
@@ -3400,12 +3453,12 @@ desktop-community {
   }
 
   .stars {
-    font-size: clamp(14px, 3vw, 16px);
+    font-size: clamp(10px, 3vw, 12px);
     letter-spacing: clamp(1px, 0.5vw, 2px);
   }
 
   .rating-count {
-    font-size: clamp(13px, 2.5vw, 14px);
+    font-size: clamp(9px, 2.5vw, 10px);
   }
 
   .product-details {
@@ -3413,17 +3466,17 @@ desktop-community {
   }
 
   .product-details h3 {
-    font-size: clamp(16px, 3vw, 18px);
+    font-size: clamp(12px, 3vw, 14px);
     margin-bottom: clamp(12px, 2.5vw, 14px);
   }
 
   .product-details > p {
-    font-size: clamp(14px, 2.5vw, 15px);
+    font-size: clamp(10px, 2.5vw, 11px);
     margin-bottom: clamp(14px, 2.5vw, 16px);
   }
 
   .features-list li {
-    font-size: clamp(14px, 2.5vw, 15px);
+    font-size: clamp(10px, 2.5vw, 11px);
     margin-bottom: clamp(10px, 2vw, 12px);
   }
 
@@ -3433,16 +3486,16 @@ desktop-community {
   }
 
   .size-selector label {
-    font-size: clamp(15px, 2.5vw, 16px);
+    font-size: clamp(11px, 2.5vw, 14px);
   }
 
   .size-selector select {
     padding: clamp(10px, 2vw, 12px) clamp(14px, 2.5vw, 16px);
-    font-size: clamp(14px, 2.5vw, 15px);
+    font-size: clamp(10px, 2.5vw, 11px);
   }
 
   .size-selector option {
-    font-size: clamp(14px, 2.5vw, 15px);
+    font-size: clamp(10px, 2.5vw, 11px);
   }
 
   .addTo-cart {
@@ -3452,7 +3505,7 @@ desktop-community {
 
   .addCart-btn {
     padding: clamp(12px, 2vw, 14px) 0;
-    font-size: clamp(13px, 2.5vw, 14px);
+    font-size: clamp(9px, 2.5vw, 10px);
   }
 
   .show-cart {
@@ -3476,7 +3529,7 @@ desktop-community {
   }
 
   .related-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: clamp(10px, 2.5vw, 12px);
   }
 
@@ -3556,10 +3609,12 @@ desktop-community {
   }
 
   .shop-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
     gap: clamp(12px, 3vw, 16px);
     padding: clamp(16px, 3vw, 20px);
+    margin-block: clamp(16px, 3vw, 20px);
   }
+  
 
   .cart-drawer {
     width: clamp(70%, 80vw, 320px);
@@ -3625,5 +3680,351 @@ desktop-community {
   .cart-item-remove {
     width: clamp(24px, 4vw, 28px);
     height: clamp(24px, 4vw, 28px);
+  }
+}
+
+
+/* Home page: large desktop layout. Kept separate so the 0–1439px rules above
+   continue to control the existing mobile, tablet, and desktop breakpoints. */
+@media (min-width: 1440px) {
+
+  .back-btn {
+    display: none;
+  }
+
+  .header {
+    padding: clamp(4px, 1vw, 8px) clamp(32px, 5vw, 96px);
+  }
+
+  .menu-toggle,
+  .mobile-nav,
+  .nav-overlay {
+    display: none;
+  }
+
+  .logo img {
+    height: 46px;
+  }
+
+  .desktop-nav,
+  .desktop-nav-links,
+  .desktop-nav-links ul {
+    display: flex;
+    align-items: center;
+  }
+
+  .desktop-nav {
+    gap: clamp(56px, 5vw, 88px);
+  }
+
+  .desktop-nav-links ul {
+    gap: clamp(28px, 2.5vw, 44px);
+    list-style: none;
+  }
+
+  .desktop-nav-links li {
+    position: relative;
+    font-size: 14px;
+    font-weight: 550;
+  }
+
+  .desktop-nav-links a {
+    transition: color 0.3s ease;
+  }
+
+  .desktop-nav-links a:hover,
+  .desktop-nav-links a.active {
+    color: #4242a2;
+  }
+
+  .desktop-nav-links a.active::after {
+    position: absolute;
+    right: 15%;
+    bottom: -5px;
+    width: 70%;
+    height: 2px;
+    content: "";
+    background: #4242a2;
+  }
+
+  .cart-btn img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hero {
+    height: 100dvh;
+    background-image:
+      linear-gradient(-90deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%),
+      url(img/hero/desktopHero.webp);
+    background-position: center;
+    background-size: cover;
+  }
+
+  .hero-track-mobile,
+  .hero-dots {
+    display: none;
+  }
+
+  .hero-content {
+    right: auto;
+    bottom: clamp(140px, 10vh, 175px);
+    left: clamp(32px, 5vw, 96px);
+    width: min(50%, 720px);
+    padding: 0;
+    margin-left: clamp(3.5rem, 5vw, 6rem);
+    align-items: center;
+  }
+
+  .hero-content h1 {
+    margin-bottom: 12px;
+    font-size: clamp(38px, 3vw, 54px);
+  }
+
+  .hero-content p {
+    margin-bottom: 24px;
+    font-size: clamp(20px, 1.5vw, 24px);
+  }
+
+  .hero-btn {
+    padding: clamp(18px, 1.5vw, 24px) clamp(52px, 4vw, 72px);
+    border-radius: 16px;
+    font-size: clamp(17px, 1.2vw, 20px);
+  }
+
+  .collection {
+    padding: clamp(64px, 7vw, 120px) clamp(32px, 5vw, 96px);
+  }
+
+  .collection-header,
+  .collection-div {
+    width: min(100%, 1680px);
+    margin-inline: auto;
+  }
+
+  .collection-header h2 {
+    font-size: clamp(30px, 2.4vw, 42px);
+  }
+
+  .collection-header p {
+    margin-bottom: clamp(40px, 3vw, 56px);
+    font-size: clamp(17px, 1.3vw, 20px);
+  }
+
+  .collection-div {
+    display: flex;
+    gap: clamp(24px, 2.5vw, 48px);
+  }
+
+  .collection-card {
+    flex: 1 1 0;
+    width: auto;
+    height: clamp(380px, 28vw, 520px);
+    margin-bottom: 0;
+  }
+
+  .card-content {
+    margin-top: clamp(44px, 4vw, 72px);
+    padding: clamp(20px, 2vw, 32px);
+  }
+
+  .card-content h3 {
+    font-size: clamp(26px, 2vw, 34px);
+  }
+
+  .card-content p {
+    font-size: clamp(18px, 1.4vw, 22px);
+  }
+
+  .collection-btn {
+    padding: clamp(18px, 1.5vw, 24px) clamp(20px, 1.7vw, 28px);
+    font-size: clamp(17px, 1.3vw, 20px);
+  }
+
+  .search-bar {
+    display: none;
+  }
+
+  .desk-search-div {
+    display: flex;
+    align-items: center;
+    gap: clamp(24px, 3vw, 56px);
+    width: min(calc(100% - clamp(64px, 10vw, 192px)), 1680px);
+    margin: clamp(72px, 6vw, 120px) auto clamp(36px, 3vw, 56px);
+  }
+
+  .desk-search-div .search-bar {
+    display: flex;
+    flex: 1 1 34rem;
+    max-width: 720px;
+    gap: 16px;
+    margin: 0;
+    padding: 13px 24px 13px 16px;
+  }
+
+  .desk-search-div .search-bar input,
+  .desk-search-div .search-bar input::placeholder {
+    font-size: 16px;
+  }
+
+  .desk-search-div .filter-btn {
+    display: none;
+  }
+
+  .desk-catego {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .desk-catego button {
+    display: flex;
+    align-items: center;
+    padding-inline: clamp(18px, 1.5vw, 28px);
+    white-space: nowrap;
+    border: 1px solid #676767;
+    border-radius: 8px;
+  }
+
+  .category-row {
+    width: 100%;
+    max-width: 1872px;
+    margin: 0 auto clamp(48px, 4vw, 72px);
+    padding-inline: clamp(32px, 5vw, 96px);
+  }
+
+  .category-header {
+    padding: 0;
+    margin-bottom: 16px;
+  }
+
+  .category-header h2 {
+    font-size: clamp(21px, 1.6vw, 26px);
+  }
+
+  .view-all {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .product-scroll {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    gap: clamp(20px, 1.5vw, 24px);
+    padding: 0;
+  }
+
+  .product-card {
+    width: clamp(190px, 13vw, 240px);
+    padding-bottom: 10px;
+  }
+
+  .product-img {
+    height: auto;
+    aspect-ratio: 0.86;
+    margin-bottom: 12px;
+  }
+
+  .product-card h3 {
+    min-height: 2.4em;
+    margin-bottom: 26px;
+    padding-inline: 10px;
+    font-size: 15px;
+  }
+
+  .product-meta {
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+
+  .desktop-community {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    justify-content: center;
+    background: radial-gradient(circle at top, #e9edf8 0%, #c8d3ee 45%, #8a9ad5 100%);
+    border: 2px solid #111;
+    border-radius: 12px;
+    gap: clamp(40px, 5vw, 96px);
+    width: min(calc(100% - clamp(64px, 10vw, 192px)), 1680px);
+    min-height: clamp(680px, 56vw, 860px);
+    margin: clamp(96px, 8vw, 160px) auto;
+    min-width: 85rem;
+  } 
+
+
+  .iphone-container {
+    width: clamp(320px, 24vw, 400px);
+    height: clamp(620px, 46vw, 760px);
+  }
+
+  .featurs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(40px, 5vw, 96px);
+    width: min(calc(100% - clamp(64px, 10vw, 192px)), 1200px);
+    margin: 0 auto;
+    padding: clamp(48px, 5vw, 80px) 0;
+  }
+
+  .feature-card h3 {
+    font-size: 14px;
+  }
+
+  .feature-card p {
+    font-size: 12px;
+  }
+
+  .site-footer {
+    padding: clamp(56px, 5vw, 88px) clamp(32px, 5vw, 96px) 36px;
+  }
+
+  .newsletter {
+    max-width: 680px;
+  }
+
+  .footer-links {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1200px;
+    margin-inline: auto;
+
+    h2 {
+      margin-bottom: 35px;
+    }
+  }
+
+  .desktop-payment {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 2.5vw, 12px);
+    justify-content: center;
+    align-items: center;
+
+    img {
+      background: white;
+      border-radius: 8px;
+      border-inline: 2px solid #fff;
+      width: clamp(32px, 5vw, 38px);
+      height: clamp(32px, 5vw, 38px);
+    }
+  }
+
+  .outfit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: clamp(28px, 3vw, 32px);
+    padding: 0 clamp(32px, 4vw, 46px);
+    margin-top: clamp(40px, 3vw, 48px);
+  }
+
+  .card-header h3 {
+    font-size: clamp(10px, 2vw, 12px);
+  }
+
+  .outfit-img {
+    height: clamp(255px, 32vw, 265px);
   }
 }
