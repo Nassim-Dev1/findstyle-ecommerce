@@ -591,7 +591,7 @@ const products = {
     rating: 4.6,
     reviewCount: 22,
     images: [
-      'img/T-shirts/athletics23Shirt.webp'
+      'img/t-shirts/athletics23Shirt.webp'
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A white oversized graphic tee featuring varsity-style "23 Athletics" chest typography and sleeve star accents.',
