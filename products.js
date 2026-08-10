@@ -389,7 +389,7 @@ const products = {
     rating: 4.6,
     reviewCount: 17,
     images: [
-      'img/shirts/greenShirt (1).webp'
+      'img/shirts/greenShirt(1).webp'
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A solid forest green shirt, a versatile deep tone for layering or wearing alone.',
@@ -773,7 +773,7 @@ const products = {
     rating: 4.8,
     reviewCount: 50,
     images: [
-      'img/T-shirts/whiteT-shirt (1).webp'
+      'img/T-shirts/whiteT-shirt(1).webp'
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A crisp classic white crew neck tee, a wardrobe essential.',
