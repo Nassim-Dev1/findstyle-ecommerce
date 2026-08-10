@@ -25,7 +25,7 @@
       <div class="desktop-nav">
         <div class="desktop-nav-links">
           <ul>
-            <li><a class="active" href="index.html">HOME</a></li>
+            <li><a href="index.html">HOME</a></li>
             <li><a href="shop.html">SHOP</a></li>
             <li><a href="collections.html">COLLECTIONS</a></li>
             <li><a href="https://wa.me/213559959122">CONTACT</a></li>
@@ -60,7 +60,7 @@
       <div class="hero-track-mobile" id="heroTrackMobile">
         <div
           class="hero-slide"
-          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.6) 100%), url(&quot;img/hero/desktopHero.webp&quot;)"
+          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.45) 100%), url(&quot;img/hero/desktopHero.webp&quot;)"
         ></div>
         <!-- <div
           class="hero-slide"
@@ -145,12 +145,12 @@
 
       <div class="filter-dropdown" id="filterDropdown">
         <ul>
-          <li><button class="filter-option" data-category="all">All</button></li>
-          <li><button class="filter-option" data-category="jackets">Jackets</button></li>
-          <li><button class="filter-option" data-category="T-shirts">T-shirts</button></li>
-          <li><button class="filter-option" data-category="pants">Pants</button></li>
-          <li><button class="filter-option" data-category="shirts">Shirts</button></li>
-          <li><button class="filter-option" data-category="shoes">Shoes</button></li>
+          <li><button class="filter-option" onclick="window.location.href='shop.html?category=all';">All</button></li>
+          <li><button class="filter-option" onclick="window.location.href='shop.html?category=jackets';">Jackets</button></li>
+          <li><button class="filter-option" onclick="window.location.href='shop.html?category=T-shirts';">T-shirts</button></li>
+          <li><button class="filter-option" onclick="window.location.href='shop.html?category=pants';">Pants</button></li>
+          <li><button class="filter-option" onclick="window.location.href='shop.html?category=shirts';">Shirts</button></li>
+          <li><button class="filter-option" onclick="window.location.href='shop.html?category=shoes';">Shoes</button></li>
         </ul>
       </div>
     </section>
@@ -171,16 +171,19 @@
           <img src="img/icons/slideBar.png" class="filter-icon" alt="" />
         </button>
       </div>
+      <div class="search-results" id="searchResults"></div>
 
       <div class="desk-catego">
-        <button class="filter-option" data-category="all">All</button>
-        <button class="filter-option" data-category="jackets">Jackets</button>
-        <button class="filter-option" data-category="T-shirts">T-shirts</button>
-        <button class="filter-option" data-category="pants">Pants</button>
-        <button class="filter-option" data-category="shirts">Shirts</button>
-        <button class="filter-option" data-category="shoes">Shoes</button>
+        <button class="filter-option" data-category="all" onclick="window.location.href='shop.html?category=all';">All</button>
+        <button class="filter-option" data-category="jackets" onclick="window.location.href='shop.html?category=jackets';">Jackets</button>
+        <button class="filter-option" data-category="T-shirts" onclick="window.location.href='shop.html?category=T-shirts';">T-shirts</button>
+        <button class="filter-option" data-category="pants" onclick="window.location.href='shop.html?category=pants';">Pants</button>
+        <button class="filter-option" data-category="shirts" onclick="window.location.href='shop.html?category=shirts';">Shirts</button>
+        <button class="filter-option" data-category="shoes" onclick="window.location.href='shop.html?category=shoes';">Shoes</button>
       </div>
     </section>
+
+    
 
     <section class="category-row" data-category="bestsellers">
       <div class="category-header">

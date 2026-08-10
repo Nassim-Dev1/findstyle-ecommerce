@@ -189,10 +189,76 @@ if (cartDrawerClose) {
 }
 
 
+const desktopLinks = document.querySelectorAll(".desktop-nav a");
+const currentPath  = window.location.pathname;
+
+desktopLinks.forEach(link => {
+  if (link.href.includes(currentPath)) {
+    link.classList.add("active");
+  } else {
+    link.classList.remove("active");
+  }
+});
 
 
 
 
+
+const searchInput = document.querySelector(".search-input input[type='search']");
+const searchResults = document.getElementById("searchResults");
+
+if (searchInput && searchResults) {
+  searchInput.addEventListener("input", function() {
+    const query = searchInput.value.trim().toLowerCase();
+
+    if ( query === '') {
+      searchResults.classList.remove('is-visible');
+      searchResults.innerHTML = '';
+      return;
+    } 
+
+    const matches = Object.values(products).filter(p => 
+      p.name.toLowerCase().includes(query)
+    );
+
+    searchResults.innerHTML = '';
+    
+    if (matches.length === 0) {
+      searchResults.innerHTML = '<p class="search-no-results">No products found.</p>';
+    } else {
+      matches.slice(0, 8).forEach(product => {
+        const item = document.createElement("a");
+        item.href = `product.html?id=${product.id}`;
+        item.className = 'search-result-item';
+        item.innerHTML = `
+        <img src="${product.images[0]}" alt="${product.name}">
+        <span class="price">$${product.priceNow}</span>
+        `;
+        searchResults.appendChild(item);
+      });
+    }
+
+    searchResults.classList.add('is-visible');
+  });
+
+
+  document.addEventListener("click", function(e) {
+    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+      searchResults.classList.remove('is-visible');
+    }
+  });
+}
+
+
+// const deskCategoButtons = document.querySelectorAll(".desk-catego button");
+
+// deskCategoButtons.forEach(b => {
+//   b.addEventListener("click", function() {
+//     const category = b.dataset.category;
+
+//     renderShopGrid(category);
+//   });
+// })
 
 
 
@@ -857,4 +923,7 @@ if (document.body.classList.contains("page-shop")) {
       filterDropdown.classList.remove("is-open");
     });
   });
+
+
+
 }
