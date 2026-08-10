@@ -190,14 +190,15 @@ if (cartDrawerClose) {
 
 
 const desktopLinks = document.querySelectorAll(".desktop-nav a");
-const currentPath  = window.location.pathname;
+const currentPath  = window.location.pathname.replace(/\/$/, "") || "/";
 
 desktopLinks.forEach(link => {
-  if (link.href.includes(currentPath)) {
-    link.classList.add("active");
-  } else {
-    link.classList.remove("active");
-  }
+  
+  const linkpath = link.pathname.replace(/\/$/, "") || "/";
+
+  const isActive = linkpath === currentPath;
+
+  link.classList.toggle("active", isActive);
 });
 
 

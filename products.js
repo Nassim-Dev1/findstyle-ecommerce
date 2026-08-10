@@ -773,7 +773,7 @@ const products = {
     rating: 4.8,
     reviewCount: 50,
     images: [
-      'img/T-shirts/whiteT-shirt(1).webp'
+      'img/T-shirts/WhiteT-shirt.webp'
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A crisp classic white crew neck tee, a wardrobe essential.',
