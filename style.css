@@ -26,10 +26,6 @@ a {
   color: inherit;
 }
 
-.section1 {
-  padding: clamp(16px, 3vw, 18px);
-}
-
 .bubble {
   position: absolute;
   border-radius: 50%;
@@ -51,7 +47,6 @@ a {
     opacity: 0;
   }
 }
-
 
 .header {
   display: flex;
@@ -118,14 +113,12 @@ a {
     font-weight: 700;
     list-style: none;
   }
-
 }
 
 .mobile-nav a:hover,
 .mobile-nav a:active {
   color: #4242a2;
 }
-
 
 .mobile-nav.is-open {
   transform: translateX(0);
@@ -529,6 +522,7 @@ a {
 .wishlist-btn.is-active img {
   transform: scale(1.15);
 }
+
 .product-card h3 {
   font-size: 14px;
   font-style: italic;
@@ -563,7 +557,7 @@ a {
   color: #333333;
 }
 
-desktop-community {
+.desktop-community {
     position: relative;
     display: flex;
     align-items: center;
@@ -572,11 +566,9 @@ desktop-community {
   
     background: radial-gradient(circle at top, #e9edf8 0%, #c8d3ee 45%, #8a9ad5 100%);
     border: 2px solid #111;
-    border-radius: 12px;
-    margin: clamp(14px, 2.5vw, 16px);
-  }
+}
 
-  .iphone-container {
+.iphone-container {
     position: relative;
     width: clamp(280px, 45vw, 320px);
     height: clamp(540px, 75vw, 580px);
@@ -675,68 +667,6 @@ desktop-community {
     box-shadow: 0 14px 24px rgba(0, 39, 111, 0.18);
   }
 
-/* .mobile-community {
-  position: relative;
-  height: 80vh;
-  min-height: 320px;
-  background: url(img/general/join.webp);
-  background-size: cover;
-  background-position: top center;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding-top: 60px;
-
-  h2 {
-    color: #fff;
-    font-size: 14px;
-    font-style: italic;
-    font-weight: 700;
-    text-align: center;
-  }
-}
-
-.mobile-community-content {
-  background: radial-gradient(
-    ellipse at center,
-    rgba(20, 20, 20, 0.55) 10%,
-    rgba(20, 20, 20, 0.3) 50%,
-    rgba(20, 20, 20, 0) 60%
-  );
-  padding: 30px 35px;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  top: 10px;
-  justify-content: center;
-}
-
-.social-links {
-  display: flex;
-  padding: 10px 22px;
-  gap: 16px;
-  align-items: center;
-
-  a {
-    width: 56px;
-    height: 56px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition:
-      transform 0.15s ease,
-      background 0.15s ease;
-  }
-
-  img {
-    width: 28px;
-    height: 28px;
-  }
-} */
-
 .featurs {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -784,8 +714,6 @@ desktop-community {
   padding: 40px 20px 30px;
   color: #fff;
 }
-
-
 
 .newsletter {
   background: rgba(255, 255, 255, 0.25);
@@ -874,8 +802,6 @@ desktop-community {
   padding-top: 20px;
 }
 
-/* <===== collection page =====> */
-
 .back-btn {
   background: none;
   border: none;
@@ -896,48 +822,6 @@ desktop-community {
   border: 1px solid #000;
   border-radius: 10px;
   margin-top: 86px;
-}
-
-.search-results {
-  position: absolute;
-  top: clac(100% + 8px);
-  left: 0;
-  right: 0;
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-height: 320px;
-  overflow-y: auto;
-  z-index: 60;
-  display: none;
-}
-
-.search-results.is-visible {
-  display: block;
-}
-
-.search-results-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border-bottom: 1px solid #f5f5f5;
-
-  img {
-    width: 36px;
-    height: 36px;
-    object-fit: cover;
-    border-radius: 6px;
-  }
-}
-
-.search-no-results {
-  padding: 14px;
-  text-align: center;
-  font-size: 10px;
-  font-style: italic;
-  color: #888;
 }
 
 .outfit-grid {
@@ -1042,6 +926,7 @@ desktop-community {
   background: none;
   width: 22px;
   height: 22px;
+
   img {
     width: 12px;
     height: 12px;
@@ -1069,8 +954,6 @@ desktop-community {
   background: #111;
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
-
-/* <===== PDP page =====> */
 
 .pdp-gallery {
   margin-top: 64px;
@@ -1106,6 +989,7 @@ desktop-community {
   align-items: center;
   gap: 6px;
 }
+
 .gallery-dots .dot {
   width: 7px;
   height: 7px;
@@ -1188,12 +1072,6 @@ desktop-community {
   padding: 20px 16px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  ss h3 {
-    font-size: 17px;
-    font-weight: 700;
-    font-style: italic;
-    margin-bottom: 12px;
-  }
 }
 
 .product-details > p {
@@ -1309,7 +1187,7 @@ desktop-community {
   .product-card:hover {
     opacity: 0.9;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  } 
+  }
 
   .product-img {
     height: 100px;
@@ -1367,7 +1245,6 @@ desktop-community {
   z-index: 200;
   padding: 24px 16px;
   overflow-y: auto;
-
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -1581,10 +1458,6 @@ desktop-community {
 }
 
 @media (max-width: 600px) {
-  .section1 {
-    padding: clamp(16px, 4vw, 20px);
-  }
-
   .header {
     padding: clamp(10px, 3vw, 14px) clamp(14px, 4vw, 18px);
   }
@@ -1612,8 +1485,6 @@ desktop-community {
   .mobile-nav li {
     font-size: clamp(16px, 4vw, 20px);
   }
-
-
 
   .nav-close img {
     width: clamp(18px, 4vw, 20px);
@@ -1720,11 +1591,6 @@ desktop-community {
     font-size: clamp(11px, 3vw, 13px);
   }
 
-  .mobile-community {
-    display: none;
-    padding-top: clamp(48px, 12vw, 60px);
-  }
-
   .desktop-community {
     position: relative;
     display: flex;
@@ -1751,8 +1617,6 @@ desktop-community {
 
   }
 
-  
-
   .featurs {
     gap: clamp(8px, 4vw, 12px);
     padding: clamp(24px, 7vw, 32px);
@@ -1774,7 +1638,6 @@ desktop-community {
   .feature-card p {
     font-size: clamp(8px, 3vw, 10px);
   }
-
 
   .newsletter {
     padding: clamp(24px, 7vw, 32px);
@@ -1829,6 +1692,7 @@ desktop-community {
   }
 
   .outfit-grid {
+    grid-template-columns: repeat(auto-fit, minmax(144px, 1fr));
     gap: clamp(12px, 4vw, 16px);
     padding: clamp(12px, 4vw, 16px);
   }
@@ -2151,7 +2015,6 @@ desktop-community {
     height: clamp(22px, 4vw, 26px);
   }
 
-
   .desktop-payment {
     display: none;
   }
@@ -2159,24 +2022,12 @@ desktop-community {
   .desktop-footer-col {
     display: none;
   }
-
-  .outfit-grid {
-    grid-template-columns: repeat(auto-fit, minmax(144px, 1fr));
-  }
 }
 
-
-/* ===========================
-   TABLET (768px - 1023px)
-=========================== */
 
 @media (min-width: 601px) and (max-width: 1023px) {
   body {
     font-size: clamp(14px, 2vw, 16px);
-  }
-
-  .section1 {
-    padding: clamp(16px, 3.5vw, 18px);
   }
 
   .header {
@@ -2221,11 +2072,11 @@ desktop-community {
     background-position: right;
   }
 
-    .hero-track-mobile,
+  .hero-track-mobile,
   .hero-dots {
     display: none;
   }
-  
+
   .hero-content {
     bottom: clamp(80px, 9vw, 90px);
     padding-inline: clamp(20px, 4vw, 28px);
@@ -2364,10 +2215,7 @@ desktop-community {
     width: 100%;
     padding: 32px 24px 28px;
     color: #1c2440;
-
   }
-
-
 
   .featurs {
     display: flex;
@@ -2401,7 +2249,7 @@ desktop-community {
       clamp(28px, 4vw, 30px);
   }
 
-    .newsletter {
+  .newsletter {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -2587,8 +2435,7 @@ desktop-community {
   .stars {
     font-size: clamp(20px, 3vw, 22px);
     letter-spacing: clamp(1px, 0.5vw, 2px);
-        margin-bottom: clamp(4px, 2vw, 6px);
-
+    margin-bottom: clamp(4px, 2vw, 6px);
   }
 
   .rating-count {
@@ -2817,7 +2664,6 @@ desktop-community {
 }
 
 @media (min-width: 900px) and (max-width: 1023px) {
-
   .menu-toggle {
     display: none;
   }
@@ -2829,16 +2675,11 @@ desktop-community {
   .mobile-nav {
     display: none;
   }
-
 }
 
 @media (min-width: 1024px) and (max-width: 1439px) {
   body {
     font-size: clamp(14px, 2vw, 16px);
-  }
-
-  .section1 {
-    padding: clamp(16px, 3.5vw, 18px);
   }
 
   .back-btn {
@@ -2852,10 +2693,6 @@ desktop-community {
   }
 
   .menu-toggle {
-    display: none;
-  }
-
-  .back-btn {
     display: none;
   }
 
@@ -2903,8 +2740,6 @@ desktop-community {
     color: #4242a2;
   }
 
-
-
   .desktop-nav-links a.active::after,
   .desktop-nav-links a:active::after {
     content: "";
@@ -2940,7 +2775,6 @@ desktop-community {
   }
 
   .hero-content {
-    bottom: clamp(80px, 9vw, 90px);
     padding-inline: clamp(20px, 4vw, 28px);
     right: 18rem;
     bottom: 8rem;
@@ -3136,10 +2970,6 @@ desktop-community {
     padding-inline: clamp(6px, 1.5vw, 8px);
   }
 
-  .mobile-community {
-    display: none;
-  }
-
   .desktop-community {
     position: relative;
     display: flex;
@@ -3258,6 +3088,11 @@ desktop-community {
     box-shadow: 0 14px 24px rgba(0, 39, 111, 0.18);
   }
 
+  .social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 24px rgba(0, 39, 111, 0.18);
+  }
+
   .featurs {
     display: flex;
     justify-content: center;
@@ -3291,14 +3126,7 @@ desktop-community {
       clamp(28px, 4vw, 30px);
   }
 
-  /* .newsletter-T {
-    opacity: 0;
-    width: 85vh;
-    padding: clamp(28px, 6vw, 32px) clamp(20px, 4vw, 28px);
-    margin-bottom: clamp(40px, 8vw, 48px);
-  } */
-
-    .newsletter {
+  .newsletter {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -3327,7 +3155,6 @@ desktop-community {
 
   .footer-links {
     grid-template-columns: repeat(4, 1fr);
-
     gap: clamp(20px, 4vw, 24px);
     margin-bottom: clamp(36px, 7vw, 40px);
   }
@@ -3361,15 +3188,9 @@ desktop-community {
     }
   }
 
-
   .footer-copyright {
     font-size: clamp(11px, 2vw, 12px);
     padding-top: clamp(18px, 3vw, 20px);
-  }
-
-  .back-btn img {
-    width: clamp(24px, 4vw, 26px);
-    height: clamp(24px, 4vw, 26px);
   }
 
   .search-bar-col {
@@ -3439,7 +3260,6 @@ desktop-community {
     font-size: clamp(10px, 2.5vw, 11px);
   }
 
-
   .desk-product {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -3479,11 +3299,6 @@ desktop-community {
 
   .gallery-dots {
     display: none;
-  }
-
-  .gallery-dots .dot {
-    width: clamp(6px, 1.5vw, 8px);
-    height: clamp(6px, 1.5vw, 8px);
   }
 
   .wishlist-btn-pdp {
@@ -3534,8 +3349,7 @@ desktop-community {
   .stars {
     font-size: clamp(18px, 3vw, 22px);
     letter-spacing: clamp(1px, 0.5vw, 2px);
-        margin-bottom: clamp(5px, 2vw, 7px);
-
+    margin-bottom: clamp(5px, 2vw, 7px);
   }
 
   .rating-count {
@@ -3658,10 +3472,6 @@ desktop-community {
     transform: translateX(-100%);
   }
 
-  .outfit-panal.open {
-    transform: translateX(0);
-  }
-
   .outfit-panal-header {
     margin-bottom: clamp(14px, 3vw, 18px);
   }
@@ -3707,7 +3517,6 @@ desktop-community {
     padding: clamp(16px, 3vw, 20px);
     margin-block: clamp(16px, 3vw, 20px);
   }
-  
 
   .cart-drawer {
     width: clamp(70%, 80vw, 320px);
@@ -3776,11 +3585,7 @@ desktop-community {
   }
 }
 
-
-/* Home page: large desktop layout. Kept separate so the 0–1439px rules above
-   continue to control the existing mobile, tablet, and desktop breakpoints. */
 @media (min-width: 1440px) {
-
   .back-btn {
     display: none;
   }
@@ -4045,7 +3850,6 @@ desktop-community {
     position: relative;
     display: flex;
     align-items: center;
-    min-height: 100vh;
     justify-content: center;
     background: radial-gradient(circle at top, #e9edf8 0%, #c8d3ee 45%, #8a9ad5 100%);
     border: 2px solid #111;
@@ -4055,8 +3859,7 @@ desktop-community {
     min-height: clamp(680px, 56vw, 860px);
     margin: clamp(96px, 8vw, 160px) auto;
     min-width: 85rem;
-  } 
-
+  }
 
   .iphone-container {
     width: clamp(320px, 24vw, 400px);
@@ -4094,10 +3897,6 @@ desktop-community {
     grid-template-columns: repeat(4, 1fr);
     max-width: 1200px;
     margin-inline: auto;
-
-    h2 {
-      margin-bottom: 35px;
-    }
   }
 
   .desktop-payment {
@@ -4141,13 +3940,6 @@ desktop-community {
     padding-inline: clamp(2rem, 4vw, 4rem) clamp(4rem, 5vw, 6rem);
   }
 
-  .gallery-track {
-    position: relative;
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
-  }
-
   .desk-product-p1 {
     display: flex;
     flex-direction: column;
@@ -4155,22 +3947,16 @@ desktop-community {
     max-height: 100%;
     align-items: center;
   }
-  
 
   .product-info {
     display: flex;
     flex-direction: column;
-
-    h2 {
-      font-size: clamp(1.5rem, 3vw + 0.5rem ,2rem );
-    }
   }
 
   .stars {
     font-size: clamp(18px, 3vw, 22px);
     letter-spacing: clamp(1px, 0.5vw, 2px);
-        margin-bottom: clamp(5px, 2vw, 7px);
-
+    margin-bottom: clamp(5px, 2vw, 7px);
   }
 
   .rating-count {
@@ -4215,8 +4001,6 @@ desktop-community {
     gap: clamp(8px, 3vw, 12px);
     padding: 0 clamp(32px, 4vw, 46px);
     margin-top: clamp(40px, 3vw, 48px);
-
-    
 
     .price {
       font-size: clamp(10px, 3vw, 12px);

@@ -80,28 +80,24 @@
 
     <section class="desk-search-div desk-search-div-col">
       <div class="search-bar">
-          <img
+        <img
           src="img/icons/search-interface-symbol.png"
           class="search-icon"
           alt=""
-        >
+        />
         <input
           type="search"
           placeholder="Search for products, brands and more ..."
         />
-
-        <button class="filter-btn" id="filterBtn">
-          <img src="img/icons/slideBar.png" class="filter-icon" alt="" />
-        </button>
       </div>
 
       <div class="desk-catego">
-          <button class="filter-option" data-category="all">All</button>
-          <button class="filter-option" data-category="jackets">Jackets</button>
-          <button class="filter-option" data-category="T-shirts">T-shirts</button>
-          <button class="filter-option" data-category="pants">Pants</button>
-          <button class="filter-option" data-category="shirts">shirts</button>
-          <button class="filter-option" data-category="shoes">Shoes</button>
+        <button class="filter-option" data-category="all">All</button>
+        <button class="filter-option" data-category="jackets">Jackets</button>
+        <button class="filter-option" data-category="T-shirts">T-shirts</button>
+        <button class="filter-option" data-category="pants">Pants</button>
+        <button class="filter-option" data-category="shirts">shirts</button>
+        <button class="filter-option" data-category="shoes">Shoes</button>
       </div>
     </section>
 
@@ -111,7 +107,7 @@
       <!-- filled dynamically by JS -->
     </div>
 
-        <footer class="site-footer">
+    <footer class="site-footer">
       <div class="newsletter">
         <h2>Get 15% off your first order</h2>
         <form class="newsletter-form">
@@ -119,7 +115,6 @@
           <button type="submit">JOIN</button>
         </form>
       </div>
-
       <div class="footer-links">
         <div class="footer-col">
           <h3>SHOP</h3>
@@ -129,7 +124,6 @@
             <li><a href="shop.html?category=shoes">Footwear</a></li>
           </ul>
         </div>
-
         <div class="footer-col">
           <h3>HELP</h3>
           <ul>
@@ -138,7 +132,6 @@
             <li><a href="https://wa.me/213559959122">Contact Us</a></li>
           </ul>
         </div>
-
         <div class="footer-col desktop-footer-col">
           <h3>COMPANY</h3>
           <ul>
@@ -147,22 +140,17 @@
             <li><a href="https://wa.me/213559959122">Terms of Service</a></li>
           </ul>
         </div>
-
         <div class="desktop-payment">
           <img src="img/general/baridimob.png" alt="" class="baridimob">
           <img src="img/general/paypal.png" alt="" class="paypal">
           <img src="img/general/visa.png" alt="" class="visa">
         </div>
-
       </div>
-
       <div class="footer-foot">
         <p class="footer-copyright">
           &copy; 2026 Findstyle, Inc. All rights reserved
         </p>
       </div>
-      
-
     </footer>
 
     <div class="cart-overlay" id="cartOverlay"></div>
@@ -172,11 +160,9 @@
         <h3>Your Cart</h3>
         <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
       </div>
-
       <div class="cart-items" id="cartItems">
         <!-- filled dynamically by JS -->
       </div>
-
       <div class="cart-footer">
         <div class="cart-total">
           <span>Total:</span>
@@ -198,3 +184,23 @@
 </html>
 
 
+
+
+
+
+.outfit-panal {
+    height: 100%;
+    max-height: 100vh;
+    width: 85%;
+    max-width: 350px;
+    padding: clamp(20px, 3vw, 24px);
+    left: 0;
+    top: 0;
+    right: auto;
+    bottom: auto;
+    transform: translateX(-100%);
+  }
+
+  .outfit-panal.open {
+    transform: translateX(0);
+  }

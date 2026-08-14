@@ -1,5 +1,4 @@
 const products = {
-
   blackJeans: {
     id: 'blackJeans',
     name: 'Classic Black Jeans',
@@ -7,9 +6,7 @@ const products = {
     priceWas: 60,
     rating: 4.7,
     reviewCount: 32,
-    images: [
-      'img/pants/blackJeans.webp'
-    ],
+    images: ['img/pants/blackJeans.webp'],
     sizes: [30, 32, 34, 36, 38],
     shortDescription: 'A timeless straight-fit black jean, built for everyday wear with a clean, versatile look.',
     features: [
@@ -19,7 +16,6 @@ const products = {
     ],
     category: 'pants'
   },
-
   blackPants: {
     id: 'blackPants',
     name: 'Tailored Black Pants',
@@ -27,9 +23,7 @@ const products = {
     priceWas: 65,
     rating: 4.6,
     reviewCount: 21,
-    images: [
-      'img/pants/blackPants.webp'
-    ],
+    images: ['img/pants/blackPants.webp'],
     sizes: [30, 32, 34, 36, 38],
     shortDescription: 'Smart-casual tailored pants in solid black, easy to dress up or down.',
     features: [
@@ -39,7 +33,6 @@ const products = {
     ],
     category: 'pants'
   },
-
   blueJeans: {
     id: 'blueJeans',
     name: 'Light Wash Blue Jeans',
@@ -48,9 +41,7 @@ const products = {
     priceWas: 60,
     rating: 4.8,
     reviewCount: 40,
-    images: [
-      'img/pants/blueJeans.webp'
-    ],
+    images: ['img/pants/blueJeans.webp'],
     sizes: [30, 32, 34, 36, 38],
     shortDescription: 'A relaxed, light-wash denim jean for an easygoing everyday look.',
     features: [
@@ -60,7 +51,6 @@ const products = {
     ],
     category: 'pants'
   },
-
   brownPants: {
     id: 'brownPants',
     name: 'Brown Tailored Pants',
@@ -68,9 +58,7 @@ const products = {
     priceWas: 62,
     rating: 4.5,
     reviewCount: 18,
-    images: [
-      'img/pants/brownPants.webp'
-    ],
+    images: ['img/pants/brownPants.webp'],
     sizes: [30, 32, 34, 36, 38],
     shortDescription: 'A rich brown tailored pant, perfect for a warm, earthy neutral look.',
     features: [
@@ -80,7 +68,6 @@ const products = {
     ],
     category: 'pants'
   },
-
   creamyPants: {
     id: 'creamyPants',
     name: 'Creamy Wide-Leg Pants',
@@ -88,9 +75,7 @@ const products = {
     priceWas: 55,
     rating: 4.6,
     reviewCount: 15,
-    images: [
-      'img/pants/creamyyPants.webp'
-    ],
+    images: ['img/pants/creamyyPants.webp'],
     sizes: [30, 32, 34, 36, 38],
     shortDescription: 'A soft cream wide-leg pant with a pleated front for a relaxed, elevated look.',
     features: [
@@ -100,7 +85,6 @@ const products = {
     ],
     category: 'pants'
   },
-
   greenMilitaryCargo: {
     id: 'greenMilitaryCargo',
     name: 'Green Military Cargo Pants',
@@ -108,9 +92,7 @@ const products = {
     priceWas: 68,
     rating: 4.9,
     reviewCount: 27,
-    images: [
-      'img/pants/greenMilitaryCargo.webp'
-    ],
+    images: ['img/pants/greenMilitaryCargo.webp'],
     sizes: [30, 32, 34, 36, 38],
     shortDescription: 'Utility-inspired cargo pants in military green, built with functional pockets and a relaxed fit.',
     features: [
@@ -120,7 +102,6 @@ const products = {
     ],
     category: 'pants'
   },
-
   greyJeans: {
     id: 'greyJeans',
     name: 'Grey Denim Jeans',
@@ -128,9 +109,7 @@ const products = {
     priceWas: 60,
     rating: 4.6,
     reviewCount: 22,
-    images: [
-      'img/pants/greyJeans.webp'
-    ],
+    images: ['img/pants/greyJeans.webp'],
     sizes: [30, 32, 34, 36, 38],
     shortDescription: 'A versatile grey denim jean, a neutral alternative to classic blue.',
     features: [
@@ -140,7 +119,6 @@ const products = {
     ],
     category: 'pants'
   },
-
   greyPants: {
     id: 'greyPants',
     name: 'Light Grey Tailored Pants',
@@ -148,9 +126,7 @@ const products = {
     priceWas: 62,
     rating: 4.5,
     reviewCount: 19,
-    images: [
-      'img/pants/greyPants.webp'
-    ],
+    images: ['img/pants/greyPants.webp'],
     sizes: [30, 32, 34, 36, 38],
     shortDescription: 'A light grey tailored pant with a clean, minimal look for smart-casual outfits.',
     features: [
@@ -160,7 +136,6 @@ const products = {
     ],
     category: 'pants'
   },
-
   greyyPants: {
     id: 'greyyPants',
     name: 'Charcoal Grey Pants',
@@ -168,9 +143,7 @@ const products = {
     priceWas: 62,
     rating: 4.6,
     reviewCount: 24,
-    images: [
-      'img/pants/greyyPants.webp'
-    ],
+    images: ['img/pants/greyyPants.webp'],
     sizes: [30, 32, 34, 36, 38],
     shortDescription: 'A darker charcoal grey pant, tailored for a sharp, versatile look.',
     features: [
@@ -180,7 +153,6 @@ const products = {
     ],
     category: 'pants'
   },
-
   whitePants: {
     id: 'whitePants',
     name: 'White Wide-Leg Pants',
@@ -188,9 +160,7 @@ const products = {
     priceWas: 55,
     rating: 4.7,
     reviewCount: 16,
-    images: [
-      'img/pants/whitePants.webp'
-    ],
+    images: ['img/pants/whitePants.webp'],
     sizes: [30, 32, 34, 36, 38],
     shortDescription: 'Crisp white wide-leg pants for a clean, elevated summer look.',
     features: [
@@ -200,7 +170,6 @@ const products = {
     ],
     category: 'pants'
   },
-
   blackJacket: {
     id: 'blackJacket',
     name: 'Black Zip Jacket',
@@ -208,9 +177,7 @@ const products = {
     priceWas: 85,
     rating: 4.8,
     reviewCount: 30,
-    images: [
-      'img/jackets/blackJacket.webp'
-    ],
+    images: ['img/jackets/blackJacket.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A sleek black zip-up jacket, lightweight and versatile for everyday layering.',
     features: [
@@ -220,7 +187,6 @@ const products = {
     ],
     category: 'jackets'
   },
-
   brownJacket: {
     id: 'brownJacket',
     name: 'Brown Overshirt Jacket',
@@ -228,9 +194,7 @@ const products = {
     priceWas: 80,
     rating: 4.6,
     reviewCount: 21,
-    images: [
-      'img/jackets/brownJacket.webp'
-    ],
+    images: ['img/jackets/brownJacket.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A warm brown overshirt-style jacket with a contrast collar for a relaxed layered look.',
     features: [
@@ -240,7 +204,6 @@ const products = {
     ],
     category: 'jackets'
   },
-
   creamyJacket: {
     id: 'creamyJacket',
     name: 'Creamy Bomber Jacket',
@@ -248,9 +211,7 @@ const products = {
     priceWas: 78,
     rating: 4.7,
     reviewCount: 18,
-    images: [
-      'img/jackets/creamyJacket.webp'
-    ],
+    images: ['img/jackets/creamyJacket.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A soft cream bomber jacket, a versatile neutral for casual outfits.',
     features: [
@@ -260,7 +221,6 @@ const products = {
     ],
     category: 'jackets'
   },
-
   greyJacket: {
     id: 'greyJacket',
     name: 'Grey Zip Jacket',
@@ -268,9 +228,7 @@ const products = {
     priceWas: 85,
     rating: 4.7,
     reviewCount: 25,
-    images: [
-      'img/jackets/greyJacket.webp'
-    ],
+    images: ['img/jackets/greyJacket.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A clean grey zip jacket, a practical everyday layer with a minimal look.',
     features: [
@@ -280,7 +238,6 @@ const products = {
     ],
     category: 'jackets'
   },
-
   luxeBlueJacket: {
     id: 'luxeBlueJacket',
     name: 'Luxe Navy Blazer',
@@ -288,9 +245,7 @@ const products = {
     priceWas: 120,
     rating: 4.9,
     reviewCount: 34,
-    images: [
-      'img/jackets/luxeBlueJacket.webp'
-    ],
+    images: ['img/jackets/luxeBlueJacket.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A tailored navy blazer with a refined finish, perfect for smart-casual and formal looks.',
     features: [
@@ -300,7 +255,6 @@ const products = {
     ],
     category: 'jackets'
   },
-
   militaryGreenJacket: {
     id: 'militaryGreenJacket',
     name: 'Military Green Trench Coat',
@@ -308,9 +262,7 @@ const products = {
     priceWas: 130,
     rating: 4.8,
     reviewCount: 20,
-    images: [
-      'img/jackets/militarygreenJacket.webp'
-    ],
+    images: ['img/jackets/militarygreenJacket.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A long military-green trench coat with a button-front closure for a bold, statement layer.',
     features: [
@@ -320,7 +272,6 @@ const products = {
     ],
     category: 'jackets'
   },
-  
   skySquarShirt: {
     id: 'skySquarShirt',
     name: 'Sky Blue Check Shirt',
@@ -328,9 +279,7 @@ const products = {
     priceWas: 48,
     rating: 4.6,
     reviewCount: 19,
-    images: [
-      'img/shirts/SkySquarShirt.webp'
-    ],
+    images: ['img/shirts/SkySquarShirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A light sky-blue checked shirt, soft and breathable for everyday wear.',
     features: [
@@ -340,7 +289,6 @@ const products = {
     ],
     category: 'shirts'
   },
-
   luxeBlackShirt: {
     id: 'luxeBlackShirt',
     name: 'Luxe Black Turtleneck Sweater',
@@ -348,9 +296,7 @@ const products = {
     priceWas: 68,
     rating: 4.9,
     reviewCount: 42,
-    images: [
-      'img/shirts/luxeBlackShirt.webp'
-    ],
+    images: ['img/shirts/luxeBlackShirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A refined black ribbed turtleneck sweater, designed for sophisticated layering and cold-weather style.',
     features: [
@@ -360,7 +306,6 @@ const products = {
     ],
     category: 'shirts'
   },
-
   brownShirt: {
     id: 'brownShirt',
     name: 'Brown Flannel Shirt',
@@ -368,9 +313,7 @@ const products = {
     priceWas: 50,
     rating: 4.7,
     reviewCount: 22,
-    images: [
-      'img/shirts/brownShirt.webp'
-    ],
+    images: ['img/shirts/brownShirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A warm brown flannel shirt with dual chest pockets, built for cooler days.',
     features: [
@@ -380,7 +323,6 @@ const products = {
     ],
     category: 'shirts'
   },
-
   greenShirt: {
     id: 'greenShirt',
     name: 'Forest Green Shirt',
@@ -388,9 +330,7 @@ const products = {
     priceWas: 48,
     rating: 4.6,
     reviewCount: 17,
-    images: [
-      'img/shirts/greenShirt(1).webp'
-    ],
+    images: ['img/shirts/greenShirt(1).webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A solid forest green shirt, a versatile deep tone for layering or wearing alone.',
     features: [
@@ -400,7 +340,6 @@ const products = {
     ],
     category: 'shirts'
   },
-
   whiteShirt: {
     id: 'whiteShirt',
     name: 'Classic White Shirt',
@@ -408,9 +347,7 @@ const products = {
     priceWas: 45,
     rating: 4.8,
     reviewCount: 40,
-    images: [
-      'img/shirts/whiteShirt.webp'
-    ],
+    images: ['img/shirts/whiteShirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A crisp classic white shirt, a wardrobe essential for any occasion.',
     features: [
@@ -420,7 +357,6 @@ const products = {
     ],
     category: 'shirts'
   },
-
   oliveGreenShirt: {
     id: 'oliveGreenShirt',
     name: 'Olive Green Shirt',
@@ -428,9 +364,7 @@ const products = {
     priceWas: 46,
     rating: 4.5,
     reviewCount: 14,
-    images: [
-      'img/shirts/olliveGreenShirt.webp'
-    ],
+    images: ['img/shirts/olliveGreenShirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A muted olive green shirt, an earthy neutral for casual layering.',
     features: [
@@ -440,7 +374,6 @@ const products = {
     ],
     category: 'shirts'
   },
-
   redShirt: {
     id: 'redShirt',
     name: 'Red Plaid Shirt',
@@ -448,9 +381,7 @@ const products = {
     priceWas: 48,
     rating: 4.6,
     reviewCount: 20,
-    images: [
-      'img/shirts/red.webp'
-    ],
+    images: ['img/shirts/red.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A classic red and cream plaid shirt, a bold statement layer for cooler days.',
     features: [
@@ -460,7 +391,6 @@ const products = {
     ],
     category: 'shirts'
   },
-
   fancyGreenShirt: {
     id: 'fancyGreenShirt',
     name: 'Fancy Green Knit Cardigan',
@@ -468,9 +398,7 @@ const products = {
     priceWas: 60,
     rating: 4.8,
     reviewCount: 18,
-    images: [
-      'img/shirts/fancyGreenShirt.webp'
-    ],
+    images: ['img/shirts/fancyGreenShirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A sleek, deep green V-neck knit cardigan—the perfect balance of cozy comfort and elevated style.',
     features: [
@@ -480,7 +408,6 @@ const products = {
     ],
     category: 'shirts'
   },
-
   blackShirt: {
     id: 'blackShirt',
     name: 'Black Half-Zip Sweatshirt',
@@ -488,9 +415,7 @@ const products = {
     priceWas: 55,
     rating: 4.7,
     reviewCount: 34,
-    images: [
-      'img/shirts/blackShirt.webp'
-    ],
+    images: ['img/shirts/blackShirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A sleek black quarter-zip sweatshirt featuring a high collar and a relaxed, casual fit for daily wear.',
     features: [
@@ -500,7 +425,6 @@ const products = {
     ],
     category: 'shirts'
   },
-
   blueSquarShirt: {
     id: 'blueSquarShirt',
     name: 'Blue Check Shirt',
@@ -508,9 +432,7 @@ const products = {
     priceWas: 47,
     rating: 4.6,
     reviewCount: 18,
-    images: [
-      'img/shirts/blueSquarShirt.webp'
-    ],
+    images: ['img/shirts/blueSquarShirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A blue and white checked shirt, a versatile everyday layer.',
     features: [
@@ -520,7 +442,6 @@ const products = {
     ],
     category: 'shirts'
   },
-
   blackSquarShirt: {
     id: 'blackSquarShirt',
     name: 'Black Buffalo Check Shirt',
@@ -528,9 +449,7 @@ const products = {
     priceWas: 50,
     rating: 4.8,
     reviewCount: 26,
-    images: [
-      'img/shirts/blackSquarShirt.webp'
-    ],
+    images: ['img/shirts/blackSquarShirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A bold black and white buffalo check shirt, a strong statement piece for layering.',
     features: [
@@ -540,7 +459,6 @@ const products = {
     ],
     category: 'shirts'
   },
-
   superDadShirt: {
     id: 'superDadShirt',
     name: 'Super Dad Graphic Oversized Tee',
@@ -549,9 +467,7 @@ const products = {
     priceWas: 35,
     rating: 4.9,
     reviewCount: 19,
-    images: [
-      'img/T-shirts/superDadShirt.webp'
-    ],
+    images: ['img/t-shirts/superDadShirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A comfortable cream-colored oversized tee featuring a heartwarming "Super Dad" father-and-son illustration.',
     features: [
@@ -561,7 +477,6 @@ const products = {
     ],
     category: 'T-shirts'
   },
-
   nikeBlackChainShirt: {
     id: 'nikeBlackChainShirt',
     name: 'Black Swoosh Chain Graphic Tee',
@@ -570,9 +485,7 @@ const products = {
     priceWas: 42,
     rating: 4.8,
     reviewCount: 38,
-    images: [
-      'img/T-shirts/nikeBlackChainShirt.webp'
-    ],
+    images: ['img/t-shirts/nikeBlackChainShirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A streetwear black t-shirt featuring a centered white swoosh logo and a gold chain accent along the collar.',
     features: [
@@ -582,7 +495,6 @@ const products = {
     ],
     category: 'T-shirts'
   },
-
   athletics23Shirt: {
     id: 'athletics23Shirt',
     name: 'Athletics 23 Graphic Boxy Tee',
@@ -590,9 +502,7 @@ const products = {
     priceWas: 40,
     rating: 4.6,
     reviewCount: 22,
-    images: [
-      'img/T-shirts/athletics23Shirt.webp'
-    ],
+    images: ['img/t-shirts/athletics23Shirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A white oversized graphic tee featuring varsity-style "23 Athletics" chest typography and sleeve star accents.',
     features: [
@@ -602,7 +512,6 @@ const products = {
     ],
     category: 'T-shirts'
   },
-
   bostonBeigeShirt: {
     id: 'bostonBeigeShirt',
     name: 'Boston Graphic Oversized Tee',
@@ -610,9 +519,7 @@ const products = {
     priceWas: 38,
     rating: 4.7,
     reviewCount: 51,
-    images: [
-      'img/T-shirts/bostonBeigeShirt.webp'
-    ],
+    images: ['img/t-shirts/bostonBeigeShirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A relaxed beige graphic t-shirt featuring bold collegiate-style "BOSTON" lettering across the chest.',
     features: [
@@ -622,7 +529,6 @@ const products = {
     ],
     category: 'T-shirts'
   },
-
   blackTshirt: {
     id: 'blackTshirt',
     name: 'Black Crew Neck T-Shirt',
@@ -630,9 +536,7 @@ const products = {
     priceWas: 28,
     rating: 4.7,
     reviewCount: 45,
-    images: [
-      'img/T-shirts/blackT-shirt.webp'
-    ],
+    images: ['img/t-shirts/blackT-shirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A classic black crew neck tee, a simple everyday essential.',
     features: [
@@ -642,7 +546,6 @@ const products = {
     ],
     category: 'T-shirts'
   },
-
   blancoTshirt: {
     id: 'blancoTshirt',
     name: 'Ribbed Cream T-Shirt',
@@ -650,9 +553,7 @@ const products = {
     priceWas: 30,
     rating: 4.6,
     reviewCount: 24,
-    images: [
-      'img/T-shirts/blancoT-shirt.webp'
-    ],
+    images: ['img/t-shirts/blancoT-shirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A ribbed cream t-shirt with a slightly textured knit for a more elevated basic.',
     features: [
@@ -662,7 +563,6 @@ const products = {
     ],
     category: 'T-shirts'
   },
-
   creamyTshirt: {
     id: 'creamyTshirt',
     name: 'Creamy Ribbed Polo Tee',
@@ -670,9 +570,7 @@ const products = {
     priceWas: 35,
     rating: 4.7,
     reviewCount: 20,
-    images: [
-      'img/T-shirts/creamyT-shirt.webp'
-    ],
+    images: ['img/t-shirts/creamyT-shirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A ribbed cream polo-style tee, elevated with a collared neckline.',
     features: [
@@ -682,7 +580,6 @@ const products = {
     ],
     category: 'T-shirts'
   },
-
   creamyyTshirt: {
     id: 'creamyyTshirt',
     name: 'Creamy Collared Ribbed Tee',
@@ -690,9 +587,7 @@ const products = {
     priceWas: 35,
     rating: 4.6,
     reviewCount: 16,
-    images: [
-      'img/T-shirts/creamyyyT-shirt.webp'
-    ],
+    images: ['img/t-shirts/creamyyyT-shirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A collared ribbed tee in a soft cream tone, similar to the polo style with a relaxed drape.',
     features: [
@@ -702,7 +597,6 @@ const products = {
     ],
     category: 'T-shirts'
   },
-
   eternalTshirt: {
     id: 'eternalTshirt',
     name: '"Eternal" Graphic T-Shirt',
@@ -710,9 +604,7 @@ const products = {
     priceWas: 32,
     rating: 4.8,
     reviewCount: 30,
-    images: [
-      'img/T-shirts/EternalT-shirt.webp'
-    ],
+    images: ['img/t-shirts/EternalT-shirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A brown graphic tee featuring bold "Eternal" text print, a streetwear statement piece.',
     features: [
@@ -722,7 +614,6 @@ const products = {
     ],
     category: 'T-shirts'
   },
-
   greenTshirt: {
     id: 'greenTshirt',
     name: 'Green Ribbed Polo Tee',
@@ -730,9 +621,7 @@ const products = {
     priceWas: 35,
     rating: 4.6,
     reviewCount: 19,
-    images: [
-      'img/T-shirts/greenT-shirt.webp'
-    ],
+    images: ['img/t-shirts/greenT-shirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A ribbed polo-style tee in olive green, a textured take on a classic staple.',
     features: [
@@ -742,7 +631,6 @@ const products = {
     ],
     category: 'T-shirts'
   },
-
   jungelGreenTshirt: {
     id: 'jungelGreenTshirt',
     name: 'Jungle Green Polo Tee',
@@ -751,9 +639,7 @@ const products = {
     priceWas: 36,
     rating: 4.7,
     reviewCount: 22,
-    images: [
-      'img/T-shirts/jungelGreenT-shirt.webp'
-    ],
+    images: ['img/t-shirts/jungelGreenT-shirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A deep jungle-green ribbed polo tee, a richer tone than the standard green option.',
     features: [
@@ -763,7 +649,6 @@ const products = {
     ],
     category: 'T-shirts'
   },
-
   whiteTshirt: {
     id: 'whiteTshirt',
     name: 'Classic White T-Shirt',
@@ -772,9 +657,7 @@ const products = {
     priceWas: 28,
     rating: 4.8,
     reviewCount: 50,
-    images: [
-      'img/T-shirts/WhiteT-shirt.webp'
-    ],
+    images: ['img/t-shirts/WhiteT-shirt.webp'],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A crisp classic white crew neck tee, a wardrobe essential.',
     features: [
@@ -784,9 +667,6 @@ const products = {
     ],
     category: 'T-shirts'
   },
-
-
-
   jordan4: {
     id: 'jordan4',
     name: 'Air Jordan 4 Retro "Military Black"',
@@ -795,9 +675,7 @@ const products = {
     priceWas: 180,
     rating: 5,
     reviewCount: 9,
-    images: [
-      'img/shoes/Airjordan4MilitaryBlack.png'
-    ],
+    images: ['img/shoes/Airjordan4MilitaryBlack.webp'],
     sizes: [40, 41, 42, 43, 44],
     shortDescription: 'A monochromatic, high-contrast take on an iconic silhouette, combining smooth white leather, neutral grey suede, and bold black accents.',
     features: [
@@ -809,7 +687,6 @@ const products = {
     ],
     category: 'shoes'
   },
-
   jordan4RedThunder: {
     id: 'jordan4RedThunder',
     name: 'Air Jordan 4 "Red Thunder"',
@@ -817,9 +694,7 @@ const products = {
     priceWas: 190,
     rating: 4.9,
     reviewCount: 14,
-    images: [
-      'img/shoes/Airjordan4RedThunder.png'
-    ],
+    images: ['img/shoes/Airjordan4RedThunder.webp'],
     sizes: [40, 41, 42, 43, 44],
     shortDescription: 'A bold black and red colorway of the iconic Air Jordan 4 silhouette.',
     features: [
@@ -830,7 +705,6 @@ const products = {
     ],
     category: 'shoes'
   },
-
   brownAirJordan: {
     id: 'brownAirJordan',
     name: 'Air Jordan 1 "Mocha"',
@@ -838,9 +712,7 @@ const products = {
     priceWas: 175,
     rating: 4.9,
     reviewCount: 27,
-    images: [
-      'img/shoes/BrownAirJordan.webp'
-    ],
+    images: ['img/shoes/BrownAirJordan.webp'],
     sizes: [40, 41, 42, 43, 44],
     shortDescription: 'A rich brown and cream colorway of the classic Air Jordan 1 high-top silhouette.',
     features: [
@@ -850,7 +722,6 @@ const products = {
     ],
     category: 'shoes'
   },
-
   adidasSambaWhite: {
     id: 'adidasSambaWhite',
     name: 'Adidas Samba OG White',
@@ -858,9 +729,7 @@ const products = {
     priceWas: 100,
     rating: 4.9,
     reviewCount: 60,
-    images: [
-      'img/shoes/adidasSambaCouldWhite.png'
-    ],
+    images: ['img/shoes/adidasSambaCouldWhite.webp'],
     sizes: [40, 41, 42, 43, 44],
     shortDescription: 'A clean white colorway of the timeless adidas Samba, a streetwear staple.',
     features: [
@@ -870,7 +739,6 @@ const products = {
     ],
     category: 'shoes'
   },
-
   adidasSambaBlack: {
     id: 'adidasSambaBlack',
     name: 'Adidas Samba Cloud Black',
@@ -878,9 +746,7 @@ const products = {
     priceWas: 100,
     rating: 4.9,
     reviewCount: 55,
-    images: [
-      'img/shoes/adidasSambaCloudBlack.webp'
-    ],
+    images: ['img/shoes/adidasSambaCloudBlack.webp'],
     sizes: [40, 41, 42, 43, 44],
     shortDescription: 'The classic adidas Samba in a sleek all-black colorway.',
     features: [
@@ -890,7 +756,6 @@ const products = {
     ],
     category: 'shoes'
   },
-
   greenAirForce: {
     id: 'greenAirForce',
     name: 'Nike Air Force 1 Green',
@@ -898,9 +763,7 @@ const products = {
     priceWas: 110,
     rating: 4.7,
     reviewCount: 33,
-    images: [
-      'img/shoes/greenAirForce.webp'
-    ],
+    images: ['img/shoes/greenAirForce.webp'],
     sizes: [40, 41, 42, 43, 44],
     shortDescription: 'A fresh green and white Air Force 1, a modern twist on the classic silhouette.',
     features: [
@@ -910,7 +773,6 @@ const products = {
     ],
     category: 'shoes'
   },
-
   luxeShoeBrown: {
     id: 'luxeShoeBrown',
     name: 'Luxe Leather Loafers',
@@ -918,9 +780,7 @@ const products = {
     priceWas: 150,
     rating: 4.8,
     reviewCount: 12,
-    images: [
-      'img/shoes/luxeShoe.webp'
-    ],
+    images: ['img/shoes/luxeShoe.webp'],
     sizes: [40, 41, 42, 43, 44],
     shortDescription: 'Premium black leather loafers with a horsebit detail, built for a refined formal look.',
     features: [
@@ -930,7 +790,6 @@ const products = {
     ],
     category: 'shoes'
   },
-
   luxeWhiteBlackShoe: {
     id: 'luxeWhiteBlackShoe',
     name: 'Two-Tone Leather Loafers',
@@ -938,9 +797,7 @@ const products = {
     priceWas: 150,
     rating: 4.7,
     reviewCount: 10,
-    images: [
-      'img/shoes/luxeWHBLAShoe.webp'
-    ],
+    images: ['img/shoes/luxeWHBLAShoe.webp'],
     sizes: [40, 41, 42, 43, 44],
     shortDescription: 'A striking two-tone white and black leather loafer for a bold formal statement.',
     features: [
@@ -950,7 +807,6 @@ const products = {
     ],
     category: 'shoes'
   },
-
   airForce1: {
     id: 'airForce1',
     name: 'Nike Air Force 1 White',
@@ -959,9 +815,7 @@ const products = {
     priceWas: 110,
     rating: 4.9,
     reviewCount: 70,
-    images: [
-      'img/shoes/AirForce1.png'
-    ],
+    images: ['img/shoes/AirForce1.webp'],
     sizes: [40, 41, 42, 43, 44],
     shortDescription: 'The all-time classic all-white Air Force 1, a wardrobe essential.',
     features: [
@@ -971,7 +825,6 @@ const products = {
     ],
     category: 'shoes'
   },
-
   genericSneaker: {
     id: 'genericSneaker',
     name: 'Classic White Sneakers',
@@ -979,9 +832,7 @@ const products = {
     priceWas: null,
     rating: 4.8,
     reviewCount: 243,
-    images: [
-      'img/shoes/shoes.webp'
-    ],
+    images: ['img/shoes/shoes.webp'],
     sizes: [40, 41, 42, 43, 44],
     shortDescription: 'A clean, minimal white sneaker that pairs with everything.',
     features: [
@@ -991,7 +842,6 @@ const products = {
     ],
     category: 'shoes'
   },
-
   newBalance530: {
     id: 'newBalance530',
     name: 'New Balance 530',
@@ -1000,9 +850,7 @@ const products = {
     priceWas: 120,
     rating: 4.8,
     reviewCount: 41,
-    images: [
-      'img/shoes/newBalance530.png'
-    ],
+    images: ['img/shoes/newBalance530.webp'],
     sizes: [40, 41, 42, 43, 44],
     shortDescription: 'A retro-inspired running silhouette in a clean white colorway.',
     features: [
@@ -1012,7 +860,6 @@ const products = {
     ],
     category: 'shoes'
   },
-
   whiteNavySneakers: {
     id: 'whiteNavySneakers',
     name: 'Chunky Retro Runner Sneakers',
@@ -1020,9 +867,7 @@ const products = {
     priceWas: 85,
     rating: 4.8,
     reviewCount: 29,
-    images: [
-      'img/shoes/whiteNavySneakers.webp'
-    ],
+    images: ['img/shoes/whiteNavySneakers.webp'],
     sizes: ['40', '41', '42', '43', '44', '45'],
     shortDescription: 'Modern chunky sneakers featuring a breathable mesh upper with bold navy accents and a sculpted platform sole.',
     features: [
@@ -1032,7 +877,6 @@ const products = {
     ],
     category: 'shoes'
   },
-
   blackPennyLoafers: {
     id: 'blackPennyLoafers',
     name: 'Chunky Lug-Sole Penny Loafers',
@@ -1040,9 +884,7 @@ const products = {
     priceWas: 98,
     rating: 4.9,
     reviewCount: 36,
-    images: [
-      'img/shoes/blackPennyLoafers.webp'
-    ],
+    images: ['img/shoes/blackPennyLoafers.webp'],
     sizes: ['40', '41', '42', '43', '44', '45'],
     shortDescription: 'Classic black leather penny loafers reimagined with a rugged lug sole for a modern, edgy edge.',
     features: [
@@ -1051,45 +893,20 @@ const products = {
       { title: 'Moccasin Toe Stitching', text: 'Hand-stitched aprontoe construction for enduring structure and classic style.' }
     ],
     category: 'shoes'
-  },
+  }
 };
 
-
 const outfits = {
-  CoastalWhiteFit: {
-    pieces: ['whiteShirt', 'whiteTshirt', 'blueJeans', 'airForce1']
-  },
-  CasualLuxuryFit: {
-    pieces: ['jungelGreenTshirt', 'whitePants', 'greenAirForce']
-  },
-  WarmNeutralFit: {
-    pieces: ['creamyyTshirt', 'creamyPants', 'genericSneaker']
-  },
-  WeekendBlueCombo: {
-    pieces: ['skySquarShirt', 'whiteTshirt', 'blackJeans', 'airForce1']
-  },
-  CampusSoftLayer: {
-    pieces: ['fancyGreenShirt', 'whiteTshirt', 'greyJeans', 'airForce1']
-  },
-  ModernClassicSet: {
-    pieces: ['creamyTshirt', 'greyPants', 'luxeShoeBrown']
-  },
-  ModernMinimalist: {
-    pieces: ['whiteTshirt', 'greyyPants', 'genericSneaker']
-  },
-  SleekQuarter: {
-    pieces: ['blackShirt', 'blackTshirt', 'blueJeans', 'adidasSambaBlack']
-  },
-  CargoChillFit: {
-    pieces: ['eternalTshirt', 'greenMilitaryCargo', 'brownAirJordan']
-  },
-  UrbanTailoredFit: {
-    pieces: ['luxeBlackShirt', 'greyyPants', 'genericSneaker']
-  },
-  OliveLinenElegance: {
-    pieces: ['oliveGreenShirt', 'whitePants', 'luxeWhiteBlackShoe']
-  },
-  StreetUtilityFit: {
-    pieces: ['greenShirt', 'whiteTshirt', 'greyJeans', 'airForce1']
-  }
+  CoastalWhiteFit: { pieces: ['whiteShirt', 'whiteTshirt', 'blueJeans', 'airForce1'] },
+  CasualLuxuryFit: { pieces: ['jungelGreenTshirt', 'whitePants', 'greenAirForce'] },
+  WarmNeutralFit: { pieces: ['creamyyTshirt', 'creamyPants', 'genericSneaker'] },
+  WeekendBlueCombo: { pieces: ['skySquarShirt', 'whiteTshirt', 'blackJeans', 'airForce1'] },
+  CampusSoftLayer: { pieces: ['fancyGreenShirt', 'whiteTshirt', 'greyJeans', 'airForce1'] },
+  ModernClassicSet: { pieces: ['creamyTshirt', 'greyPants', 'luxeShoeBrown'] },
+  ModernMinimalist: { pieces: ['whiteTshirt', 'greyyPants', 'genericSneaker'] },
+  SleekQuarter: { pieces: ['blackShirt', 'blackTshirt', 'blueJeans', 'adidasSambaBlack'] },
+  CargoChillFit: { pieces: ['eternalTshirt', 'greenMilitaryCargo', 'brownAirJordan'] },
+  UrbanTailoredFit: { pieces: ['luxeBlackShirt', 'greyyPants', 'genericSneaker'] },
+  OliveLinenElegance: { pieces: ['oliveGreenShirt', 'whitePants', 'luxeWhiteBlackShoe'] },
+  StreetUtilityFit: { pieces: ['greenShirt', 'whiteTshirt', 'greyJeans', 'airForce1'] }
 };

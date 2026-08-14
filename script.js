@@ -188,7 +188,6 @@ if (cartDrawerClose) {
   });
 }
 
-
 const desktopLinks = document.querySelectorAll(".desktop-nav a");
 const currentPath  = window.location.pathname.replace(/\/$/, "") || "/";
 
@@ -201,87 +200,8 @@ desktopLinks.forEach(link => {
   link.classList.toggle("active", isActive);
 });
 
-
-
-
-
-const searchInput = document.querySelector(".search-input input[type='search']");
-const searchResults = document.getElementById("searchResults");
-
-if (searchInput && searchResults) {
-  searchInput.addEventListener("input", function() {
-    const query = searchInput.value.trim().toLowerCase();
-
-    if ( query === '') {
-      searchResults.classList.remove('is-visible');
-      searchResults.innerHTML = '';
-      return;
-    } 
-
-    const matches = Object.values(products).filter(p => 
-      p.name.toLowerCase().includes(query)
-    );
-
-    searchResults.innerHTML = '';
-    
-    if (matches.length === 0) {
-      searchResults.innerHTML = '<p class="search-no-results">No products found.</p>';
-    } else {
-      matches.slice(0, 8).forEach(product => {
-        const item = document.createElement("a");
-        item.href = `product.html?id=${product.id}`;
-        item.className = 'search-result-item';
-        item.innerHTML = `
-        <img src="${product.images[0]}" alt="${product.name}">
-        <span class="price">$${product.priceNow}</span>
-        `;
-        searchResults.appendChild(item);
-      });
-    }
-
-    searchResults.classList.add('is-visible');
-  });
-
-
-  document.addEventListener("click", function(e) {
-    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-      searchResults.classList.remove('is-visible');
-    }
-  });
-}
-
-
-// const deskCategoButtons = document.querySelectorAll(".desk-catego button");
-
-// deskCategoButtons.forEach(b => {
-//   b.addEventListener("click", function() {
-//     const category = b.dataset.category;
-
-//     renderShopGrid(category);
-//   });
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if (document.body.classList.contains("page-home")) {
   document.querySelectorAll(".category-row").forEach((row) => {
-    console.log("rendering:", row.dataset.category); // ← this is the ONE new line
     renderProductRow(row);
   });
 
@@ -323,8 +243,6 @@ if (document.body.classList.contains("page-home")) {
     });
   }
 
-
-
   let startX = 0;
   let currentX = 0;
   let isDragging = false;
@@ -362,16 +280,10 @@ if (document.body.classList.contains("page-home")) {
     }
   });
 
-
-
-
-
-
   const desktopCommunity = document.getElementById("desktopCommunity");
   const mobileCommunity = document.getElementById("mobileCommunity");
   const iphoneScreen     = document.querySelector(".iphone-screen");
   const screenContent    = document.querySelector(".screen-content");
-
 
   if (screenContent) {
     screenContent.addEventListener("click", function(e) {
@@ -380,54 +292,30 @@ if (document.body.classList.contains("page-home")) {
   }
 
   if (desktopCommunity) {
-  desktopCommunity.addEventListener("click", function (e) {
+    desktopCommunity.addEventListener("click", function (e) {
+      if (e.target.closest(".screen-content")) {
+        return;
+      }
 
-    if (e.target.closest(".screen-content")) {
-      return;
-    }
+      const bubble = document.createElement("div");
+      bubble.classList.add("bubble");
 
-    const bubble = document.createElement("div");
-    bubble.classList.add("bubble");
+      const rect = desktopCommunity.getBoundingClientRect();
+      bubble.style.left = `${e.clientX - rect.left}px`;
+      bubble.style.top = `${e.clientY - rect.top}px`;
 
-    const rect = desktopCommunity.getBoundingClientRect();
-    bubble.style.left = `${e.clientX - rect.left}px`;
-    bubble.style.top = `${e.clientY - rect.top}px`;
+      const randomHue = Math.floor(Math.random() * 360);
+      bubble.style.backgroundColor = `Hsl(${randomHue}, 85%, 65%)`;
+      bubble.style.boxShadow = `0 0 15px Hsl(${randomHue}, 85%, 65%)`;
 
-    const randomHue = Math.floor(Math.random() * 360);
-    bubble.style.backgroundColor = `Hsl(${randomHue}, 85%, 65%)`;
-    bubble.style.boxShadow = `0 0 15px Hsl(${randomHue}, 85%, 65%)`;
+      desktopCommunity.append(bubble);
 
-    desktopCommunity.append(bubble);
-
-    bubble.addEventListener("animationend", function() {
-      bubble.remove();
+      bubble.addEventListener("animationend", function() {
+        bubble.remove();
+      });
     });
-
-  });
-
+  }
 }
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // <==== collection page ====>
 
@@ -571,28 +459,6 @@ if (document.body.classList.contains("page-collections")) {
     outfitPanalOverlay.classList.remove("is-visible");
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 if (document.body.classList.contains("page-product")) {
   const backBtn = document.getElementById("backBtn");
@@ -759,7 +625,6 @@ if (document.body.classList.contains("page-product")) {
       });
     });
 
-    // Swipe support — same pattern as hero slider
     let startX = 0;
     let currentX = 0;
     let isDragging = false;
@@ -826,23 +691,6 @@ if (document.body.classList.contains("page-product")) {
     });
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 if (document.body.classList.contains("page-shop")) {
   const backBtn = document.getElementById("backBtn");
@@ -924,7 +772,4 @@ if (document.body.classList.contains("page-shop")) {
       filterDropdown.classList.remove("is-open");
     });
   });
-
-
-
 }
