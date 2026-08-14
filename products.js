@@ -467,7 +467,9 @@ const products = {
     priceWas: 35,
     rating: 4.9,
     reviewCount: 19,
-    images: ['img/t-shirts/superDadShirt.webp'],
+    images: [
+      'img/T-shirts/superDadShirt.webp'
+    ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A comfortable cream-colored oversized tee featuring a heartwarming "Super Dad" father-and-son illustration.',
     features: [
@@ -485,7 +487,9 @@ const products = {
     priceWas: 42,
     rating: 4.8,
     reviewCount: 38,
-    images: ['img/t-shirts/nikeBlackChainShirt.webp'],
+    images: [
+      'img/T-shirts/nikeBlackChainShirt.webp'
+    ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A streetwear black t-shirt featuring a centered white swoosh logo and a gold chain accent along the collar.',
     features: [
@@ -502,7 +506,9 @@ const products = {
     priceWas: 40,
     rating: 4.6,
     reviewCount: 22,
-    images: ['img/t-shirts/athletics23Shirt.webp'],
+    images: [
+      'img/T-shirts/athletics23Shirt.webp'
+    ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A white oversized graphic tee featuring varsity-style "23 Athletics" chest typography and sleeve star accents.',
     features: [
@@ -519,7 +525,9 @@ const products = {
     priceWas: 38,
     rating: 4.7,
     reviewCount: 51,
-    images: ['img/t-shirts/bostonBeigeShirt.webp'],
+    images: [
+      'img/T-shirts/bostonBeigeShirt.webp'
+    ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A relaxed beige graphic t-shirt featuring bold collegiate-style "BOSTON" lettering across the chest.',
     features: [
@@ -536,7 +544,9 @@ const products = {
     priceWas: 28,
     rating: 4.7,
     reviewCount: 45,
-    images: ['img/t-shirts/blackT-shirt.webp'],
+    images: [
+      'img/T-shirts/blackT-shirt.webp'
+    ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A classic black crew neck tee, a simple everyday essential.',
     features: [
@@ -553,7 +563,9 @@ const products = {
     priceWas: 30,
     rating: 4.6,
     reviewCount: 24,
-    images: ['img/t-shirts/blancoT-shirt.webp'],
+    images: [
+      'img/T-shirts/blancoT-shirt.webp'
+    ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A ribbed cream t-shirt with a slightly textured knit for a more elevated basic.',
     features: [
@@ -570,7 +582,9 @@ const products = {
     priceWas: 35,
     rating: 4.7,
     reviewCount: 20,
-    images: ['img/t-shirts/creamyT-shirt.webp'],
+    images: [
+      'img/T-shirts/creamyT-shirt.webp'
+    ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A ribbed cream polo-style tee, elevated with a collared neckline.',
     features: [
@@ -587,7 +601,9 @@ const products = {
     priceWas: 35,
     rating: 4.6,
     reviewCount: 16,
-    images: ['img/t-shirts/creamyyyT-shirt.webp'],
+    images: [
+      'img/T-shirts/creamyyyT-shirt.webp'
+    ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A collared ribbed tee in a soft cream tone, similar to the polo style with a relaxed drape.',
     features: [
@@ -604,7 +620,9 @@ const products = {
     priceWas: 32,
     rating: 4.8,
     reviewCount: 30,
-    images: ['img/t-shirts/EternalT-shirt.webp'],
+    images: [
+      'img/T-shirts/EternalT-shirt.webp'
+    ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A brown graphic tee featuring bold "Eternal" text print, a streetwear statement piece.',
     features: [
@@ -621,7 +639,9 @@ const products = {
     priceWas: 35,
     rating: 4.6,
     reviewCount: 19,
-    images: ['img/t-shirts/greenT-shirt.webp'],
+    images: [
+      'img/T-shirts/greenT-shirt.webp'
+    ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A ribbed polo-style tee in olive green, a textured take on a classic staple.',
     features: [
@@ -639,7 +659,9 @@ const products = {
     priceWas: 36,
     rating: 4.7,
     reviewCount: 22,
-    images: ['img/t-shirts/jungelGreenT-shirt.webp'],
+    images: [
+      'img/T-shirts/jungelGreenT-shirt.webp'
+    ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A deep jungle-green ribbed polo tee, a richer tone than the standard green option.',
     features: [
@@ -657,7 +679,9 @@ const products = {
     priceWas: 28,
     rating: 4.8,
     reviewCount: 50,
-    images: ['img/t-shirts/WhiteT-shirt.webp'],
+    images: [
+      'img/T-shirts/WhiteT-shirt.webp'
+    ],
     sizes: ['S', 'M', 'L', 'XL'],
     shortDescription: 'A crisp classic white crew neck tee, a wardrobe essential.',
     features: [
