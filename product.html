@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description">
     <title>Findstyle — Find Your Style</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="favicon.png" />
@@ -16,9 +17,9 @@
   <body class="page-product">
     <header class="header">
       <button class="back-btn" id="backBtn" aria-label="Go back">
-        <img src="img/icons/left-arrow.png" alt="" />
+        <img src="img/icons/left-arrow.png" alt="Back" />
       </button>
-      <a href="index.html" class="logo"><img src="img/general/logo.svg" /></a>
+      <a href="index.html" class="logo"><img src="img/general/logo.svg" alt="Findstyle" /></a>
 
       <div class="desktop-nav">
         <div class="desktop-nav-links">
@@ -30,7 +31,7 @@
           </ul>
         </div>
 
-        <button class="cart-btn" id="cartBtn">
+        <button class="cart-btn" id="cartBtn" aria-label="Cart">
           <img src="img/icons/cart.png" alt="Cart" />
           <span class="cart-count" id="cartCount">0</span>
         </button>
@@ -42,8 +43,8 @@
         <div class="pdp-gallery">
           <div class="gallery-track" id="galleryTrack"></div>
           <div class="gallery-dots" id="galleryDots"></div>
-          <button class="wishlist-btn wishlist-btn-pdp">
-            <img src="img/icons/heart-outline.png" alt="" />
+          <button class="wishlist-btn wishlist-btn-pdp" aria-label="Add to wishlist">
+            <img src="img/icons/heart-outline.png" alt="Add to wishlist" />
           </button>
         </div>
 
@@ -75,7 +76,7 @@
         <div class="addTo-cart">
           <button class="addCart-btn" id="addToCartBtn">ADD TO CART</button>
           <button class="show-cart" id="cartToggle" aria-label="View cart">
-            <img src="img/icons/cart.png" alt="" />
+            <img src="img/icons/cart.png" alt="Cart" />
           </button>
         </div>
       </section>
@@ -120,9 +121,9 @@
           </ul>
         </div>
         <div class="desktop-payment">
-          <img src="img/general/baridimob.png" alt="" class="baridimob">
-          <img src="img/general/paypal.png" alt="" class="paypal">
-          <img src="img/general/visa.png" alt="" class="visa">
+          <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob">
+          <img src="img/general/paypal.png" alt="PayPal" class="paypal">
+          <img src="img/general/visa.png" alt="Visa" class="visa">
         </div>
       </div>
       <div class="footer-foot">
@@ -137,7 +138,7 @@
     <div class="cart-drawer" id="cartDrawer">
       <div class="cart-drawer-header">
         <h3>Your Cart</h3>
-        <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
+        <button class="cart-drawer-close" id="cartDrawerClose" aria-label="Close cart">&times;</button>
       </div>
       <div class="cart-items" id="cartItems"></div>
       <div class="cart-footer">

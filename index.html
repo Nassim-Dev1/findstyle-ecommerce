@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description">
     <title>Findstyle — Find Your Style</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="favicon.png" />
@@ -14,7 +15,7 @@
   </head>
   <body class="page-home">
     <header class="header">
-      <button class="menu-toggle" id="menuToggle">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
         <img src="img/icons/menu.png" alt="Menu" />
       </button>
       <a href="index.html" class="logo">
@@ -29,7 +30,7 @@
             <li><a href="https://wa.me/213559959122">CONTACT</a></li>
           </ul>
         </div>
-        <button class="cart-btn" id="cartBtn">
+        <button class="cart-btn" id="cartBtn" aria-label="Cart">
           <img src="img/icons/cart.png" alt="Cart" />
           <span class="cart-count" id="cartCount">0</span>
         </button>
@@ -37,7 +38,7 @@
     </header>
 
     <nav class="mobile-nav" id="mobileNav">
-      <button class="nav-close" id="navClose">
+      <button class="nav-close" id="navClose" aria-label="Close menu">
         <img src="img/icons/close.png" alt="Close menu" />
       </button>
       <ul>
@@ -109,14 +110,14 @@
       <img
         src="img/icons/search-interface-symbol.png"
         class="search-icon"
-        alt=""
+        alt="Search"
       />
       <input
         type="search"
         placeholder="Search for products, brands and more ..."
       />
-      <button class="filter-btn" id="filterBtn">
-        <img src="img/icons/slideBar.png" class="filter-icon" alt="" />
+      <button class="filter-btn" id="filterBtn" aria-label="Filter">
+        <img src="img/icons/slideBar.png" class="filter-icon" alt="Filter" />
       </button>
       <div class="filter-dropdown" id="filterDropdown">
         <ul>
@@ -135,7 +136,7 @@
         <img
           src="img/icons/search-interface-symbol.png"
           class="search-icon"
-          alt=""
+          alt="Search"
         />
         <input
           type="search"
@@ -208,9 +209,9 @@
             <h2>Join Our Community</h2>
             <p>Follow us for behind-the-scenes and exclusive drops.</p>
             <div class="social-links">
-              <a href="#myinsta" target="_blank" aria-label="Instagram" class="social-btn"><img src="img/icons/instagram.png"></a>
-              <a href="#mydisco" target="_blank" aria-label="Discord" class="social-btn"><img src="img/icons/discord.png"></a>
-              <a href="#mytelegram" target="_blank" aria-label="telegram" class="social-btn"><img src="img/icons/telegram.png"></a>
+              <a href="#myinsta" target="_blank" aria-label="Instagram" class="social-btn"><img src="img/icons/instagram.png" alt="Instagram"></a>
+              <a href="#mydisco" target="_blank" aria-label="Discord" class="social-btn"><img src="img/icons/discord.png" alt="Discord"></a>
+              <a href="#mytelegram" target="_blank" aria-label="telegram" class="social-btn"><img src="img/icons/telegram.png" alt="Telegram"></a>
             </div>
           </div>
         </div>
@@ -219,22 +220,22 @@
 
     <section class="featurs">
       <article class="feature-card">
-        <img src="img/icons/transport.png" alt="" />
+        <img src="img/icons/transport.png" alt="Free shipping" />
         <h3>Free Shipping</h3>
         <p>On orders over $60</p>
       </article>
       <article class="feature-card">
-        <img src="img/icons/suport.png" alt="" />
+        <img src="img/icons/suport.png" alt="24/7 support" />
         <h3>24/7 Support</h3>
         <p>We are here to help</p>
       </article>
       <article class="feature-card">
-        <img src="img/icons/security.png" alt="" />
+        <img src="img/icons/security.png" alt="Secure payment" />
         <h3>Security</h3>
         <p>%100 protected</p>
       </article>
       <article class="feature-card">
-        <img src="img/icons/box.png" alt="" />
+        <img src="img/icons/box.png" alt="Easy returns" />
         <h3>Easy Returns</h3>
         <p>30-day returns</p>
       </article>
@@ -274,9 +275,9 @@
           </ul>
         </div>
         <div class="desktop-payment">
-          <img src="img/general/baridimob.png" alt="" class="baridimob">
-          <img src="img/general/paypal.png" alt="" class="paypal">
-          <img src="img/general/visa.png" alt="" class="visa">
+          <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob">
+          <img src="img/general/paypal.png" alt="PayPal" class="paypal">
+          <img src="img/general/visa.png" alt="Visa" class="visa">
         </div>
       </div>
       <div class="footer-foot">
@@ -291,7 +292,7 @@
     <div class="cart-drawer" id="cartDrawer">
       <div class="cart-drawer-header">
         <h3>Your Cart</h3>
-        <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
+        <button class="cart-drawer-close" id="cartDrawerClose" aria-label="Close cart">&times;</button>
       </div>
       <div class="cart-items" id="cartItems"></div>
       <div class="cart-footer">

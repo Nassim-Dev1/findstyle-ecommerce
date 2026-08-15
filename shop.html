@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description">
     <title>Findstyle — Find Your Style</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="favicon.png" />
@@ -16,9 +17,9 @@
   <body class="page-shop">
     <header class="header">
       <button class="back-btn" id="backBtn" aria-label="Go back">
-        <img src="img/icons/left-arrow.png" alt="" />
+        <img src="img/icons/left-arrow.png" alt="Back" />
       </button>
-      <a href="index.html" class="logo"><img src="img/general/logo.svg" /></a>
+      <a href="index.html" class="logo"><img src="img/general/logo.svg" alt="Findstyle" /></a>
 
       <div class="desktop-nav">
         <div class="desktop-nav-links">
@@ -30,7 +31,7 @@
           </ul>
         </div>
 
-        <button class="cart-btn" id="cartBtn">
+        <button class="cart-btn" id="cartBtn" aria-label="Cart">
           <img src="img/icons/cart.png" alt="Cart" />
           <span class="cart-count" id="cartCount">0</span>
         </button>
@@ -41,14 +42,14 @@
       <img
         src="img/icons/search-interface-symbol.png"
         class="search-icon"
-        alt=""
+        alt="Search"
       />
       <input
         type="search"
         placeholder="Search for products, brands and more ..."
       />
       <button class="filter-btn" id="filterBtn" aria-label="Filter">
-        <img src="img/icons/slideBar.png" class="filter-icon" alt="" />
+        <img src="img/icons/slideBar.png" class="filter-icon" alt="Filter" />
       </button>
       <div class="filter-dropdown" id="filterDropdown">
         <ul>
@@ -83,7 +84,7 @@
         <img
           src="img/icons/search-interface-symbol.png"
           class="search-icon"
-          alt=""
+          alt="Search"
         />
         <input
           type="search"
@@ -141,9 +142,9 @@
           </ul>
         </div>
         <div class="desktop-payment">
-          <img src="img/general/baridimob.png" alt="" class="baridimob">
-          <img src="img/general/paypal.png" alt="" class="paypal">
-          <img src="img/general/visa.png" alt="" class="visa">
+          <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob">
+          <img src="img/general/paypal.png" alt="PayPal" class="paypal">
+          <img src="img/general/visa.png" alt="Visa" class="visa">
         </div>
       </div>
       <div class="footer-foot">
@@ -158,7 +159,7 @@
     <div class="cart-drawer" id="cartDrawer">
       <div class="cart-drawer-header">
         <h3>Your Cart</h3>
-        <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
+        <button class="cart-drawer-close" id="cartDrawerClose" aria-label="Close cart">&times;</button>
       </div>
       <div class="cart-items" id="cartItems">
         <!-- filled dynamically by JS -->
@@ -182,25 +183,3 @@
     <script src="script.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-.outfit-panal {
-    height: 100%;
-    max-height: 100vh;
-    width: 85%;
-    max-width: 350px;
-    padding: clamp(20px, 3vw, 24px);
-    left: 0;
-    top: 0;
-    right: auto;
-    bottom: auto;
-    transform: translateX(-100%);
-  }
-
-  .outfit-panal.open {
-    transform: translateX(0);
-  }
