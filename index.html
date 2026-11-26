@@ -18,22 +18,26 @@
   
   <body class="page-home">
     <header class="header">
-      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-        <img src="img/icons/menu.png" alt="Menu" />
-      </button>
+      <div class="header-left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+          <img src="img/icons/menu.png" alt="Menu" />
+        </button>
+      </div>
       <a href="index.html" class="logo">
         <img src="img/general/logo.svg" alt="Findstyle" />
       </a>
-      <div class="desktop-nav">
-        <div class="desktop-nav-links">
-          <ul>
-            <li><a class="active" href="index.html">HOME</a></li>
-            <li><a href="shop.html">SHOP</a></li>
-            <li><a href="collections.html">COLLECTIONS</a></li>
-            <li><a href="https://wa.me/213559959122">CONTACT</a></li>
-          </ul>
-        </div>
-        <button class="cart-btn" id="cartBtn" aria-label="Cart">
+      <div class="header-right">
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <div class="desktop-nav-links">
+            <ul>
+              <li><a class="active" href="index.html">HOME</a></li>
+              <li><a href="shop.html">SHOP</a></li>
+              <li><a href="collections.html">COLLECTIONS</a></li>
+              <li><a href="https://wa.me/213559959122">CONTACT</a></li>
+            </ul>
+          </div>
+        </nav>
+        <button class="cart-btn" id="cartBtn" aria-label="Shopping Cart">
           <img src="img/icons/cart.png" alt="Cart" />
           <span class="cart-count" id="cartCount">0</span>
         </button>

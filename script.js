@@ -525,6 +525,30 @@ function initLiveSearch() {
 updateCartCount();
 initLiveSearch();
 initWishlistButtons();
+// Global Mobile Navigation Drawer Initialization (accessible on all pages)
+function initMobileNav() {
+  const menuToggle = document.getElementById("menuToggle");
+  const navClose = document.getElementById("navClose");
+  const navOverlay = document.getElementById("navOverlay");
+  const mobileNav = document.getElementById("mobileNav");
+
+  if (!menuToggle || !mobileNav) return;
+
+  function openNav() {
+    mobileNav.classList.add("is-open");
+    if (navOverlay) navOverlay.classList.add("is-visible");
+  }
+
+  function closeNav() {
+    mobileNav.classList.remove("is-open");
+    if (navOverlay) navOverlay.classList.remove("is-visible");
+  }
+
+  menuToggle.addEventListener("click", openNav);
+  if (navClose) navClose.addEventListener("click", closeNav);
+  if (navOverlay) navOverlay.addEventListener("click", closeNav);
+}
+initMobileNav();
 
 const filterBtn = document.getElementById("filterBtn");
 const filterDropdown = document.getElementById("filterDropdown");
@@ -601,15 +625,32 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-// Active link highlighting in desktop navigation
-const desktopLinks = document.querySelectorAll(".desktop-nav a");
-const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
+// Active link highlighting across desktop and mobile navigation
+function updateActiveNavLinks() {
+  const currentPath = window.location.pathname.replace(/\/$/, "").split("/").pop() || "index.html";
+  const links = document.querySelectorAll(".desktop-nav a, .mobile-nav a");
 
-desktopLinks.forEach((link) => {
-  const linkpath = link.pathname.replace(/\/$/, "") || "/";
-  const isActive = linkpath === currentPath;
-  link.classList.toggle("active", isActive);
-});
+  links.forEach((link) => {
+    const href = link.getAttribute("href") || "";
+    const linkFile = href.split("?")[0].split("/").pop();
+    if (!linkFile || href.startsWith("http") || href.startsWith("https://wa.me")) return;
+
+    let isCurrent = false;
+    if (currentPath === "product.html") {
+      isCurrent = linkFile === "shop.html";
+    } else {
+      isCurrent = linkFile === currentPath || (currentPath === "" && linkFile === "index.html");
+    }
+
+    link.classList.toggle("active", isCurrent);
+    if (isCurrent) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+}
+updateActiveNavLinks();
 
 // ==========================================================================
 // 6. PAGE: HOME (index.html)
@@ -684,19 +725,21 @@ if (document.body.classList.contains("page-home")) {
     }
   }
 
-  // Hero Mobile Slider with Touch Swipe
+    // Hero Mobile Slider with Touch Swipe (only enabled when multiple slides exist)
   const heroTrack = document.getElementById("heroTrackMobile");
-  const dots = document.querySelectorAll(".dot");
-  let currentSlide = 0;
+  const heroDotsContainer = document.getElementById("heroDots");
+  const dots = document.querySelectorAll(".hero-dots .dot");
+  const slides = heroTrack ? heroTrack.querySelectorAll(".hero-slide") : [];
 
-  if (heroTrack && dots.length > 0) {
+  if (heroTrack && slides.length > 1 && dots.length > 1) {
+    let currentSlide = 0;
     dots.forEach((dot, i) => {
       dot.addEventListener("click", () => goToSlide(i));
     });
 
     function goToSlide(index) {
       currentSlide = index;
-      heroTrack.style.transform = `translateX(-${index * 33.3333}%)`;
+      heroTrack.style.transform = `translateX(-${index * 100}%)`;
       dots.forEach((dot, i) => {
         dot.classList.toggle("is-active", i === index);
       });
@@ -718,7 +761,7 @@ if (document.body.classList.contains("page-home")) {
       const diff = currentX - startX;
       if (Math.abs(diff) < 20) return;
       const percentDiff = (diff / heroTrack.offsetWidth) * 100;
-      heroTrack.style.transform = `translateX(calc(-${currentSlide * 33.3333}% + ${percentDiff}%))`;
+      heroTrack.style.transform = `translateX(calc(-${currentSlide * 100}% + ${percentDiff}%))`;
     });
 
     heroTrack.addEventListener("touchend", function () {
@@ -735,6 +778,9 @@ if (document.body.classList.contains("page-home")) {
         goToSlide(currentSlide);
       }
     });
+  } else if (heroDotsContainer && slides.length <= 1) {
+    // Single slide: hide dots indicator completely
+    heroDotsContainer.style.display = "none";
   }
 
   // Community interactive bubbles
@@ -966,6 +1012,15 @@ if (document.body.classList.contains("page-product")) {
 
     const ratingEl = document.querySelector(".rating-count");
     if (ratingEl) ratingEl.textContent = `${product.rating} (${product.reviewCount})`;
+
+    // Render actual rating stars dynamically instead of hardcoded 5 stars
+    const starsContainer = document.querySelector(".rating .stars");
+    if (starsContainer) {
+      const ratingVal = Number(product.rating) || 5;
+      const fullStars = Math.round(ratingVal);
+      starsContainer.textContent = "★".repeat(fullStars) + "☆".repeat(Math.max(0, 5 - fullStars));
+      starsContainer.setAttribute("aria-label", `${product.rating} out of 5 stars`);
+    }
 
     // Sync PDP Wishlist button
     const pdpWishlistBtn = document.querySelector(".wishlist-btn-pdp");
