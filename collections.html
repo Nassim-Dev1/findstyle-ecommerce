@@ -81,10 +81,6 @@
           type="search"
           placeholder="Search for products, brands and more ..."
         />
-
-        <button class="filter-btn" id="filterBtn" aria-label="Filter">
-          <img src="img/icons/slideBar.png" class="filter-icon" alt="Filter" />
-        </button>
       </div>
 
       <div class="desk-catego">
@@ -494,9 +490,16 @@
       <div class="outfit-panal-items" id="outfitPanalItems">
         <!-- Outfit items will be dynamically added here -->
       </div>
-      <div class="cart-items" id="cartItems">
-        <!-- filled dynamically by JS -->
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <div class="cart-drawer" id="cartDrawer">
+      <div class="cart-drawer-header">
+        <h3>Your Cart</h3>
+        <button class="cart-drawer-close" id="cartDrawerClose" aria-label="Close cart">&times;</button>
       </div>
+      <div class="cart-items" id="cartItems"></div>
       <div class="cart-footer">
         <div class="cart-total">
           <span>Total:</span>
