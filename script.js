@@ -1147,7 +1147,7 @@ if (document.body.classList.contains("page-collections")) {
       const outfitName = card ? card.querySelector("h3").textContent : "Outfit";
       const message = `Check out this outfit: ${outfitName} — ${window.location.href}`;
       const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, "_blank");
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     });
   });
 
@@ -1278,7 +1278,38 @@ if (document.body.classList.contains("page-product")) {
   const product = typeof products !== "undefined" ? products[productId] : null;
 
   if (!product) {
+    const baseUrl = "https://nassim-dev1.github.io/findstyle-ecommerce/";
+    const defaultImageUrl = `${baseUrl}img/hero/desktopHero.webp`;
     document.title = "Product Not Found — FindStyle";
+    let robotsMeta = document.querySelector('meta[name="robots"]');
+    if (!robotsMeta) {
+      robotsMeta = document.createElement("meta");
+      robotsMeta.setAttribute("name", "robots");
+      document.head.appendChild(robotsMeta);
+    }
+    robotsMeta.setAttribute("content", "noindex, follow");
+    const staleJsonLd = document.getElementById("productJsonLd");
+    if (staleJsonLd) staleJsonLd.remove();
+    const notFoundTitle = "Product Not Found — FindStyle";
+    const notFoundDesc = "The product you are looking for does not exist or has been removed.";
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (canonicalLink) canonicalLink.setAttribute("href", `${baseUrl}product.html`);
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute("content", notFoundDesc);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute("content", notFoundTitle);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute("content", notFoundDesc);
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute("content", `${baseUrl}product.html`);
+    const ogImage = document.querySelector('meta[property="og:image"]');
+    if (ogImage) ogImage.setAttribute("content", defaultImageUrl);
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twTitle) twTitle.setAttribute("content", notFoundTitle);
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twDesc) twDesc.setAttribute("content", notFoundDesc);
+    const twImage = document.querySelector('meta[name="twitter:image"]');
+    if (twImage) twImage.setAttribute("content", defaultImageUrl);
     console.warn("Product not found:", productId);
     const deskProduct = document.querySelector(".desk-product");
     if (deskProduct) {
@@ -1294,7 +1325,14 @@ if (document.body.classList.contains("page-product")) {
     if (relatedSection) relatedSection.style.display = "none";
   } else {
     // Populate PDP content and SEO metadata safely via text/attribute APIs
+    const baseUrl = "https://nassim-dev1.github.io/findstyle-ecommerce/";
+    const canonicalUrl = `${baseUrl}product.html?id=${encodeURIComponent(product.id)}`;
+    const productImageUrl = product.images && product.images[0] ? `${baseUrl}${product.images[0]}` : null;
+
     document.title = `${product.name} — FindStyle`;
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (canonicalLink) canonicalLink.setAttribute("href", canonicalUrl);
+
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc && product.shortDescription) {
       metaDesc.setAttribute("content", product.shortDescription);
@@ -1305,6 +1343,63 @@ if (document.body.classList.contains("page-product")) {
     if (ogDesc && product.shortDescription) {
       ogDesc.setAttribute("content", product.shortDescription);
     }
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute("content", canonicalUrl);
+    const ogImage = document.querySelector('meta[property="og:image"]');
+    if (ogImage && productImageUrl) {
+      ogImage.setAttribute("content", productImageUrl);
+    }
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twTitle) twTitle.setAttribute("content", `${product.name} — FindStyle`);
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twDesc && product.shortDescription) {
+      twDesc.setAttribute("content", product.shortDescription);
+    }
+    const twImage = document.querySelector('meta[name="twitter:image"]');
+    if (twImage && productImageUrl) {
+      twImage.setAttribute("content", productImageUrl);
+    }
+
+    const productSchema = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: product.name,
+      sku: product.id,
+      brand: {
+        "@type": "Brand",
+        name: "FindStyle"
+      },
+      url: canonicalUrl
+    };
+    if (product.shortDescription) {
+      productSchema.description = product.shortDescription;
+    }
+    if (Array.isArray(product.images) && product.images.length > 0) {
+      productSchema.image = product.images.map((imgPath) => `${baseUrl}${imgPath}`);
+    }
+    if (typeof product.priceNow === "number") {
+      productSchema.offers = {
+        "@type": "Offer",
+        url: canonicalUrl,
+        priceCurrency: "USD",
+        price: product.priceNow
+      };
+    }
+    if (typeof product.rating === "number" && typeof product.reviewCount === "number" && product.reviewCount > 0) {
+      productSchema.aggregateRating = {
+        "@type": "AggregateRating",
+        ratingValue: product.rating,
+        reviewCount: product.reviewCount
+      };
+    }
+    let jsonLdScript = document.getElementById("productJsonLd");
+    if (!jsonLdScript) {
+      jsonLdScript = document.createElement("script");
+      jsonLdScript.type = "application/ld+json";
+      jsonLdScript.id = "productJsonLd";
+      document.head.appendChild(jsonLdScript);
+    }
+    jsonLdScript.textContent = JSON.stringify(productSchema);
     const titleEl = document.querySelector(".product-info h1");
     if (titleEl) titleEl.textContent = product.name;
 
