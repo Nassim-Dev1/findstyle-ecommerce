@@ -74,28 +74,13 @@
       </button>
       <div class="filter-dropdown" id="filterDropdown">
         <ul>
-          <li>
-            <button class="filter-option" data-category="all">All</button>
-          </li>
-          <li>
-            <button class="filter-option" data-category="shoes">Shoes</button>
-          </li>
-          <li>
-            <button class="filter-option" data-category="pants">Pants</button>
-          </li>
-          <li>
-            <button class="filter-option" data-category="jackets">
-              Jackets
-            </button>
-          </li>
-          <li>
-            <button class="filter-option" data-category="T-shirts">
-              T-shirts
-            </button>
-          </li>
-          <li>
-            <button class="filter-option" data-category="shirts">Shirts</button>
-          </li>
+          <li><button type="button" class="filter-option" data-category="all">All</button></li>
+          <li><button type="button" class="filter-option" data-category="bestsellers">Bestsellers</button></li>
+          <li><button type="button" class="filter-option" data-category="shoes">Shoes</button></li>
+          <li><button type="button" class="filter-option" data-category="pants">Pants</button></li>
+          <li><button type="button" class="filter-option" data-category="jackets">Jackets</button></li>
+          <li><button type="button" class="filter-option" data-category="T-shirts">T-shirts</button></li>
+          <li><button type="button" class="filter-option" data-category="shirts">Shirts</button></li>
         </ul>
       </div>
     </section>
@@ -114,16 +99,31 @@
       </div>
 
       <div class="desk-catego">
-        <button class="filter-option" data-category="all">All</button>
-        <button class="filter-option" data-category="jackets">Jackets</button>
-        <button class="filter-option" data-category="T-shirts">T-shirts</button>
-        <button class="filter-option" data-category="pants">Pants</button>
-        <button class="filter-option" data-category="shirts">shirts</button>
-        <button class="filter-option" data-category="shoes">Shoes</button>
+        <button type="button" class="filter-option" data-category="all">All</button>
+        <button type="button" class="filter-option" data-category="bestsellers">Bestsellers</button>
+        <button type="button" class="filter-option" data-category="jackets">Jackets</button>
+        <button type="button" class="filter-option" data-category="T-shirts">T-shirts</button>
+        <button type="button" class="filter-option" data-category="pants">Pants</button>
+        <button type="button" class="filter-option" data-category="shirts">Shirts</button>
+        <button type="button" class="filter-option" data-category="shoes">Shoes</button>
       </div>
     </section>
 
-    <h2 class="shop-title" id="shopTitle">Shop</h2>
+    <div class="shop-toolbar">
+      <div class="shop-heading-group">
+        <h2 class="shop-title" id="shopTitle">Shop</h2>
+        <span class="shop-result-count" id="shopResultCount" aria-live="polite"></span>
+      </div>
+      <div class="shop-sort">
+        <label for="shopSort">Sort by:</label>
+        <select id="shopSort" name="sort">
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating-desc">Top Rated</option>
+        </select>
+      </div>
+    </div>
 
     <div class="shop-grid" id="shopGrid">
       <!-- filled dynamically by JS -->
@@ -190,13 +190,17 @@
           <span>Total:</span>
           <span id="cartTotal">$0</span>
         </div>
-        <a
-          href="https://wa.me/213559959122"
-          class="btn-checkout"
-          id="checkoutBtn"
-          target="_blank"
-          >Order via WhatsApp</a
-        >
+        <div class="cart-footer-actions">
+          <button type="button" class="btn-clear-cart" id="clearCartBtn">Clear Cart</button>
+          <a
+            href="https://wa.me/213559959122"
+            class="btn-checkout"
+            id="checkoutBtn"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Order via WhatsApp</a
+          >
+        </div>
       </div>
     </div>
 
