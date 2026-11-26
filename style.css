@@ -20,6 +20,7 @@
   --color-bg-body: #fbfbfb;
   --color-bg-surface: #ffffff;
   --color-bg-card: #f8f8f8;
+  --color-bg-subtle: #f4f4f6;
   --color-bg-muted: #f0f0f2;
   --color-bg-header: rgba(242, 242, 245, 0.95);
   --color-bg-dark: #1c1d24;
@@ -27,6 +28,7 @@
 
   /* Borders */
   --color-border: #e2e4e8;
+  --color-border-hover: #cbd0d8;
   --color-border-dark: #b8bcc4;
   --color-border-card: #e5e5e7;
 
@@ -48,6 +50,7 @@
   /* Shadows */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.16);
   --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.06);
   --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
   --shadow-drawer: -4px 0 24px rgba(0, 0, 0, 0.18);
@@ -356,6 +359,12 @@ input, select, textarea {
   padding: 8px;
   border-radius: var(--radius-pill);
   transition: background-color var(--transition-fast);
+}
+
+.nav-close::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
 }
 
 .nav-close:hover {
@@ -938,8 +947,7 @@ input, select, textarea {
   height: 36px;
   min-width: 36px;
   min-height: 36px;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.94);
   box-shadow: var(--shadow-sm);
   border: none;
   border-radius: var(--radius-pill);
@@ -948,6 +956,12 @@ input, select, textarea {
   justify-content: center;
   z-index: 5;
   transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.wishlist-btn::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
 }
 
 .wishlist-btn:hover {
@@ -961,8 +975,14 @@ input, select, textarea {
   transition: transform 0.15s ease;
 }
 
+.wishlist-btn.is-active {
+  background: var(--color-danger-subtle);
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
 .wishlist-btn.is-active img {
-  transform: scale(1.15);
+  transform: scale(1.08);
+  transition: transform var(--transition-fast);
 }
 
 /* --------------------------------------------------------------------------
@@ -1004,6 +1024,7 @@ input, select, textarea {
   font-size: 13.5px;
   font-weight: 500;
   color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
 }
 
 .shop-sort {
@@ -1148,10 +1169,17 @@ input, select, textarea {
 }
 
 .options-btn {
+  position: relative;
   padding: 6px;
   border-radius: var(--radius-pill);
   display: flex;
   align-items: center;
+}
+
+.options-btn::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
 }
 
 .options-btn img {
@@ -1904,7 +1932,7 @@ input, select, textarea {
 
 .footer-copyright {
   font-size: 13px;
-  color: #7b8090;
+  color: #9ca3af;
 }
 
 /* --------------------------------------------------------------------------
@@ -1962,11 +1990,20 @@ input, select, textarea {
 }
 
 .cart-drawer-close {
+  position: relative;
+  min-width: 32px;
+  min-height: 32px;
   font-size: 24px;
   line-height: 1;
   padding: 4px 8px;
   border-radius: var(--radius-xs);
   color: var(--color-text-muted);
+}
+
+.cart-drawer-close::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
 }
 
 .cart-drawer-close:hover {
@@ -2019,8 +2056,7 @@ input, select, textarea {
   color: var(--color-text-main);
 }
 
-.cart-item-size,
-.cart-item-qty {
+.cart-item-size {
   font-size: 12.5px;
   color: var(--color-text-muted);
 }
@@ -2520,17 +2556,6 @@ input, select, textarea {
   }
 }
 
-/* Wishlist Active & Animation */
-.wishlist-btn.is-active {
-  background: var(--color-danger-subtle);
-  border-color: rgba(220, 38, 38, 0.3);
-}
-
-.wishlist-btn.is-active img {
-  transform: scale(1.08);
-  transition: transform var(--transition-fast);
-}
-
 @media (max-width: 640px) {
   #toastContainer {
     bottom: 16px;
@@ -2552,7 +2577,6 @@ input, select, textarea {
 #cartTotal,
 .cart-count,
 .cart-item-qty,
-.rating-count,
-.shop-result-count {
+.rating-count {
   font-variant-numeric: tabular-nums;
 }

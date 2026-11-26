@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Browse the complete FindStyle collection. High-quality jeans, tailored trousers, jackets, shirts, and footwear built for everyday comfort and style." />
     <title>Shop All Products — FindStyle</title>
+    <link rel="canonical" href="https://nassim-dev1.github.io/findstyle-ecommerce/shop.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FindStyle" />
+    <meta property="og:title" content="Shop All Products — FindStyle" />
+    <meta property="og:description" content="Browse the complete FindStyle collection. High-quality jeans, tailored trousers, jackets, shirts, and footwear built for everyday comfort and style." />
+    <meta property="og:url" content="https://nassim-dev1.github.io/findstyle-ecommerce/shop.html" />
+    <meta property="og:image" content="https://nassim-dev1.github.io/findstyle-ecommerce/img/hero/desktopHero.webp" />
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,10 +27,10 @@
     <header class="header">
       <div class="header-left">
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-          <img src="img/icons/menu.png" alt="Menu" width="512" height="512" />
+          <img src="img/icons/menu.png" alt="Menu" width="96" height="96" />
         </button>
         <button class="back-btn" id="backBtn" aria-label="Go back">
-          <img src="img/icons/left-arrow.png" alt="Back" width="512" height="512" />
+          <img src="img/icons/left-arrow.png" alt="Back" width="96" height="96" />
         </button>
       </div>
       <a href="index.html" class="logo"><img src="img/general/logo.svg" alt="Findstyle" width="121" height="33" /></a>
@@ -41,7 +48,7 @@
         </nav>
 
         <button class="cart-btn" id="cartBtn" aria-label="Shopping Cart">
-          <img src="img/icons/cart.png" alt="Cart" width="512" height="512" />
+          <img src="img/icons/cart.png" alt="Cart" width="96" height="96" />
           <span class="cart-count" id="cartCount">0</span>
         </button>
       </div>
@@ -49,7 +56,7 @@
 
     <nav class="mobile-nav" id="mobileNav">
       <button class="nav-close" id="navClose" aria-label="Close menu">
-        <img src="img/icons/close.png" alt="Close menu" width="512" height="512" />
+        <img src="img/icons/close.png" alt="Close menu" width="96" height="96" />
       </button>
       <ul>
         <li><a href="index.html">HOME</a></li>
@@ -66,13 +73,13 @@
       <img
         src="img/icons/search-interface-symbol.png"
         class="search-icon"
-        alt="Search" width="512" height="512" />
+        alt="Search" width="96" height="96" />
       <input
-        type="search"
+        type="search" aria-label="Search for products, brands and more"
         placeholder="Search for products, brands and more ..."
       />
       <button class="filter-btn" id="filterBtn" aria-label="Filter">
-        <img src="img/icons/slideBar.png" class="filter-icon" alt="Filter" width="512" height="512" />
+        <img src="img/icons/slideBar.png" class="filter-icon" alt="Filter" width="96" height="96" />
       </button>
       <div class="filter-dropdown" id="filterDropdown">
         <ul>
@@ -92,9 +99,9 @@
         <img
           src="img/icons/search-interface-symbol.png"
           class="search-icon"
-          alt="Search" width="512" height="512" />
+          alt="Search" width="96" height="96" />
         <input
-          type="search"
+          type="search" aria-label="Search for products, brands and more"
           placeholder="Search for products, brands and more ..."
         />
       </div>
@@ -135,7 +142,7 @@
       <div class="newsletter">
         <h2>Get 15% off your first order</h2>
         <form class="newsletter-form">
-          <input type="email" placeholder="Enter your email address" required />
+          <input type="email" aria-label="Email address for 15% off first order" placeholder="Enter your email address" required />
           <button type="submit">JOIN</button>
         </form>
       </div>
@@ -165,9 +172,9 @@
           </ul>
         </div>
         <div class="desktop-payment">
-          <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob" width="900" height="900" loading="lazy">
-          <img src="img/general/paypal.png" alt="PayPal" class="paypal" width="1186" height="1170" loading="lazy">
-          <img src="img/general/visa.png" alt="Visa" class="visa" width="1476" height="828" loading="lazy">
+          <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob" width="96" height="96" loading="lazy" decoding="async">
+          <img src="img/general/paypal.png" alt="PayPal" class="paypal" width="97" height="96" loading="lazy" decoding="async">
+          <img src="img/general/visa.png" alt="Visa" class="visa" width="171" height="96" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="footer-foot">
@@ -206,7 +213,7 @@
       </div>
     </div>
 
-    <script src="products.js"></script>
-    <script src="script.js"></script>
+    <script src="products.js" defer></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

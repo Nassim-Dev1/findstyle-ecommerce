@@ -269,6 +269,7 @@ document.addEventListener("click", function (e) {
 // ==========================================================================
 
 const MAX_CART_QTY = 20;
+const CACHED_PRODUCTS = typeof products !== "undefined" ? Object.values(products) : [];
 
 function getCart() {
   const parsed = safeStorageGet("cart");
@@ -448,7 +449,7 @@ function renderCartDrawer() {
     const row = document.createElement("div");
     row.className = "cart-item";
     row.innerHTML = `
-      <img src="${product.images[0]}" alt="${escapeHtml(product.name)}">
+      <img src="${product.images[0]}" alt="${escapeHtml(product.name)}" width="72" height="72" loading="lazy" decoding="async">
       <div class="cart-item-info">
         <h4>${escapeHtml(product.name)}</h4>
         <span class="cart-item-size">Size: ${escapeHtml(item.size)}</span>
@@ -540,6 +541,7 @@ function initLiveSearch() {
   if (typeof products === "undefined") return;
 
   const searchBars = document.querySelectorAll(".search-bar");
+  const allSearchInputs = Array.from(document.querySelectorAll(".search-bar input"));
 
   searchBars.forEach((bar, barIndex) => {
     const input = bar.querySelector("input[type='search'], input");
@@ -564,6 +566,7 @@ function initLiveSearch() {
 
     let highlightedIndex = -1;
     let lastHandledQuery = input.value;
+    let debounceTimer = null;
 
     function closeDropdown() {
       dropdown.classList.remove("is-open");
@@ -587,18 +590,22 @@ function initLiveSearch() {
       }
     }
 
+    function syncSiblingInputs(rawQuery) {
+      allSearchInputs.forEach((otherInput) => {
+        if (otherInput !== input && otherInput.value !== rawQuery) {
+          otherInput.value = rawQuery;
+        }
+      });
+    }
+
     function handleQueryChange() {
+      clearTimeout(debounceTimer);
       const rawQuery = input.value;
       lastHandledQuery = rawQuery;
       const query = rawQuery.trim().toLowerCase();
       highlightedIndex = -1;
 
-      // Keep sibling search inputs on the page synchronized
-      document.querySelectorAll(".search-bar input").forEach((otherInput) => {
-        if (otherInput !== input && otherInput.value !== rawQuery) {
-          otherInput.value = rawQuery;
-        }
-      });
+      syncSiblingInputs(rawQuery);
 
       if (query === "") {
         dropdown.innerHTML = "";
@@ -611,7 +618,7 @@ function initLiveSearch() {
         return;
       }
 
-      const matches = Object.values(products).filter((p) => matchesProductSearch(p, query));
+      const matches = CACHED_PRODUCTS.filter((p) => matchesProductSearch(p, query));
 
       dropdown.innerHTML = "";
 
@@ -622,6 +629,7 @@ function initLiveSearch() {
       } else {
         dropdown.setAttribute("role", "listbox");
         dropdown.removeAttribute("aria-live");
+        const fragment = document.createDocumentFragment();
         matches.slice(0, 8).forEach((p, idx) => {
           const item = document.createElement("a");
           item.className = "search-result-item";
@@ -630,7 +638,7 @@ function initLiveSearch() {
           item.setAttribute("aria-selected", "false");
           item.href = `product.html?id=${p.id}`;
           item.innerHTML = `
-            <img src="${p.images[0]}" alt="${escapeHtml(p.name)}" class="search-result-thumb">
+            <img src="${p.images[0]}" alt="${escapeHtml(p.name)}" class="search-result-thumb" width="48" height="48" loading="lazy" decoding="async">
             <div class="search-result-info">
               <span class="search-result-title">${escapeHtml(p.name)}</span>
               <div class="search-result-meta">
@@ -640,8 +648,9 @@ function initLiveSearch() {
             </div>
             <span class="search-result-price">$${p.priceNow}</span>
           `;
-          dropdown.appendChild(item);
+          fragment.appendChild(item);
         });
+        dropdown.appendChild(fragment);
       }
 
       dropdown.classList.add("is-open");
@@ -653,8 +662,19 @@ function initLiveSearch() {
       }
     }
 
-    input.addEventListener("input", handleQueryChange);
+    input.addEventListener("input", function () {
+      const rawQuery = input.value;
+      syncSiblingInputs(rawQuery);
+      clearTimeout(debounceTimer);
+      if (rawQuery.trim() === "") {
+        handleQueryChange();
+        return;
+      }
+      debounceTimer = setTimeout(handleQueryChange, 150);
+    });
+
     input.addEventListener("search", function () {
+      clearTimeout(debounceTimer);
       if (input.value !== lastHandledQuery) {
         handleQueryChange();
       }
@@ -685,8 +705,13 @@ function initLiveSearch() {
 
       if (e.key === "Enter") {
         e.preventDefault();
-        if (highlightedIndex >= 0 && items[highlightedIndex]) {
-          window.location.href = items[highlightedIndex].href;
+        clearTimeout(debounceTimer);
+        if (input.value !== lastHandledQuery) {
+          handleQueryChange();
+        }
+        const latestItems = Array.from(dropdown.querySelectorAll(".search-result-item"));
+        if (highlightedIndex >= 0 && latestItems[highlightedIndex]) {
+          window.location.href = latestItems[highlightedIndex].href;
           return;
         }
 
@@ -937,7 +962,7 @@ updateActiveNavLinks();
 // 6. PAGE: HOME (index.html)
 // ==========================================================================
 
-function renderProductRow(row) {
+function renderProductRow(row, rowIndex = 0) {
   if (typeof products === "undefined") return;
 
   const category = row.dataset.category;
@@ -946,25 +971,27 @@ function renderProductRow(row) {
 
   let matchingProducts;
   if (category === "bestsellers") {
-    matchingProducts = Object.values(products).filter((p) => p.bestSeller);
+    matchingProducts = CACHED_PRODUCTS.filter((p) => p.bestSeller);
   } else {
-    matchingProducts = Object.values(products).filter(
+    matchingProducts = CACHED_PRODUCTS.filter(
       (p) => p.category === category
     );
   }
 
   scrollContainer.innerHTML = "";
   const wishlistSet = new Set(getWishlist());
+  const fragment = document.createDocumentFragment();
 
-  matchingProducts.forEach((product) => {
+  matchingProducts.forEach((product, idx) => {
     const card = document.createElement("article");
     card.className = "product-card";
     const active = wishlistSet.has(String(product.id));
+    const loadingAttr = rowIndex === 0 && idx < 2 ? "" : ' loading="lazy"';
 
     card.innerHTML = `
       <a href="product.html?id=${product.id}" class="product-link">
         <div class="product-img">
-          <img src="${product.images[0]}" alt="${escapeHtml(product.name)}">
+          <img src="${product.images[0]}" alt="${escapeHtml(product.name)}" width="400" height="460"${loadingAttr} decoding="async">
         </div>
         <h3>${escapeHtml(product.name)}</h3>
         <div class="product-meta">
@@ -973,39 +1000,20 @@ function renderProductRow(row) {
         </div>
       </a>
       <button type="button" class="wishlist-btn ${active ? "is-active" : ""}" data-id="${product.id}" aria-pressed="${active ? "true" : "false"}" aria-label="${active ? "Remove from wishlist" : "Add to wishlist"}">
-        <img src="${active ? "img/icons/heart-filled.png" : "img/icons/heart-outline.png"}" alt="" aria-hidden="true">
+        <img src="${active ? "img/icons/heart-filled.png" : "img/icons/heart-outline.png"}" alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async">
       </button>
     `;
 
-    scrollContainer.appendChild(card);
+    fragment.appendChild(card);
   });
+
+  scrollContainer.appendChild(fragment);
 }
 
 if (document.body.classList.contains("page-home")) {
-  document.querySelectorAll(".category-row").forEach((row) => {
-    renderProductRow(row);
+  document.querySelectorAll(".category-row").forEach((row, rowIndex) => {
+    renderProductRow(row, rowIndex);
   });
-
-  const menuToggle = document.getElementById("menuToggle");
-  const navClose = document.getElementById("navClose");
-  const navOverlay = document.getElementById("navOverlay");
-  const mobileNav = document.getElementById("mobileNav");
-
-  if (menuToggle && navClose && navOverlay && mobileNav) {
-    menuToggle.addEventListener("click", openNav);
-    navClose.addEventListener("click", closeNav);
-    navOverlay.addEventListener("click", closeNav);
-
-    function openNav() {
-      mobileNav.classList.add("is-open");
-      navOverlay.classList.add("is-visible");
-    }
-
-    function closeNav() {
-      mobileNav.classList.remove("is-open");
-      navOverlay.classList.remove("is-visible");
-    }
-  }
 
     // Hero Mobile Slider with Touch Swipe (only enabled when multiple slides exist)
   const heroTrack = document.getElementById("heroTrackMobile");
@@ -1029,22 +1037,25 @@ if (document.body.classList.contains("page-home")) {
 
     let startX = 0;
     let currentX = 0;
+    let trackWidth = 0;
     let isDragging = false;
 
     heroTrack.addEventListener("touchstart", (e) => {
       startX = e.touches[0].clientX;
+      currentX = startX;
+      trackWidth = heroTrack.offsetWidth || 1;
       isDragging = true;
       heroTrack.style.transition = "none";
-    });
+    }, { passive: true });
 
     heroTrack.addEventListener("touchmove", function (e) {
       if (!isDragging) return;
       currentX = e.touches[0].clientX;
       const diff = currentX - startX;
       if (Math.abs(diff) < 20) return;
-      const percentDiff = (diff / heroTrack.offsetWidth) * 100;
+      const percentDiff = (diff / trackWidth) * 100;
       heroTrack.style.transform = `translateX(calc(-${currentSlide * 100}% + ${percentDiff}%))`;
-    });
+    }, { passive: true });
 
     heroTrack.addEventListener("touchend", function () {
       isDragging = false;
@@ -1059,7 +1070,7 @@ if (document.body.classList.contains("page-home")) {
       } else {
         goToSlide(currentSlide);
       }
-    });
+    }, { passive: true });
   } else if (heroDotsContainer && slides.length <= 1) {
     // Single slide: hide dots indicator completely
     heroDotsContainer.style.display = "none";
@@ -1215,7 +1226,7 @@ if (document.body.classList.contains("page-collections")) {
           item.href = `product.html?id=${product.id}`;
           item.className = "outfit-panal-item";
           item.innerHTML = `
-            <img src="${product.images[0]}" alt="${escapeHtml(product.name)}">
+            <img src="${product.images[0]}" alt="${escapeHtml(product.name)}" width="64" height="64" loading="lazy" decoding="async">
             <div class="piece-info">
               <h4>${escapeHtml(product.name)}</h4>
               <span class="piece-price">$${product.priceNow}</span>
@@ -1267,6 +1278,7 @@ if (document.body.classList.contains("page-product")) {
   const product = typeof products !== "undefined" ? products[productId] : null;
 
   if (!product) {
+    document.title = "Product Not Found — FindStyle";
     console.warn("Product not found:", productId);
     const deskProduct = document.querySelector(".desk-product");
     if (deskProduct) {
@@ -1281,7 +1293,18 @@ if (document.body.classList.contains("page-product")) {
     const relatedSection = document.querySelector(".related-products");
     if (relatedSection) relatedSection.style.display = "none";
   } else {
-    // Populate PDP content
+    // Populate PDP content and SEO metadata safely via text/attribute APIs
+    document.title = `${product.name} — FindStyle`;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && product.shortDescription) {
+      metaDesc.setAttribute("content", product.shortDescription);
+    }
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute("content", `${product.name} — FindStyle`);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc && product.shortDescription) {
+      ogDesc.setAttribute("content", product.shortDescription);
+    }
     const titleEl = document.querySelector(".product-info h1");
     if (titleEl) titleEl.textContent = product.name;
 
@@ -1330,20 +1353,34 @@ if (document.body.classList.contains("page-product")) {
       galleryTrack.innerHTML = "";
       galleryDots.innerHTML = "";
 
+      const galleryFrag = document.createDocumentFragment();
+      const dotsFrag = document.createDocumentFragment();
+
       product.images.forEach((imgSrc, index) => {
         const slide = document.createElement("div");
         slide.className = "gallery-slide";
         const img = document.createElement("img");
         img.src = imgSrc;
         img.alt = product.name;
+        img.width = 800;
+        img.height = 920;
+        img.decoding = "async";
+        if (index === 0) {
+          img.fetchPriority = "high";
+        } else {
+          img.loading = "lazy";
+        }
         slide.appendChild(img);
-        galleryTrack.appendChild(slide);
+        galleryFrag.appendChild(slide);
 
         const dot = document.createElement("button");
         dot.className = index === 0 ? "dot is-active" : "dot";
         dot.dataset.index = index;
-        galleryDots.appendChild(dot);
+        dotsFrag.appendChild(dot);
       });
+
+      galleryTrack.appendChild(galleryFrag);
+      galleryDots.appendChild(dotsFrag);
 
       initGallerySlider();
     }
@@ -1387,10 +1424,11 @@ if (document.body.classList.contains("page-product")) {
     const relatedGrid = document.querySelector(".related-grid");
     if (relatedGrid) {
       relatedGrid.innerHTML = "";
-      const relatedProducts = Object.values(products)
+      const relatedProducts = CACHED_PRODUCTS
         .filter((p) => p.category === product.category && p.id !== productId)
         .slice(0, 8);
       const wishlistSet = new Set(getWishlist());
+      const relatedFrag = document.createDocumentFragment();
 
       relatedProducts.forEach((p) => {
         const card = document.createElement("article");
@@ -1400,7 +1438,7 @@ if (document.body.classList.contains("page-product")) {
         card.innerHTML = `
           <a href="product.html?id=${p.id}" class="product-link">
             <div class="product-img">
-              <img src="${p.images[0]}" alt="${escapeHtml(p.name)}">
+              <img src="${p.images[0]}" alt="${escapeHtml(p.name)}" width="400" height="460" loading="lazy" decoding="async">
             </div>
             <h3>${escapeHtml(p.name)}</h3>
             <div class="product-meta">
@@ -1409,12 +1447,14 @@ if (document.body.classList.contains("page-product")) {
             </div>
           </a>
           <button type="button" class="wishlist-btn ${active ? "is-active" : ""}" data-id="${p.id}" aria-pressed="${active ? "true" : "false"}" aria-label="${active ? "Remove from wishlist" : "Add to wishlist"}">
-            <img src="${active ? "img/icons/heart-filled.png" : "img/icons/heart-outline.png"}" alt="" aria-hidden="true">
+            <img src="${active ? "img/icons/heart-filled.png" : "img/icons/heart-outline.png"}" alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async">
           </button>
         `;
 
-        relatedGrid.appendChild(card);
+        relatedFrag.appendChild(card);
       });
+
+      relatedGrid.appendChild(relatedFrag);
     }
   }
 
@@ -1439,22 +1479,25 @@ if (document.body.classList.contains("page-product")) {
 
     let startX = 0;
     let currentX = 0;
+    let trackWidth = 0;
     let isDragging = false;
 
     galleryTrack.addEventListener("touchstart", (e) => {
       startX = e.touches[0].clientX;
+      currentX = startX;
+      trackWidth = galleryTrack.offsetWidth || 1;
       isDragging = true;
       galleryTrack.style.transition = "none";
-    });
+    }, { passive: true });
 
     galleryTrack.addEventListener("touchmove", (e) => {
       if (!isDragging) return;
       currentX = e.touches[0].clientX;
       const diff = currentX - startX;
       if (Math.abs(diff) < 10) return;
-      const percentDiff = (diff / galleryTrack.offsetWidth) * 100;
+      const percentDiff = (diff / trackWidth) * 100;
       galleryTrack.style.transform = `translateX(calc(-${currentImage * 100}% + ${percentDiff}%))`;
-    });
+    }, { passive: true });
 
     galleryTrack.addEventListener("touchend", () => {
       isDragging = false;
@@ -1469,7 +1512,7 @@ if (document.body.classList.contains("page-product")) {
       } else {
         goToImage(currentImage);
       }
-    });
+    }, { passive: true });
   }
 
   // Add to cart with toast replacement
@@ -1487,15 +1530,6 @@ if (document.body.classList.contains("page-product")) {
       }
 
       addToCart(product.id, selectedSize);
-    });
-  }
-
-  const cartToggle = document.getElementById("cartToggle");
-  if (cartToggle && cartDrawer && cartOverlay) {
-    cartToggle.addEventListener("click", function () {
-      renderCartDrawer();
-      cartDrawer.classList.add("is-open");
-      cartOverlay.classList.add("is-visible");
     });
   }
 }
@@ -1597,7 +1631,7 @@ if (document.body.classList.contains("page-shop")) {
   function getFilteredAndSortedProducts() {
     if (typeof products === "undefined") return [];
 
-    let list = Object.values(products).filter((p) => {
+    let list = CACHED_PRODUCTS.filter((p) => {
       if (shopState.category === "bestsellers") {
         if (!p.bestSeller) return false;
       } else if (shopState.category !== "all") {
@@ -1652,15 +1686,17 @@ if (document.body.classList.contains("page-shop")) {
       }
     } else {
       const wishlistSet = new Set(getWishlist());
-      matching.forEach((product) => {
+      const shopFrag = document.createDocumentFragment();
+      matching.forEach((product, idx) => {
         const card = document.createElement("article");
         card.className = "product-card";
         const active = wishlistSet.has(String(product.id));
+        const loadingAttr = idx < 4 ? "" : ' loading="lazy"';
 
         card.innerHTML = `
           <a href="product.html?id=${product.id}" class="product-link">
             <div class="product-img">
-              <img src="${product.images[0]}" alt="${escapeHtml(product.name)}">
+              <img src="${product.images[0]}" alt="${escapeHtml(product.name)}" width="400" height="460"${loadingAttr} decoding="async">
             </div>
             <h3>${escapeHtml(product.name)}</h3>
             <div class="product-meta">
@@ -1669,12 +1705,13 @@ if (document.body.classList.contains("page-shop")) {
             </div>
           </a>
           <button type="button" class="wishlist-btn ${active ? "is-active" : ""}" data-id="${product.id}" aria-pressed="${active ? "true" : "false"}" aria-label="${active ? "Remove from wishlist" : "Add to wishlist"}">
-            <img src="${active ? "img/icons/heart-filled.png" : "img/icons/heart-outline.png"}" alt="" aria-hidden="true">
+            <img src="${active ? "img/icons/heart-filled.png" : "img/icons/heart-outline.png"}" alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async">
           </button>
         `;
 
-        shopGrid.appendChild(card);
+        shopFrag.appendChild(card);
       });
+      shopGrid.appendChild(shopFrag);
     }
 
     if (shopTitle) {
@@ -1696,7 +1733,9 @@ if (document.body.classList.contains("page-shop")) {
   }
 
   window.__setShopSearch = function (query) {
-    shopState.search = (query || "").trim();
+    const nextSearch = (query || "").trim();
+    if (shopState.search === nextSearch) return;
+    shopState.search = nextSearch;
     syncShopUrl(false);
     applyShopState();
   };

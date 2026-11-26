@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Discover modern, curated menswear at FindStyle. Explore premium denim, tailored pants, casual essentials, and complete styled outfits with instant WhatsApp ordering." />
     <title>FindStyle — Modern Menswear & Curated Outfits</title>
+    <link rel="canonical" href="https://nassim-dev1.github.io/findstyle-ecommerce/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FindStyle" />
+    <meta property="og:title" content="FindStyle — Modern Menswear & Curated Outfits" />
+    <meta property="og:description" content="Discover modern, curated menswear at FindStyle. Explore premium denim, tailored pants, casual essentials, and complete styled outfits with instant WhatsApp ordering." />
+    <meta property="og:url" content="https://nassim-dev1.github.io/findstyle-ecommerce/" />
+    <meta property="og:image" content="https://nassim-dev1.github.io/findstyle-ecommerce/img/hero/desktopHero.webp" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="preload" as="image" href="img/hero/desktopHero.webp">
+    <link rel="preload" as="image" href="img/hero/desktopHero.webp" fetchpriority="high" />
     <link rel="icon" href="favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,7 +28,7 @@
     <header class="header">
       <div class="header-left">
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-          <img src="img/icons/menu.png" alt="Menu" width="512" height="512" />
+          <img src="img/icons/menu.png" alt="Menu" width="96" height="96" />
         </button>
       </div>
       <a href="index.html" class="logo">
@@ -39,7 +46,7 @@
           </div>
         </nav>
         <button class="cart-btn" id="cartBtn" aria-label="Shopping Cart">
-          <img src="img/icons/cart.png" alt="Cart" width="512" height="512" />
+          <img src="img/icons/cart.png" alt="Cart" width="96" height="96" />
           <span class="cart-count" id="cartCount">0</span>
         </button>
       </div>
@@ -47,7 +54,7 @@
 
     <nav class="mobile-nav" id="mobileNav">
       <button class="nav-close" id="navClose" aria-label="Close menu">
-        <img src="img/icons/close.png" alt="Close menu" width="512" height="512" />
+        <img src="img/icons/close.png" alt="Close menu" width="96" height="96" />
       </button>
       <ul>
         <li><a href="index.html">HOME</a></li>
@@ -88,7 +95,7 @@
       </div>
       <div class="collection-div">
         <article class="collection-card">
-          <img src="img/general/classic1.webp" alt="classic outfit" width="2560" height="1429" />
+          <img src="img/general/classic1.webp" alt="classic outfit" width="2560" height="1429" decoding="async" />
           <div class="card-content classic-content">
             <h3>Classic collection</h3>
             <p>Luxe &amp; Effortless</p>
@@ -101,7 +108,7 @@
           </div>
         </article>
         <article class="collection-card">
-          <img src="img/general/casual1.webp" alt="casual outfit" width="2560" height="1368" />
+          <img src="img/general/casual1.webp" alt="casual outfit" width="2560" height="1368" decoding="async" />
           <div class="card-content casual-content">
             <h3>Casual collection</h3>
             <p>Trendy &amp; Comfortable</p>
@@ -120,13 +127,13 @@
       <img
         src="img/icons/search-interface-symbol.png"
         class="search-icon"
-        alt="Search" width="512" height="512" />
+        alt="Search" width="96" height="96" />
       <input
-        type="search"
+        type="search" aria-label="Search for products, brands and more"
         placeholder="Search for products, brands and more ..."
       />
       <button class="filter-btn" id="filterBtn" aria-label="Filter">
-        <img src="img/icons/slideBar.png" class="filter-icon" alt="Filter" width="512" height="512" />
+        <img src="img/icons/slideBar.png" class="filter-icon" alt="Filter" width="96" height="96" />
       </button>
       <div class="filter-dropdown" id="filterDropdown">
         <ul>
@@ -145,9 +152,9 @@
         <img
           src="img/icons/search-interface-symbol.png"
           class="search-icon"
-          alt="Search" width="512" height="512" />
+          alt="Search" width="96" height="96" />
         <input
-          type="search"
+          type="search" aria-label="Search for products, brands and more"
           placeholder="Search for products, brands and more ..."
         />
       </div>
@@ -217,9 +224,9 @@
             <h2>Join Our Community</h2>
             <p>Follow us for behind-the-scenes and exclusive drops.</p>
             <div class="social-links">
-              <a href="#myinsta" target="_blank" aria-label="Instagram" class="social-btn"><img src="img/icons/instagram.png" alt="Instagram" width="512" height="512" loading="lazy"></a>
-              <a href="#mydisco" target="_blank" aria-label="Discord" class="social-btn"><img src="img/icons/discord.png" alt="Discord" width="512" height="512" loading="lazy"></a>
-              <a href="#mytelegram" target="_blank" aria-label="telegram" class="social-btn"><img src="img/icons/telegram.png" alt="Telegram" width="512" height="512" loading="lazy"></a>
+              <a href="#myinsta" target="_blank" aria-label="Instagram" class="social-btn"><img src="img/icons/instagram.png" alt="Instagram" width="96" height="96" loading="lazy" decoding="async"></a>
+              <a href="#mydisco" target="_blank" aria-label="Discord" class="social-btn"><img src="img/icons/discord.png" alt="Discord" width="96" height="96" loading="lazy" decoding="async"></a>
+              <a href="#mytelegram" target="_blank" aria-label="telegram" class="social-btn"><img src="img/icons/telegram.png" alt="Telegram" width="96" height="96" loading="lazy" decoding="async"></a>
             </div>
           </div>
         </div>
@@ -228,22 +235,22 @@
 
     <section class="featurs">
       <article class="feature-card">
-        <img src="img/icons/transport.png" alt="Free shipping" width="512" height="512" loading="lazy" />
+        <img src="img/icons/transport.png" alt="Free shipping" width="96" height="96" loading="lazy" decoding="async" />
         <h3>Free Shipping</h3>
         <p>On orders over $60</p>
       </article>
       <article class="feature-card">
-        <img src="img/icons/suport.png" alt="24/7 support" width="512" height="512" loading="lazy" />
+        <img src="img/icons/suport.png" alt="24/7 support" width="96" height="96" loading="lazy" decoding="async" />
         <h3>24/7 Support</h3>
         <p>We are here to help</p>
       </article>
       <article class="feature-card">
-        <img src="img/icons/security.png" alt="Secure payment" width="512" height="512" loading="lazy" />
+        <img src="img/icons/security.png" alt="Secure payment" width="96" height="96" loading="lazy" decoding="async" />
         <h3>Security</h3>
         <p>%100 protected</p>
       </article>
       <article class="feature-card">
-        <img src="img/icons/box.png" alt="Easy returns" width="512" height="512" loading="lazy" />
+        <img src="img/icons/box.png" alt="Easy returns" width="96" height="96" loading="lazy" decoding="async" />
         <h3>Easy Returns</h3>
         <p>30-day returns</p>
       </article>
@@ -254,7 +261,7 @@
       <div class="newsletter">
         <h2>Get 15% off your first order</h2>
         <form class="newsletter-form">
-          <input type="email" placeholder="Enter your email address" required />
+          <input type="email" aria-label="Email address for 15% off first order" placeholder="Enter your email address" required />
           <button type="submit">JOIN</button>
         </form>
       </div>
@@ -284,9 +291,9 @@
           </ul>
         </div>
         <div class="desktop-payment">
-          <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob" width="900" height="900" loading="lazy">
-          <img src="img/general/paypal.png" alt="PayPal" class="paypal" width="1186" height="1170" loading="lazy">
-          <img src="img/general/visa.png" alt="Visa" class="visa" width="1476" height="828" loading="lazy">
+          <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob" width="96" height="96" loading="lazy" decoding="async">
+          <img src="img/general/paypal.png" alt="PayPal" class="paypal" width="97" height="96" loading="lazy" decoding="async">
+          <img src="img/general/visa.png" alt="Visa" class="visa" width="171" height="96" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="footer-foot">
@@ -323,7 +330,7 @@
       </div>
     </div>
 
-    <script src="products.js"></script>
-    <script src="script.js"></script>
+    <script src="products.js" defer></script>
+    <script src="script.js" defer></script>
   </body>
 </html>
