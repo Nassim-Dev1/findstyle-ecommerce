@@ -301,7 +301,7 @@ function getCart() {
 
 function saveCart(cart) {
   const ok = safeStorageSet("cart", Array.isArray(cart) ? cart : []);
-  updateCartCount();
+  updateCartCount(true);
   return ok;
 }
 
@@ -403,12 +403,20 @@ function clearCart() {
   showToast("Cart cleared", "info");
 }
 
-function updateCartCount() {
+function updateCartCount(animate = false) {
   const cart = getCart();
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   document.querySelectorAll(".cart-count").forEach((el) => {
+    const prev = parseInt(el.textContent, 10) || 0;
     el.textContent = totalItems;
     el.classList.toggle("is-empty", totalItems === 0);
+    // Pop animation when count increases
+    if (animate && totalItems > prev) {
+      el.classList.remove("is-popping");
+      void el.offsetWidth; // force reflow to restart animation
+      el.classList.add("is-popping");
+      el.addEventListener("animationend", () => el.classList.remove("is-popping"), { once: true });
+    }
   });
 }
 
@@ -904,6 +912,19 @@ function initLiveSearch() {
 updateCartCount();
 initLiveSearch();
 initWishlistButtons();
+
+// ── Scroll-Aware Header ───────────────────────────────────────────────────
+(function initScrollHeader() {
+  const header = document.querySelector(".header");
+  if (!header) return;
+  const THRESHOLD = 40;
+  function onScroll() {
+    header.classList.toggle("is-scrolled", window.scrollY > THRESHOLD);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll(); // set initial state on load
+})();
+
 // Global Mobile Navigation Drawer Initialization (accessible on all pages)
 let closeMobileNavDrawer = null;
 function initMobileNav() {
@@ -999,6 +1020,7 @@ function openCart() {
   renderCartDrawer();
   cartDrawer.classList.add("is-open");
   cartOverlay.classList.add("is-visible");
+  if (cartBtn) cartBtn.setAttribute("aria-expanded", "true");
   if (cartDrawerClose) {
     cartDrawerClose.focus();
   } else {
@@ -1011,6 +1033,7 @@ function closeCart() {
   const wasOpen = cartDrawer && cartDrawer.classList.contains("is-open");
   if (cartDrawer) cartDrawer.classList.remove("is-open");
   if (cartOverlay) cartOverlay.classList.remove("is-visible");
+  if (cartBtn) cartBtn.setAttribute("aria-expanded", "false");
   if (wasOpen) {
     const target = lastFocusedBeforeCart && typeof lastFocusedBeforeCart.focus === "function"
       ? lastFocusedBeforeCart

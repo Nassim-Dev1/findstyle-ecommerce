@@ -6,17 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="Discover modern, curated menswear at FindStyle. Explore premium denim, tailored pants, casual essentials, and complete styled outfits with instant WhatsApp ordering." />
-  <title>FindStyle — Modern Menswear & Curated Outfits</title>
+  <title>FindStyle â€” Modern Menswear & Curated Outfits</title>
   <link rel="canonical" href="https://nassim-dev1.github.io/findstyle-ecommerce/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="FindStyle" />
-  <meta property="og:title" content="FindStyle — Modern Menswear & Curated Outfits" />
+  <meta property="og:title" content="FindStyle â€” Modern Menswear & Curated Outfits" />
   <meta property="og:description"
     content="Discover modern, curated menswear at FindStyle. Explore premium denim, tailored pants, casual essentials, and complete styled outfits with instant WhatsApp ordering." />
   <meta property="og:url" content="https://nassim-dev1.github.io/findstyle-ecommerce/" />
   <meta property="og:image" content="https://nassim-dev1.github.io/findstyle-ecommerce/img/hero/desktopHero.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="FindStyle — Modern Menswear & Curated Outfits" />
+  <meta name="twitter:title" content="FindStyle â€” Modern Menswear & Curated Outfits" />
   <meta name="twitter:description"
     content="Discover modern, curated menswear at FindStyle. Explore premium denim, tailored pants, casual essentials, and complete styled outfits with instant WhatsApp ordering." />
   <meta name="twitter:image" content="https://nassim-dev1.github.io/findstyle-ecommerce/img/hero/desktopHero.webp" />
@@ -52,8 +52,12 @@
   <a href="#mainContent" class="skip-link">Skip to main content</a>
   <header class="header">
     <div class="header-left">
-      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-        <img src="img/icons/menu.png" alt="Menu" width="96" height="96" />
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" focusable="false">
+          <rect x="2" y="5.5" width="18" height="1.75" rx="1" fill="currentColor"/>
+          <rect x="2" y="10.125" width="18" height="1.75" rx="1" fill="currentColor"/>
+          <rect x="2" y="14.75" width="18" height="1.75" rx="1" fill="currentColor"/>
+        </svg>
       </button>
     </div>
     <a href="index.html" class="logo">
@@ -63,15 +67,19 @@
       <nav class="desktop-nav" aria-label="Main Navigation">
         <div class="desktop-nav-links">
           <ul>
-            <li><a class="active" href="index.html">HOME</a></li>
+            <li><a class="active" aria-current="page" href="index.html">HOME</a></li>
             <li><a href="shop.html">SHOP</a></li>
             <li><a href="collections.html">COLLECTIONS</a></li>
-            <li><a href="https://wa.me/213559959122">CONTACT</a></li>
+            <li><a href="https://wa.me/213559959122" rel="noopener noreferrer">CONTACT</a></li>
           </ul>
         </div>
       </nav>
-      <button class="cart-btn" id="cartBtn" aria-label="Shopping Cart">
-        <img src="img/icons/cart.png" alt="Cart" width="96" height="96" />
+      <button class="cart-btn" id="cartBtn" aria-label="Shopping Cart" aria-expanded="false" aria-controls="cartDrawer">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" focusable="false">
+          <path d="M2 2h2.2l1.6 8.5a2 2 0 0 0 2 1.5h7.4a2 2 0 0 0 1.96-1.6L18 5H5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="8.5" cy="18" r="1.3" fill="currentColor"/>
+          <circle cx="15.5" cy="18" r="1.3" fill="currentColor"/>
+        </svg>
         <span class="cart-count" id="cartCount">0</span>
       </button>
     </div>
@@ -101,7 +109,7 @@
     <section class="hero">
       <div class="hero-track-mobile" id="heroTrackMobile">
         <div class="hero-slide"
-          style="background-image: linear-gradient(-90deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%), url(&quot;img/hero/desktopHero.webp&quot;)">
+        >
         </div>
       </div>
       <div class="hero-content">
