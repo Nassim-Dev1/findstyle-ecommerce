@@ -2575,7 +2575,7 @@ input, select, textarea {
   }
 
   .hero-content {
-    left: clamp(60px, 17vw, 220px);
+    left: clamp(60px, 17vw, 300px);
     top: 55%;
     transform: translateY(-50%);
     max-width: clamp(340px, 34vw, 460px);
