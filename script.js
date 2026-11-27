@@ -925,6 +925,46 @@ initWishlistButtons();
   onScroll(); // set initial state on load
 })();
 
+// ── Unified Scroll-Reveal System (Sections, Rows & Grids) ────────────────
+(function initScrollReveal() {
+  const revealSelectors = [
+    ".collection-card--reveal",
+    ".collection-header",
+    ".category-row",
+    ".desktop-community",
+    ".featurs",
+    ".site-footer",
+    ".shop-grid",
+    ".outfit-grid",
+    ".related-grid"
+  ];
+
+  const targets = document.querySelectorAll(revealSelectors.join(", "));
+  if (!targets.length) return;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    targets.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+
+  targets.forEach((el) => el.classList.add("reveal-target"));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.08, rootMargin: "0px 0px -48px 0px" }
+  );
+
+  targets.forEach((el) => observer.observe(el));
+})();
+
 // Global Mobile Navigation Drawer Initialization (accessible on all pages)
 let closeMobileNavDrawer = null;
 function initMobileNav() {
@@ -1192,21 +1232,25 @@ function createProductCard(product, wishlistSet, eager = false) {
     : `<span class="price">$${product.priceNow}</span>`;
 
   card.innerHTML = `
-    <a href="product.html?id=${product.id}" class="product-link">
-      <div class="product-img">
-        <img src="${product.images[0]}" alt="${escapeHtml(product.name)}" width="400" height="460"${loadingAttr} decoding="async">
+    <div class="product-media">
+      <a href="product.html?id=${product.id}" class="product-img" tabindex="-1" aria-hidden="true">
+        <img src="${product.images[0]}" alt="" width="400" height="460"${loadingAttr} decoding="async">
         ${bestSellerBadge}
-        ${quickSizesHtml}
-      </div>
+      </a>
+      ${quickSizesHtml}
+      <button type="button" class="wishlist-btn ${active ? "is-active" : ""}" data-id="${product.id}" aria-pressed="${active ? "true" : "false"}" aria-label="${active ? "Remove from wishlist" : "Add to wishlist"}">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <a href="product.html?id=${product.id}" class="product-link">
       <h3>${escapeHtml(product.name)}</h3>
       <div class="product-meta">
         ${priceHtml}
-        <span class="rating"><span class="star">★</span> ${product.rating} (${product.reviewCount})</span>
+        <span class="rating"><span class="star" aria-hidden="true">★</span> ${product.rating}<span class="review-count"> (${product.reviewCount})</span></span>
       </div>
     </a>
-    <button type="button" class="wishlist-btn ${active ? "is-active" : ""}" data-id="${product.id}" aria-pressed="${active ? "true" : "false"}" aria-label="${active ? "Remove from wishlist" : "Add to wishlist"}">
-      <img src="${active ? "img/icons/heart-filled.png" : "img/icons/heart-outline.png"}" alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async">
-    </button>
   `;
 
   return card;
@@ -2395,31 +2439,39 @@ function triggerCartFlyAnimation(originEl) {
   }, 600);
 }
 
-// ── D. Product-scroll arrow buttons ────────────────────────────────────────
+// ── D. Product-scroll arrow buttons & scroll-edge fades ──────────────────
 (function initScrollArrows() {
-  if (window.innerWidth < 900) return;
-
   document.querySelectorAll(".product-scroll-wrapper").forEach(function (wrapper) {
     const scroll = wrapper.querySelector(".product-scroll");
     const prevBtn = wrapper.querySelector(".scroll-arrow-prev");
     const nextBtn = wrapper.querySelector(".scroll-arrow-next");
-    if (!scroll || !prevBtn || !nextBtn) return;
+    if (!scroll) return;
 
     function updateArrows() {
-      prevBtn.disabled = scroll.scrollLeft <= 4;
-      nextBtn.disabled = scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth - 4;
+      const canScrollLeft = scroll.scrollLeft > 4;
+      const canScrollRight = scroll.scrollLeft + scroll.clientWidth < scroll.scrollWidth - 4;
+      wrapper.classList.toggle("has-scroll-left", canScrollLeft);
+      wrapper.classList.toggle("has-scroll-right", canScrollRight);
+
+      if (prevBtn) prevBtn.disabled = !canScrollLeft;
+      if (nextBtn) nextBtn.disabled = !canScrollRight;
     }
 
-    prevBtn.addEventListener("click", function () {
-      scroll.scrollBy({ left: -300, behavior: "smooth" });
-    });
-    nextBtn.addEventListener("click", function () {
-      scroll.scrollBy({ left: 300, behavior: "smooth" });
-    });
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function () {
+        scroll.scrollBy({ left: -300, behavior: "smooth" });
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        scroll.scrollBy({ left: 300, behavior: "smooth" });
+      });
+    }
 
     scroll.addEventListener("scroll", updateArrows, { passive: true });
+    window.addEventListener("resize", updateArrows, { passive: true });
 
-    // Initial state after products render (slight delay for JS-rendered cards)
+    // Initial state after products render
     setTimeout(updateArrows, 300);
   });
 })();

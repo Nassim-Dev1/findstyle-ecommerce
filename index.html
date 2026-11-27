@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -123,29 +123,37 @@
       </div>
     </section>
 
-    <section class="collection">
+    <section class="collection" aria-labelledby="collection-heading">
       <div class="collection-header">
-        <h2>Welcome to our store</h2>
-        <p>Which collection do you prefer</p>
+        <h2 id="collection-heading">Two Worlds. One Wardrobe.</h2>
+        <p>Choose your aesthetic and explore the full collection.</p>
       </div>
       <div class="collection-div">
-        <article class="collection-card">
-          <img src="img/general/classic1.webp" alt="classic outfit" width="2560" height="1429" decoding="async" />
-          <div class="card-content classic-content">
-            <h3>Classic collection</h3>
-            <p>Luxe &amp; Effortless</p>
-            <a href="collections.html?category=classic" class="collection-btn" style="background: #1F2E46">Classic
-              Shop</a>
-          </div>
+        <article class="collection-card collection-card--reveal">
+          <a href="collections.html?category=classic" class="collection-card-link" aria-label="Shop the Classic Collection — tailored menswear in navy tones">
+            <img src="img/general/classic1.webp" alt="Classic Collection — tailored menswear in structured navy tones" width="2560" height="1429" decoding="async" />
+            <div class="card-content classic-content">
+              <h3>Classic Collection</h3>
+              <p>Luxe &amp; Effortless</p>
+              <span class="collection-btn collection-btn--classic">
+                Shop Classic
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
         </article>
-        <article class="collection-card">
-          <img src="img/general/casual1.webp" alt="casual outfit" width="2560" height="1368" decoding="async" />
-          <div class="card-content casual-content">
-            <h3>Casual collection</h3>
-            <p>Trendy &amp; Comfortable</p>
-            <a href="collections.html?category=casual" class="collection-btn" style="background: #4F5D50">Casual
-              Shop</a>
-          </div>
+        <article class="collection-card collection-card--reveal">
+          <a href="collections.html?category=casual" class="collection-card-link" aria-label="Shop the Casual Collection — relaxed and contemporary everyday wear">
+            <img src="img/general/casual1.webp" alt="Casual Collection — relaxed contemporary everyday menswear" width="2560" height="1368" decoding="async" />
+            <div class="card-content casual-content">
+              <h3>Casual Collection</h3>
+              <p>Trendy &amp; Comfortable</p>
+              <span class="collection-btn collection-btn--casual">
+                Shop Casual
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
         </article>
       </div>
     </section>
