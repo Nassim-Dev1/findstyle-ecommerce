@@ -265,46 +265,81 @@
       </div>
     </section>
 
-    <section class="desktop-community" id="desktopCommunity">
+    <section class="desktop-community" id="desktopCommunity" aria-labelledby="community-heading">
       <div class="iphone-container">
         <div class="dynamic-island"></div>
         <div class="iphone-screen">
           <div class="screen-content">
-            <h2>Join Our Community</h2>
+            <span class="community-eyebrow">FindStyle Club</span>
+            <h2 id="community-heading">Join Our Community</h2>
             <p>Follow us for behind-the-scenes and exclusive drops.</p>
             <div class="social-links">
-              <a href="#" data-soon="instagram" rel="noopener noreferrer" aria-label="Instagram" class="social-btn"><img
-                  src="img/icons/instagram.png" alt="Instagram" width="96" height="96" loading="lazy"
-                  decoding="async"></a>
-              <a href="#" data-soon="discord" rel="noopener noreferrer" aria-label="Discord" class="social-btn"><img
-                  src="img/icons/discord.png" alt="Discord" width="96" height="96" loading="lazy" decoding="async"></a>
-              <a href="#" data-soon="telegram" rel="noopener noreferrer" aria-label="Telegram" class="social-btn"><img
-                  src="img/icons/telegram.png" alt="Telegram" width="96" height="96" loading="lazy"
-                  decoding="async"></a>
+              <!-- Instagram -->
+              <a href="#" data-soon="instagram" rel="noopener noreferrer" aria-label="Instagram" class="social-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8"/>
+                  <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
+                  <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/>
+                </svg>
+              </a>
+              <!-- Discord -->
+              <a href="#" data-soon="discord" rel="noopener noreferrer" aria-label="Discord" class="social-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                  <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" fill="currentColor"/>
+                </svg>
+              </a>
+              <!-- Telegram -->
+              <a href="#" data-soon="telegram" rel="noopener noreferrer" aria-label="Telegram" class="social-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                  <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.93 6.657-1.774 8.36c-.134.593-.48.737-.975.459l-2.699-1.989-1.302 1.254c-.144.144-.264.264-.541.264l.193-2.74 4.985-4.504c.217-.193-.047-.3-.335-.107L7.573 14.547l-2.656-.83c-.577-.18-.59-.577.12-.855l10.37-3.998c.48-.174.9.108.747.793z" fill="currentColor"/>
+                </svg>
+              </a>
             </div>
           </div>
+          <div class="iphone-home-bar" aria-hidden="true"></div>
         </div>
       </div>
     </section>
 
-    <section class="featurs">
+    <section class="featurs" aria-label="Store benefits">
       <article class="feature-card">
-        <img src="img/icons/transport.png" alt="Free shipping" width="96" height="96" loading="lazy" decoding="async" />
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false">
+            <path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="5.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="18.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
         <h3>Free Shipping</h3>
         <p>On orders over $60</p>
       </article>
       <article class="feature-card">
-        <img src="img/icons/suport.png" alt="24/7 support" width="96" height="96" loading="lazy" decoding="async" />
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v5zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
         <h3>24/7 Support</h3>
         <p>We are here to help</p>
       </article>
       <article class="feature-card">
-        <img src="img/icons/security.png" alt="Secure payment" width="96" height="96" loading="lazy" decoding="async" />
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
         <h3>Security</h3>
-        <p>%100 protected</p>
+        <p>100% protected</p>
       </article>
       <article class="feature-card">
-        <img src="img/icons/box.png" alt="Easy returns" width="96" height="96" loading="lazy" decoding="async" />
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false">
+            <path d="M3 7v6h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
         <h3>Easy Returns</h3>
         <p>30-day returns</p>
       </article>
@@ -313,12 +348,14 @@
 
   <footer class="site-footer">
     <div class="newsletter">
+      <span class="newsletter-eyebrow">FindStyle Club</span>
       <h2>Get 15% off your first order</h2>
-      <form class="newsletter-form">
+      <form class="newsletter-form" novalidate>
         <input type="email" aria-label="Email address for 15% off first order" placeholder="Enter your email address"
           required />
         <button type="submit">JOIN</button>
       </form>
+      <p class="newsletter-feedback" role="status" aria-live="polite"></p>
     </div>
     <div class="footer-links">
       <div class="footer-col">
@@ -332,18 +369,18 @@
       <div class="footer-col">
         <h3>HELP</h3>
         <ul>
-          <li><a href="https://wa.me/213559959122">Order Status</a></li>
+          <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">Order Status</a></li>
           <li><button type="button" class="footer-link-soon" data-label="Shipping &amp; Returns">Shipping &amp;
               Returns</button></li>
-          <li><a href="https://wa.me/213559959122">Contact Us</a></li>
+          <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">Contact Us</a></li>
         </ul>
       </div>
       <div class="footer-col desktop-footer-col">
         <h3>COMPANY</h3>
         <ul>
-          <li><a href="https://wa.me/213559959122">About Us</a></li>
+          <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">About Us</a></li>
           <li><button type="button" class="footer-link-soon" data-label="Careers">Careers</button></li>
-          <li><a href="https://wa.me/213559959122">Terms of Service</a></li>
+          <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">Terms of Service</a></li>
         </ul>
       </div>
       <div class="desktop-payment">

@@ -1372,42 +1372,342 @@ if (document.body.classList.contains("page-home")) {
     heroDotsContainer.style.display = "none";
   }
 
-  // Community layered ripple & tactile iPhone response
+  // Community interactive 3D tilt, spotlight, magnetic buttons, click bursts, glide trails & mobile touch/scroll
   const desktopCommunity = document.getElementById("desktopCommunity");
   const iphoneContainer = desktopCommunity ? desktopCommunity.querySelector(".iphone-container") : null;
-  const screenContent = document.querySelector(".screen-content");
-
-  if (screenContent) {
-    screenContent.addEventListener("click", function (e) {
-      e.stopPropagation();
-    });
-  }
 
   if (desktopCommunity) {
     const brandRippleColors = ["#1F2E46", "#354A69", "#C99A2E", "#4F5D50"];
+    const sparkColors = ["#C99A2E", "#EABF26", "#1F2E46", "#354A69"];
     const prefersReducedMotionQuery = window.matchMedia
       ? window.matchMedia("(prefers-reduced-motion: reduce)")
       : { matches: false };
+    const finePointerQuery = window.matchMedia
+      ? window.matchMedia("(hover: hover) and (pointer: fine)")
+      : { matches: true };
+
     let colorIndex = 0;
     let clickStreak = 0;
     let lastClickTime = 0;
     let pulseTimeout = null;
+    let touchTiltResetTimeout = null;
     const MAX_ACTIVE_RIPPLES = 10;
+    const MAX_ACTIVE_TRAILS = 18;
+    const MAX_ACTIVE_SPARKS = 28;
 
+    // Smooth 3D tilt + spotlight + sheen state (rAF lerped)
+    let targetTiltX = 0;
+    let targetTiltY = 0;
+    let currentTiltX = 0;
+    let currentTiltY = 0;
+    let targetMouseX = 50;
+    let targetMouseY = 50;
+    let currentMouseX = 50;
+    let currentMouseY = 50;
+    let targetSheenX = 50;
+    let targetSheenY = 50;
+    let currentSheenX = 50;
+    let currentSheenY = 50;
+    let isPointerInside = false;
+    let isTouchTilting = false;
+    let tiltRafId = null;
+    let scrollTiltRafId = null;
+
+    // Hold & glide trail state
+    let isPointerDown = false;
+    let didDrag = false;
+    let lastTrailTime = 0;
+    let lastTrailX = 0;
+    let lastTrailY = 0;
+
+    function tickTilt() {
+      const lerp = 0.14;
+      currentTiltX += (targetTiltX - currentTiltX) * lerp;
+      currentTiltY += (targetTiltY - currentTiltY) * lerp;
+      currentMouseX += (targetMouseX - currentMouseX) * 0.22;
+      currentMouseY += (targetMouseY - currentMouseY) * 0.22;
+      currentSheenX += (targetSheenX - currentSheenX) * 0.18;
+      currentSheenY += (targetSheenY - currentSheenY) * 0.18;
+
+      desktopCommunity.style.setProperty("--mouse-x", `${currentMouseX.toFixed(2)}%`);
+      desktopCommunity.style.setProperty("--mouse-y", `${currentMouseY.toFixed(2)}%`);
+
+      if (iphoneContainer) {
+        iphoneContainer.style.setProperty("--tilt-x", `${currentTiltX.toFixed(2)}deg`);
+        iphoneContainer.style.setProperty("--tilt-y", `${currentTiltY.toFixed(2)}deg`);
+        iphoneContainer.style.setProperty("--sheen-x", `${currentSheenX.toFixed(1)}%`);
+        iphoneContainer.style.setProperty("--sheen-y", `${currentSheenY.toFixed(1)}%`);
+      }
+
+      const settled =
+        !isPointerInside &&
+        !isTouchTilting &&
+        Math.abs(currentTiltX - targetTiltX) < 0.03 &&
+        Math.abs(currentTiltY - targetTiltY) < 0.03;
+
+      if (settled) {
+        if (iphoneContainer) {
+          iphoneContainer.classList.remove("is-tilting");
+          iphoneContainer.style.setProperty("--tilt-x", `${targetTiltX.toFixed(2)}deg`);
+          iphoneContainer.style.setProperty("--tilt-y", `${targetTiltY.toFixed(2)}deg`);
+        }
+        tiltRafId = null;
+        return;
+      }
+
+      tiltRafId = requestAnimationFrame(tickTilt);
+    }
+
+    function ensureTiltLoop(force) {
+      if (!tiltRafId && !prefersReducedMotionQuery.matches && (finePointerQuery.matches || force)) {
+        if (iphoneContainer) iphoneContainer.classList.add("is-tilting");
+        tiltRafId = requestAnimationFrame(tickTilt);
+      }
+    }
+
+    // Scroll-driven 3D tilt + glass sheen sweep on touch devices (mobile/tablets)
+    function updateScrollDrivenPhone() {
+      scrollTiltRafId = null;
+      if (prefersReducedMotionQuery.matches || finePointerQuery.matches || isTouchTilting) return;
+
+      const rect = desktopCommunity.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      if (rect.bottom < 0 || rect.top > vh) return;
+
+      // -1 when section enters bottom, 0 when centered, +1 when exiting top
+      const center = rect.top + rect.height / 2;
+      const progress = Math.max(-1, Math.min(1, (vh / 2 - center) / (vh / 2 + rect.height / 2)));
+
+      targetTiltX = progress * 5.2;
+      targetTiltY = Math.sin(progress * Math.PI * 0.75) * 3.5;
+      targetSheenX = 50 + progress * 24;
+      targetSheenY = 50 - progress * 28;
+      targetMouseX = 50 + progress * 14;
+      targetMouseY = 50 - progress * 20;
+
+      desktopCommunity.style.setProperty("--spotlight-opacity", "0.75");
+      if (iphoneContainer) iphoneContainer.style.setProperty("--sheen-opacity", "0.85");
+      ensureTiltLoop(true);
+    }
+
+    window.addEventListener("scroll", function () {
+      if (prefersReducedMotionQuery.matches || finePointerQuery.matches || scrollTiltRafId) return;
+      scrollTiltRafId = requestAnimationFrame(updateScrollDrivenPhone);
+    }, { passive: true });
+
+    if (!finePointerQuery.matches) {
+      updateScrollDrivenPhone();
+    }
+
+    function triggerPhonePulse(duration) {
+      if (!iphoneContainer) return;
+      iphoneContainer.classList.remove("is-pressing");
+      iphoneContainer.classList.add("is-pulsing");
+      clearTimeout(pulseTimeout);
+      pulseTimeout = setTimeout(() => {
+        iphoneContainer.classList.remove("is-pulsing");
+      }, duration || 360);
+    }
+
+    function spawnSparks(x, y, count) {
+      if (prefersReducedMotionQuery.matches) return;
+      const existing = desktopCommunity.querySelectorAll(".community-spark");
+      const overflow = existing.length + count - MAX_ACTIVE_SPARKS;
+      for (let i = 0; i < overflow && i < existing.length; i++) {
+        existing[i].remove();
+      }
+
+      for (let i = 0; i < count; i++) {
+        const spark = document.createElement("span");
+        spark.className = "community-spark";
+        spark.setAttribute("aria-hidden", "true");
+        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.45;
+        const distance = 28 + Math.random() * 44;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        spark.style.left = `${x}px`;
+        spark.style.top = `${y}px`;
+        spark.style.setProperty("--tx", `${tx.toFixed(1)}px`);
+        spark.style.setProperty("--ty", `${ty.toFixed(1)}px`);
+        spark.style.setProperty("--spark-color", sparkColors[(colorIndex + i) % sparkColors.length]);
+        desktopCommunity.appendChild(spark);
+
+        const cleanupSpark = () => {
+          if (spark.isConnected) spark.remove();
+        };
+        spark.addEventListener("animationend", cleanupSpark, { once: true });
+        setTimeout(cleanupSpark, 750);
+      }
+    }
+
+    function spawnTrailRipple(x, y) {
+      if (prefersReducedMotionQuery.matches) return;
+      const activeTrails = desktopCommunity.querySelectorAll(".community-trail-ripple");
+      if (activeTrails.length >= MAX_ACTIVE_TRAILS) {
+        activeTrails[0].remove();
+      }
+
+      const trail = document.createElement("span");
+      trail.className = "community-trail-ripple";
+      trail.setAttribute("aria-hidden", "true");
+      trail.style.left = `${x}px`;
+      trail.style.top = `${y}px`;
+      trail.style.setProperty("--trail-color", brandRippleColors[colorIndex % brandRippleColors.length]);
+      colorIndex += 1;
+      desktopCommunity.appendChild(trail);
+
+      const cleanupTrail = () => {
+        if (trail.isConnected) trail.remove();
+      };
+      trail.addEventListener("animationend", cleanupTrail, { once: true });
+      setTimeout(cleanupTrail, 780);
+    }
+
+    function aimTiltAtPoint(clientX, clientY) {
+      const rect = desktopCommunity.getBoundingClientRect();
+      const relX = clientX - rect.left;
+      const relY = clientY - rect.top;
+      const normX = (relX / rect.width) * 2 - 1;
+      const normY = (relY / rect.height) * 2 - 1;
+
+      targetTiltY = normX * 6.5;
+      targetTiltX = -normY * 5.5;
+      targetMouseX = (relX / rect.width) * 100;
+      targetMouseY = (relY / rect.height) * 100;
+
+      if (iphoneContainer) {
+        const phoneRect = iphoneContainer.getBoundingClientRect();
+        targetSheenX = ((clientX - phoneRect.left) / phoneRect.width) * 100;
+        targetSheenY = ((clientY - phoneRect.top) / phoneRect.height) * 100;
+      }
+
+      return { relX, relY };
+    }
+
+    // Pointer move: 3D tilt, spotlight, glass sheen & hold-and-glide trail
+    desktopCommunity.addEventListener("pointermove", function (e) {
+      if (prefersReducedMotionQuery.matches) return;
+
+      const { relX, relY } = aimTiltAtPoint(e.clientX, e.clientY);
+
+      if (finePointerQuery.matches && e.pointerType !== "touch") {
+        isPointerInside = true;
+        desktopCommunity.style.setProperty("--spotlight-opacity", "1");
+        if (iphoneContainer) iphoneContainer.style.setProperty("--sheen-opacity", "1");
+        ensureTiltLoop(false);
+      }
+
+      // Click & glide trail when pointer/finger is held down outside social buttons
+      if (isPointerDown && !e.target.closest(".social-btn")) {
+        const now = performance.now();
+        const dist = Math.hypot(relX - lastTrailX, relY - lastTrailY);
+        if (dist > 14) didDrag = true;
+        if (now - lastTrailTime >= 42 && dist >= 18) {
+          lastTrailTime = now;
+          lastTrailX = relX;
+          lastTrailY = relY;
+          if (e.pointerType === "touch" || !finePointerQuery.matches) {
+            isTouchTilting = true;
+            desktopCommunity.style.setProperty("--spotlight-opacity", "1");
+            if (iphoneContainer) iphoneContainer.style.setProperty("--sheen-opacity", "1");
+            ensureTiltLoop(true);
+          }
+          spawnTrailRipple(relX, relY);
+          if (colorIndex % 2 === 0) spawnSparks(relX, relY, 2);
+        }
+      }
+    });
+
+    desktopCommunity.addEventListener("pointerleave", function () {
+      isPointerInside = false;
+      isPointerDown = false;
+      targetTiltX = 0;
+      targetTiltY = 0;
+      desktopCommunity.style.setProperty("--spotlight-opacity", "0");
+      if (iphoneContainer) {
+        iphoneContainer.classList.remove("is-pressing");
+        iphoneContainer.style.setProperty("--sheen-opacity", "0");
+      }
+      ensureTiltLoop(false);
+    });
+
+    desktopCommunity.addEventListener("pointerdown", function (e) {
+      if (e.button !== 0 && e.pointerType === "mouse") return;
+      isPointerDown = true;
+      didDrag = false;
+      const rect = desktopCommunity.getBoundingClientRect();
+      lastTrailX = e.clientX - rect.left;
+      lastTrailY = e.clientY - rect.top;
+      lastTrailTime = performance.now();
+
+      if (iphoneContainer && !e.target.closest(".social-btn") && !prefersReducedMotionQuery.matches) {
+        iphoneContainer.classList.add("is-pressing");
+      }
+
+      // Touch tap-point 3D tilt + spotlight flash
+      if ((e.pointerType === "touch" || !finePointerQuery.matches) && !prefersReducedMotionQuery.matches) {
+        isTouchTilting = true;
+        clearTimeout(touchTiltResetTimeout);
+        aimTiltAtPoint(e.clientX, e.clientY);
+        desktopCommunity.style.setProperty("--spotlight-opacity", "1");
+        if (iphoneContainer) iphoneContainer.style.setProperty("--sheen-opacity", "1");
+        ensureTiltLoop(true);
+
+        touchTiltResetTimeout = setTimeout(() => {
+          isTouchTilting = false;
+          updateScrollDrivenPhone();
+        }, 420);
+      }
+    });
+
+    function handlePointerEnd() {
+      isPointerDown = false;
+      if (iphoneContainer) {
+        iphoneContainer.classList.remove("is-pressing");
+      }
+      if (isTouchTilting) {
+        clearTimeout(touchTiltResetTimeout);
+        touchTiltResetTimeout = setTimeout(() => {
+          isTouchTilting = false;
+          updateScrollDrivenPhone();
+        }, 320);
+      }
+    }
+
+    window.addEventListener("pointerup", handlePointerEnd);
+    window.addEventListener("pointercancel", handlePointerEnd);
+
+    // Magnetic pull on desktop + tactile Dynamic Island ping on social button tap
+    const socialBtns = desktopCommunity.querySelectorAll(".social-btn");
+    socialBtns.forEach((btn) => {
+      btn.addEventListener("pointermove", function (e) {
+        if (prefersReducedMotionQuery.matches || !finePointerQuery.matches || e.pointerType === "touch") return;
+        const rect = btn.getBoundingClientRect();
+        const offsetX = (e.clientX - (rect.left + rect.width / 2)) * 0.34;
+        const offsetY = (e.clientY - (rect.top + rect.height / 2)) * 0.34;
+        btn.style.setProperty("--mag-x", `${offsetX.toFixed(1)}px`);
+        btn.style.setProperty("--mag-y", `${offsetY.toFixed(1)}px`);
+      });
+
+      btn.addEventListener("pointerleave", function () {
+        btn.style.setProperty("--mag-x", "0px");
+        btn.style.setProperty("--mag-y", "0px");
+      });
+
+      btn.addEventListener("click", function () {
+        triggerPhonePulse(360);
+      });
+    });
+
+    // Click / Tap burst + Dynamic Island ping (works on background & phone bezel)
     desktopCommunity.addEventListener("click", function (e) {
-      if (e.target.closest(".screen-content")) return;
+      if (e.target.closest(".social-btn")) return;
 
       const now = Date.now();
       clickStreak = now - lastClickTime < 1200 ? Math.min(clickStreak + 1, 8) : 1;
       lastClickTime = now;
 
-      if (iphoneContainer) {
-        iphoneContainer.classList.add("is-pulsing");
-        clearTimeout(pulseTimeout);
-        pulseTimeout = setTimeout(() => {
-          iphoneContainer.classList.remove("is-pulsing");
-        }, 320);
-      }
+      triggerPhonePulse(360);
 
       if (prefersReducedMotionQuery.matches) return;
 
@@ -1440,6 +1740,11 @@ if (document.body.classList.contains("page-home")) {
 
       ripple.append(core, ring, echo);
       desktopCommunity.appendChild(ripple);
+
+      // Emit micro-sparks on click/tap (extra burst on 5th streak)
+      if (!didDrag) {
+        spawnSparks(x, y, clickStreak % 5 === 0 ? 10 : 6);
+      }
 
       const cleanup = () => {
         if (ripple.isConnected) ripple.remove();
@@ -2451,7 +2756,44 @@ if (document.body.classList.contains("page-shop")) {
 // - Product-scroll arrow buttons
 // ==========================================================================
 
-// ── A. Footer "not available" + social "coming soon" ───────────────────────
+// ── A. Footer newsletter + "not available" + social "coming soon" ─────────
+document.querySelectorAll(".newsletter-form").forEach(function (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const input = form.querySelector("input[type='email']");
+    const btn = form.querySelector("button[type='submit']");
+    const feedback = form.parentElement ? form.parentElement.querySelector(".newsletter-feedback") : null;
+    const email = input ? input.value.trim() : "";
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      if (feedback) {
+        feedback.textContent = "Please enter a valid email address.";
+        feedback.classList.remove("is-success");
+        feedback.classList.add("is-error");
+      }
+      if (input) input.focus();
+      return;
+    }
+
+    if (feedback) {
+      feedback.textContent = "Welcome to FindStyle Club! Use code STYLE15 for 15% off.";
+      feedback.classList.remove("is-error");
+      feedback.classList.add("is-success");
+    }
+    if (btn) {
+      btn.textContent = "JOINED ✓";
+      btn.classList.add("is-subscribed");
+      btn.disabled = true;
+    }
+    if (input) {
+      input.value = "";
+    }
+    if (typeof showToast === "function") {
+      showToast("Subscribed! Use code STYLE15 for 15% off.", "success", 4500);
+    }
+  });
+});
+
 document.addEventListener("click", function (e) {
   // Footer dead-links → "coming soon" toast
   const soonBtn = e.target.closest(".footer-link-soon");

@@ -801,6 +801,7 @@ textarea {
     opacity: 0;
     transform: translateY(28px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -820,6 +821,7 @@ textarea {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .collection-card--reveal,
   .collection-card--reveal.is-visible {
     opacity: 1;
@@ -900,24 +902,20 @@ textarea {
 
 /* Classic — gradient anchored left */
 .collection-card:has(.classic-content)::before {
-  background: linear-gradient(
-    90deg,
-    rgba(14, 18, 26, 0.82) 0%,
-    rgba(14, 18, 26, 0.50) 42%,
-    rgba(14, 18, 26, 0.10) 68%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(14, 18, 26, 0.82) 0%,
+      rgba(14, 18, 26, 0.50) 42%,
+      rgba(14, 18, 26, 0.10) 68%,
+      transparent 100%);
 }
 
 /* Casual — gradient anchored right */
 .collection-card:has(.casual-content)::before {
-  background: linear-gradient(
-    270deg,
-    rgba(14, 18, 26, 0.82) 0%,
-    rgba(14, 18, 26, 0.50) 42%,
-    rgba(14, 18, 26, 0.10) 68%,
-    transparent 100%
-  );
+  background: linear-gradient(270deg,
+      rgba(14, 18, 26, 0.82) 0%,
+      rgba(14, 18, 26, 0.50) 42%,
+      rgba(14, 18, 26, 0.10) 68%,
+      transparent 100%);
 }
 
 /* Dark editorial overlay — anchored left for Classic */
@@ -1363,9 +1361,11 @@ textarea {
   0% {
     transform: scale(1);
   }
+
   45% {
     transform: scale(1.28);
   }
+
   100% {
     transform: scale(1.05);
   }
@@ -2221,6 +2221,9 @@ textarea {
    11. Community iPhone Mockup & Layered Ripple Interaction
    -------------------------------------------------------------------------- */
 .desktop-community {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spotlight-opacity: 0;
   position: relative;
   display: flex;
   align-items: center;
@@ -2231,7 +2234,23 @@ textarea {
   border-bottom: 1px solid var(--color-border);
   overflow: hidden;
   cursor: pointer;
+  touch-action: pan-y;
   -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.desktop-community::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(420px circle at var(--mouse-x) var(--mouse-y),
+      rgba(201, 154, 46, 0.14) 0%,
+      rgba(31, 46, 70, 0.08) 42%,
+      transparent 74%);
+  opacity: var(--spotlight-opacity);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.35s ease;
 }
 
 .community-ripple {
@@ -2311,7 +2330,70 @@ textarea {
   }
 }
 
+/* Micro-spark burst on click */
+.community-spark {
+  --tx: 0px;
+  --ty: 0px;
+  --spark-color: var(--color-accent);
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--spark-color);
+  box-shadow: 0 0 8px var(--spark-color);
+  pointer-events: none;
+  z-index: 5;
+  will-change: transform, opacity;
+  animation: communitySparkBurst 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes communitySparkBurst {
+  0% {
+    transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(1);
+    opacity: 0.95;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) translate3d(var(--tx), var(--ty), 0) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Click & glide trail ripple */
+.community-trail-ripple {
+  --trail-color: var(--color-primary);
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1.5px solid var(--trail-color);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.45) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: 4;
+  will-change: transform, opacity;
+  animation: communityTrailFade 0.68s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes communityTrailFade {
+  0% {
+    transform: translate(-50%, -50%) scale(0.25);
+    opacity: 0.78;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.35);
+    opacity: 0;
+  }
+}
+
 .iphone-container {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --hover-y: 0px;
+  --press-scale: 1;
+  --sheen-x: 50%;
+  --sheen-y: 50%;
+  --sheen-opacity: 0;
   position: relative;
   width: clamp(280px, 45vw, 330px);
   height: clamp(520px, 70vw, 580px);
@@ -2322,11 +2404,24 @@ textarea {
   margin: 0 auto;
   z-index: 10;
   cursor: default;
-  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.38s ease;
+  transform: perspective(1000px) translateY(var(--hover-y)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(var(--press-scale));
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.iphone-container.is-tilting {
+  transition: box-shadow 0.35s ease;
+}
+
+.iphone-container.is-pressing {
+  --press-scale: 0.982;
+  transition: transform 0.12s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
 }
 
 .iphone-container.is-pulsing {
-  transform: translateY(-4px) scale(1.015);
+  --hover-y: -4px;
+  --press-scale: 1.018;
   box-shadow: 0 42px 92px rgba(31, 46, 70, 0.38), 0 0 0 6px rgba(255, 255, 255, 0.24), inset 0 0 0 2px rgba(255, 255, 255, 0.16);
 }
 
@@ -2340,12 +2435,19 @@ textarea {
   background: #000;
   border-radius: var(--radius-pill);
   z-index: 20;
+  transition: width 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.32s ease;
+}
+
+.iphone-container.is-pulsing .dynamic-island {
+  width: 118px;
+  box-shadow: 0 0 0 2px rgba(201, 154, 46, 0.45), 0 0 14px rgba(201, 154, 46, 0.28);
 }
 
 .iphone-screen {
+  position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #f7f9ff 0%, #e4e7f3 45%, #d5d9e9 100%);
+  background: linear-gradient(180deg, var(--color-bg-body) 0%, var(--color-bg-muted) 100%);
   border-radius: 38px;
   overflow: hidden;
   display: flex;
@@ -2353,7 +2455,42 @@ textarea {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 24px;
+  padding: 24px 20px 16px;
+}
+
+.iphone-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(280px circle at var(--sheen-x) var(--sheen-y),
+      rgba(255, 255, 255, 0.44) 0%,
+      rgba(255, 255, 255, 0.10) 42%,
+      transparent 72%);
+  opacity: var(--sheen-opacity);
+  pointer-events: none;
+  z-index: 15;
+  transition: opacity 0.35s ease;
+}
+
+/* FindStyle Club eyebrow label */
+.community-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+}
+
+.screen-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
 }
 
 .screen-content h2 {
@@ -2362,6 +2499,7 @@ textarea {
   font-size: clamp(22px, 3.5vw, 26px);
   font-weight: 700;
   letter-spacing: -0.015em;
+  text-wrap: balance;
 }
 
 .screen-content p {
@@ -2378,6 +2516,9 @@ textarea {
 }
 
 .social-btn {
+  --mag-x: 0px;
+  --mag-y: 0px;
+  --btn-scale: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2387,21 +2528,67 @@ textarea {
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   box-shadow: 0 8px 16px rgba(31, 46, 70, 0.24);
   touch-action: manipulation;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  color: #ffffff;
+  transform: translate3d(var(--mag-x), var(--mag-y), 0) scale(var(--btn-scale));
+  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), box-shadow var(--transition-fast);
 }
 
 .social-btn:hover {
-  transform: translateY(-2px);
+  --btn-scale: 1.06;
   box-shadow: 0 12px 22px rgba(31, 46, 70, 0.34);
 }
 
 .social-btn:active {
-  transform: scale(0.94);
+  --btn-scale: 0.92;
 }
 
-.social-btn img {
-  width: 24px;
-  height: 24px;
+.social-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.social-btn img,
+.social-btn svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  transform: translate3d(calc(var(--mag-x) * 0.35), calc(var(--mag-y) * 0.35), 0);
+  transition: transform 0.18s ease-out;
+}
+
+/* iOS-style home indicator bar */
+.iphone-home-bar {
+  width: 100px;
+  height: 4px;
+  background: rgba(17, 19, 24, 0.18);
+  border-radius: 2px;
+  margin-top: auto;
+  margin-bottom: 2px;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+/* Desktop hover lift on the phone mockup */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .iphone-container:not(.is-pulsing):hover {
+    --hover-y: -4px;
+    box-shadow: 0 32px 64px rgba(31, 46, 70, 0.22), 0 8px 24px rgba(31, 46, 70, 0.14);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .desktop-community::before,
+  .iphone-screen::after {
+    display: none;
+  }
+
+  .iphone-container,
+  .social-btn,
+  .social-btn svg {
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -2426,20 +2613,40 @@ textarea {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 16px 12px;
+  padding: 20px 14px;
   box-shadow: var(--shadow-xs);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
 .feature-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-card);
+  border-color: var(--color-border-hover);
 }
 
-.feature-card img {
-  height: 28px;
-  width: 28px;
-  margin-bottom: 8px;
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-bg-subtle);
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.feature-card:hover .feature-icon {
+  background: var(--color-primary);
+  color: #ffffff;
+  transform: scale(1.06);
+}
+
+.feature-card img,
+.feature-icon svg {
+  height: 22px;
+  width: 22px;
   object-fit: contain;
 }
 
@@ -2453,6 +2660,14 @@ textarea {
 .feature-card p {
   font-size: 12px;
   color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .feature-card:hover,
+  .feature-card:hover .feature-icon {
+    transform: none;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -2478,6 +2693,17 @@ textarea {
   overflow: hidden;
 }
 
+.newsletter-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent-bright);
+  margin-bottom: 8px;
+}
+
 .newsletter h2 {
   font-family: var(--font-display);
   font-size: clamp(22px, 3.5vw, 26px);
@@ -2497,6 +2723,22 @@ textarea {
   margin: 0 auto;
 }
 
+@media (min-width: 560px) {
+  .newsletter-form {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .newsletter-form input {
+    text-align: left;
+  }
+
+  .newsletter-form button {
+    width: auto;
+    min-width: 112px;
+  }
+}
+
 .newsletter-form input {
   flex: 1 1 auto;
   min-width: 0;
@@ -2510,12 +2752,13 @@ textarea {
   background: rgba(255, 255, 255, 0.08);
   color: var(--color-text-inverse);
   outline: none;
-  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.newsletter-form input:focus {
-  border-color: var(--color-text-inverse);
+.newsletter-form input:focus-visible {
+  border-color: var(--color-accent-bright);
   background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(234, 191, 38, 0.22);
 }
 
 .newsletter-form input::placeholder {
@@ -2546,9 +2789,32 @@ textarea {
   transform: translateY(-1px);
 }
 
+.newsletter-form button.is-subscribed {
+  background: var(--color-accent-bright);
+  color: var(--color-text-main);
+  cursor: default;
+  transform: none;
+}
+
 .newsletter-form button:focus-visible {
-  outline: 2px solid var(--color-text-inverse);
+  outline: 2px solid var(--color-accent-bright);
   outline-offset: 2px;
+}
+
+.newsletter-feedback {
+  min-height: 18px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.newsletter-feedback.is-error {
+  color: #fca5a5;
+}
+
+.newsletter-feedback.is-success {
+  color: var(--color-accent-bright);
+  font-weight: 600;
 }
 
 .footer-links {
@@ -2574,13 +2840,31 @@ textarea {
   gap: 10px;
 }
 
-.footer-col a {
+.footer-col a,
+.footer-col .footer-link-soon {
   font-size: 14px;
   color: #a1a5b4;
-  transition: color var(--transition-fast);
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  display: inline-block;
+  transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
-.footer-col a:hover {
+.footer-col a:hover,
+.footer-col .footer-link-soon:hover {
+  color: var(--color-text-inverse);
+  transform: translateX(2px);
+}
+
+.footer-col a:focus-visible,
+.footer-col .footer-link-soon:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 3px;
+  border-radius: 3px;
   color: var(--color-text-inverse);
 }
 
@@ -3338,7 +3622,9 @@ textarea {
     transform: none;
   }
 
-  .community-ripple {
+  .community-ripple,
+  .community-spark,
+  .community-trail-ripple {
     display: none;
   }
 
@@ -4014,9 +4300,11 @@ textarea {
   0% {
     transform: scale(1);
   }
+
   45% {
     transform: scale(1.32);
   }
+
   100% {
     transform: scale(1);
   }
@@ -4151,33 +4439,45 @@ textarea {
 .shop-grid.is-visible .product-card:nth-child(1),
 .related-grid.is-visible .product-card:nth-child(1),
 .outfit-grid.is-visible .outfit-card:nth-child(1),
-.featurs.is-visible .feature-card:nth-child(1) { transition-delay: 0ms; }
+.featurs.is-visible .feature-card:nth-child(1) {
+  transition-delay: 0ms;
+}
 
 .category-row.is-visible .product-card:nth-child(2),
 .shop-grid.is-visible .product-card:nth-child(2),
 .related-grid.is-visible .product-card:nth-child(2),
 .outfit-grid.is-visible .outfit-card:nth-child(2),
-.featurs.is-visible .feature-card:nth-child(2) { transition-delay: 50ms; }
+.featurs.is-visible .feature-card:nth-child(2) {
+  transition-delay: 50ms;
+}
 
 .category-row.is-visible .product-card:nth-child(3),
 .shop-grid.is-visible .product-card:nth-child(3),
 .related-grid.is-visible .product-card:nth-child(3),
 .outfit-grid.is-visible .outfit-card:nth-child(3),
-.featurs.is-visible .feature-card:nth-child(3) { transition-delay: 100ms; }
+.featurs.is-visible .feature-card:nth-child(3) {
+  transition-delay: 100ms;
+}
 
 .category-row.is-visible .product-card:nth-child(4),
 .shop-grid.is-visible .product-card:nth-child(4),
 .related-grid.is-visible .product-card:nth-child(4),
 .outfit-grid.is-visible .outfit-card:nth-child(4),
-.featurs.is-visible .feature-card:nth-child(4) { transition-delay: 150ms; }
+.featurs.is-visible .feature-card:nth-child(4) {
+  transition-delay: 150ms;
+}
 
 .category-row.is-visible .product-card:nth-child(5),
 .shop-grid.is-visible .product-card:nth-child(5),
-.outfit-grid.is-visible .outfit-card:nth-child(5) { transition-delay: 200ms; }
+.outfit-grid.is-visible .outfit-card:nth-child(5) {
+  transition-delay: 200ms;
+}
 
 .category-row.is-visible .product-card:nth-child(6),
 .shop-grid.is-visible .product-card:nth-child(6),
-.outfit-grid.is-visible .outfit-card:nth-child(6) { transition-delay: 250ms; }
+.outfit-grid.is-visible .outfit-card:nth-child(6) {
+  transition-delay: 250ms;
+}
 
 /* ── Top Scroll-Progress Bar ─────────────────────────────────────────────── */
 .scroll-progress-bar {
