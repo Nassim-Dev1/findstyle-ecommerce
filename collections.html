@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -79,7 +79,7 @@
         <li><a href="index.html">HOME</a></li>
         <li><a href="shop.html">SHOP</a></li>
         <li><a class="active" href="collections.html">COLLECTIONS</a></li>
-        <li><a href="https://wa.me/213559959122">CONTACT</a></li>
+        <li><a href="https://wa.me/213559959122" rel="noopener noreferrer">CONTACT</a></li>
       </ul>
       <div class="mobile-nav-footer">
         <p class="mobile-nav-tagline">Modern Menswear &amp; Curated Looks</p>
@@ -133,13 +133,19 @@
       </div>
     </section>
 
-    <h1 class="shop-title">Collections</h1>
+    <div class="collections-toolbar">
+      <div class="shop-heading-group">
+        <h1 class="shop-title">Collections</h1>
+        <span class="shop-count" id="collectionsCount">12 looks</span>
+      </div>
+      <p class="collections-subtitle">Curated full-body looks — tap any outfit to shop its pieces.</p>
+    </div>
 
     <section class="outfit-grid" id="outfitCards">
       <article class="outfit-card" data-category="casual">
         <div class="card-header">
-          <button class="options-btn" aria-label="Options">
-            <img src="img/icons/three-dot-menu.png" alt="Options" width="96" height="96" />
+          <button class="options-btn" aria-label="Options" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
           </button>
           <div class="options-dropdown">
             <ul>
@@ -152,20 +158,20 @@
             class="wishlist-btn wishlist-btn-col"
             aria-label="Add to wishlist"
           >
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <img
           src="img/casual collection/CoastalWhiteFit.webp"
           alt="Coastal White Fit"
           class="outfit-img" width="1096" height="2560" fetchpriority="high" decoding="async" />
-        <button class="order-btn" data-outfit="CoastalWhiteFit">Details</button>
+        <button class="order-btn" data-outfit="CoastalWhiteFit">Shop This Look <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </article>
 
       <article class="outfit-card" data-category="classic">
         <div class="card-header">
-          <button class="options-btn" aria-label="Options">
-            <img src="img/icons/three-dot-menu.png" alt="Options" width="96" height="96" />
+          <button class="options-btn" aria-label="Options" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
           </button>
           <div class="options-dropdown">
             <ul>
@@ -178,20 +184,20 @@
             class="wishlist-btn wishlist-btn-col"
             aria-label="Add to wishlist"
           >
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <img
           src="img/classic collection/CasualLuxuryFit.webp"
           alt="Casual Luxury Fit"
           class="outfit-img" width="783" height="1376" decoding="async" />
-        <button class="order-btn" data-outfit="CasualLuxuryFit">Details</button>
+        <button class="order-btn" data-outfit="CasualLuxuryFit">Shop This Look <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </article>
 
       <article class="outfit-card" data-category="classic">
         <div class="card-header">
-          <button class="options-btn" aria-label="Options">
-            <img src="img/icons/three-dot-menu.png" alt="Options" width="96" height="96" />
+          <button class="options-btn" aria-label="Options" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
           </button>
           <div class="options-dropdown">
             <ul>
@@ -204,20 +210,20 @@
             class="wishlist-btn wishlist-btn-col"
             aria-label="Add to wishlist"
           >
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <img
           src="img/classic collection/WarmNeutralFit.webp"
           alt="Warm Neutral Fit"
           class="outfit-img" width="1437" height="2560" decoding="async" />
-        <button class="order-btn" data-outfit="WarmNeutralFit">Details</button>
+        <button class="order-btn" data-outfit="WarmNeutralFit">Shop This Look <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </article>
 
       <article class="outfit-card" data-category="casual">
         <div class="card-header">
-          <button class="options-btn" aria-label="Options">
-            <img src="img/icons/three-dot-menu.png" alt="Options" width="96" height="96" />
+          <button class="options-btn" aria-label="Options" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
           </button>
           <div class="options-dropdown">
             <ul>
@@ -230,22 +236,20 @@
             class="wishlist-btn wishlist-btn-col"
             aria-label="Add to wishlist"
           >
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <img
           src="img/casual collection/WeekendBlueCombo.webp"
           alt="Weekend Blue Combo"
           class="outfit-img" width="1276" height="1918" loading="lazy" decoding="async" />
-        <button class="order-btn" data-outfit="WeekendBlueCombo">
-          Details
-        </button>
+        <button class="order-btn" data-outfit="WeekendBlueCombo">Shop This Look <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </article>
 
       <article class="outfit-card" data-category="casual">
         <div class="card-header">
-          <button class="options-btn" aria-label="Options">
-            <img src="img/icons/three-dot-menu.png" alt="Options" width="96" height="96" />
+          <button class="options-btn" aria-label="Options" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
           </button>
           <div class="options-dropdown">
             <ul>
@@ -258,20 +262,20 @@
             class="wishlist-btn wishlist-btn-col"
             aria-label="Add to wishlist"
           >
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <img
           src="img/casual collection/CampusSoftLayer.webp"
           alt="Campus Soft Layer"
           class="outfit-img" width="1079" height="2560" loading="lazy" decoding="async" />
-        <button class="order-btn" data-outfit="CampusSoftLayer">Details</button>
+        <button class="order-btn" data-outfit="CampusSoftLayer">Shop This Look <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </article>
 
       <article class="outfit-card" data-category="classic">
         <div class="card-header">
-          <button class="options-btn" aria-label="Options">
-            <img src="img/icons/three-dot-menu.png" alt="Options" width="96" height="96" />
+          <button class="options-btn" aria-label="Options" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
           </button>
           <div class="options-dropdown">
             <ul>
@@ -284,22 +288,20 @@
             class="wishlist-btn wishlist-btn-col"
             aria-label="Add to wishlist"
           >
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <img
           src="img/classic collection/ModernClassicSet.webp"
           alt="Modern Classic Set"
           class="outfit-img" width="1080" height="1920" loading="lazy" decoding="async" />
-        <button class="order-btn" data-outfit="ModernClassicSet">
-          Details
-        </button>
+        <button class="order-btn" data-outfit="ModernClassicSet">Shop This Look <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </article>
 
       <article class="outfit-card" data-category="classic">
         <div class="card-header">
-          <button class="options-btn" aria-label="Options">
-            <img src="img/icons/three-dot-menu.png" alt="Options" width="96" height="96" />
+          <button class="options-btn" aria-label="Options" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
           </button>
           <div class="options-dropdown">
             <ul>
@@ -312,22 +314,20 @@
             class="wishlist-btn wishlist-btn-col"
             aria-label="Add to wishlist"
           >
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <img
           src="img/classic collection/ModernMinimalist.webp"
           alt="Modern Minimalist"
           class="outfit-img" width="1080" height="1920" loading="lazy" decoding="async" />
-        <button class="order-btn" data-outfit="ModernMinimalist">
-          Details
-        </button>
+        <button class="order-btn" data-outfit="ModernMinimalist">Shop This Look <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </article>
 
       <article class="outfit-card" data-category="casual">
         <div class="card-header">
-          <button class="options-btn" aria-label="Options">
-            <img src="img/icons/three-dot-menu.png" alt="Options" width="96" height="96" />
+          <button class="options-btn" aria-label="Options" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
           </button>
           <div class="options-dropdown">
             <ul>
@@ -340,20 +340,20 @@
             class="wishlist-btn wishlist-btn-col"
             aria-label="Add to wishlist"
           >
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <img
           src="img/casual collection/SleekQuarter-Zip.webp"
           alt="Sleek Quarter"
           class="outfit-img" width="1065" height="2560" loading="lazy" decoding="async" />
-        <button class="order-btn" data-outfit="SleekQuarter">Details</button>
+        <button class="order-btn" data-outfit="SleekQuarter">Shop This Look <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </article>
 
       <article class="outfit-card" data-category="casual">
         <div class="card-header">
-          <button class="options-btn" aria-label="Options">
-            <img src="img/icons/three-dot-menu.png" alt="Options" width="96" height="96" />
+          <button class="options-btn" aria-label="Options" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
           </button>
           <div class="options-dropdown">
             <ul>
@@ -366,20 +366,20 @@
             class="wishlist-btn wishlist-btn-col"
             aria-label="Add to wishlist"
           >
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <img
           src="img/casual collection/CargoChillFit.webp"
           alt="Cargo Chill Fit"
           class="outfit-img" width="1064" height="2560" loading="lazy" decoding="async" />
-        <button class="order-btn" data-outfit="CargoChillFit">Details</button>
+        <button class="order-btn" data-outfit="CargoChillFit">Shop This Look <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </article>
 
       <article class="outfit-card" data-category="classic">
         <div class="card-header">
-          <button class="options-btn" aria-label="Options">
-            <img src="img/icons/three-dot-menu.png" alt="Options" width="96" height="96" />
+          <button class="options-btn" aria-label="Options" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
           </button>
           <div class="options-dropdown">
             <ul>
@@ -392,22 +392,20 @@
             class="wishlist-btn wishlist-btn-col"
             aria-label="Add to wishlist"
           >
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <img
           src="img/classic collection/UrbanTailoredFit.webp"
           alt="Urban Tailored Fit"
           class="outfit-img" width="1097" height="1920" loading="lazy" decoding="async" />
-        <button class="order-btn" data-outfit="UrbanTailoredFit">
-          Details
-        </button>
+        <button class="order-btn" data-outfit="UrbanTailoredFit">Shop This Look <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </article>
 
       <article class="outfit-card" data-category="classic">
         <div class="card-header">
-          <button class="options-btn" aria-label="Options">
-            <img src="img/icons/three-dot-menu.png" alt="Options" width="96" height="96" />
+          <button class="options-btn" aria-label="Options" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
           </button>
           <div class="options-dropdown">
             <ul>
@@ -420,22 +418,20 @@
             class="wishlist-btn wishlist-btn-col"
             aria-label="Add to wishlist"
           >
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <img
           src="img/classic collection/OliveLinenElegance.webp"
           alt="Olive Linen Elegance"
           class="outfit-img" width="1081" height="1920" loading="lazy" decoding="async" />
-        <button class="order-btn" data-outfit="OliveLinenElegance">
-          Details
-        </button>
+        <button class="order-btn" data-outfit="OliveLinenElegance">Shop This Look <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </article>
 
       <article class="outfit-card" data-category="casual">
         <div class="card-header">
-          <button class="options-btn" aria-label="Options">
-            <img src="img/icons/three-dot-menu.png" alt="Options" width="96" height="96" />
+          <button class="options-btn" aria-label="Options" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
           </button>
           <div class="options-dropdown">
             <ul>
@@ -448,16 +444,14 @@
             class="wishlist-btn wishlist-btn-col"
             aria-label="Add to wishlist"
           >
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <img
           src="img/casual collection/StreetUtilityFit.webp"
           alt="Street Utility Fit"
           class="outfit-img" width="1081" height="1920" loading="lazy" decoding="async" />
-        <button class="order-btn" data-outfit="StreetUtilityFit">
-          Details
-        </button>
+        <button class="order-btn" data-outfit="StreetUtilityFit">Shop This Look <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </article>
     </section>
     </main>

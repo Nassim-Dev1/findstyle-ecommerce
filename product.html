@@ -79,7 +79,7 @@
         <li><a href="index.html">HOME</a></li>
         <li><a class="active" href="shop.html">SHOP</a></li>
         <li><a href="collections.html">COLLECTIONS</a></li>
-        <li><a href="https://wa.me/213559959122">CONTACT</a></li>
+        <li><a href="https://wa.me/213559959122" rel="noopener noreferrer">CONTACT</a></li>
       </ul>
       <div class="mobile-nav-footer">
         <p class="mobile-nav-tagline">Modern Menswear &amp; Curated Looks</p>
@@ -89,13 +89,14 @@
 
     <main id="mainContent" tabindex="-1">
 
+    <nav class="pdp-breadcrumb" id="pdpBreadcrumb" aria-label="Breadcrumb"></nav>
     <section class="desk-product">
       <section class="desk-product-p1">
         <div class="pdp-gallery">
           <div class="gallery-track" id="galleryTrack"></div>
           <div class="gallery-dots" id="galleryDots"></div>
-          <button class="wishlist-btn wishlist-btn-pdp" aria-label="Add to wishlist">
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
+          <button class="wishlist-btn wishlist-btn-pdp" aria-label="Add to wishlist" aria-pressed="false">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
       </section>
@@ -108,7 +109,7 @@
             <s class="price-was"></s>
           </div>
           <div class="rating">
-            <span class="stars">★★★★★</span>
+            <span class="stars" aria-hidden="true">★★★★★</span>
             <span class="rating-count"></span>
           </div>
         </div>
@@ -119,13 +120,14 @@
         </div>
 
         <div class="size-selector">
-          <label for="sizeSelect">Size:</label>
+          <label for="sizeSelect">Size: <span class="selected-size-value" id="selectedSizeValue"></span></label>
           <select name="size" id="sizeSelect"></select>
         </div>
 
         <div class="addTo-cart">
           <button class="addCart-btn" id="addToCartBtn">ADD TO CART</button>
         </div>
+        <p class="pdp-trust-note">Free shipping over $60 &middot; 30-day returns &middot; Instant WhatsApp checkout</p>
       </section>
     </section>
 

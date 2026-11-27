@@ -925,7 +925,32 @@ initWishlistButtons();
   onScroll(); // set initial state on load
 })();
 
-// ── Unified Scroll-Reveal System (Sections, Rows & Grids) ────────────────
+// ── Top Scroll-Progress Bar ───────────────────────────────────────────────
+(function initScrollProgressBar() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const bar = document.createElement("div");
+  bar.className = "scroll-progress-bar";
+  bar.setAttribute("aria-hidden", "true");
+  document.body.appendChild(bar);
+
+  let ticking = false;
+  function updateProgress() {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? Math.min(1, Math.max(0, window.scrollY / docHeight)) : 0;
+    bar.style.transform = `scaleX(${progress})`;
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", function () {
+    if (!ticking) {
+      window.requestAnimationFrame(updateProgress);
+      ticking = true;
+    }
+  }, { passive: true });
+  updateProgress();
+})();
+
+// ── Unified Scroll-Reveal System (Sections & Rows) ────────────────────────
 (function initScrollReveal() {
   const revealSelectors = [
     ".collection-card--reveal",
@@ -934,8 +959,6 @@ initWishlistButtons();
     ".desktop-community",
     ".featurs",
     ".site-footer",
-    ".shop-grid",
-    ".outfit-grid",
     ".related-grid"
   ];
 
@@ -959,7 +982,7 @@ initWishlistButtons();
         }
       });
     },
-    { threshold: 0.08, rootMargin: "0px 0px -48px 0px" }
+    { threshold: 0.01, rootMargin: "0px 0px -20px 0px" }
   );
 
   targets.forEach((el) => observer.observe(el));
@@ -1444,18 +1467,32 @@ if (document.body.classList.contains("page-collections")) {
   }
 
   const optionsButtons = document.querySelectorAll(".options-btn");
+  function closeAllOptionsDropdowns() {
+    document.querySelectorAll(".options-dropdown.is-open").forEach((d) => {
+      d.classList.remove("is-open");
+      const trigger = d.previousElementSibling;
+      if (trigger && trigger.classList.contains("options-btn")) {
+        trigger.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
   optionsButtons.forEach((btn) => {
     const dropdown = btn.nextElementSibling;
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
-      dropdown.classList.toggle("is-open");
+      const willOpen = !dropdown.classList.contains("is-open");
+      closeAllOptionsDropdowns();
+      if (willOpen) {
+        dropdown.classList.add("is-open");
+        btn.setAttribute("aria-expanded", "true");
+      }
     });
   });
 
-  document.addEventListener("click", function () {
-    document.querySelectorAll(".options-dropdown.is-open").forEach((d) => {
-      d.classList.remove("is-open");
-    });
+  document.addEventListener("click", closeAllOptionsDropdowns);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeAllOptionsDropdowns();
   });
 
   const shareButtons = document.querySelectorAll(".option-share");
@@ -1486,6 +1523,41 @@ if (document.body.classList.contains("page-collections")) {
 
   const outfitCards = document.querySelectorAll(".outfit-card");
   const filterOptions = document.querySelectorAll(".filter-option");
+  const collectionsCountEl = document.getElementById("collectionsCount");
+  const collectionsEmptyEl = document.getElementById("collectionsEmpty");
+  const resetCollectionsBtn = document.getElementById("resetCollectionsBtn");
+
+  // Add style tag pill & make outfit image clickable to open "Shop This Look"
+  outfitCards.forEach((card) => {
+    const cat = card.dataset.category;
+    const header = card.querySelector(".card-header");
+    const titleEl = header ? header.querySelector("h3") : null;
+    if (cat && titleEl && !header.querySelector(".outfit-style-tag")) {
+      const tag = document.createElement("span");
+      tag.className = `outfit-style-tag outfit-style-tag--${cat}`;
+      tag.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+      titleEl.insertAdjacentElement("afterend", tag);
+    }
+
+    const img = card.querySelector(".outfit-img");
+    const orderBtn = card.querySelector(".order-btn");
+    if (img && orderBtn) {
+      img.addEventListener("click", () => orderBtn.click());
+    }
+  });
+
+  function updateCollectionsVisibilityState() {
+    let visibleCount = 0;
+    outfitCards.forEach((card) => {
+      if (card.style.display !== "none") visibleCount += 1;
+    });
+    if (collectionsCountEl) {
+      collectionsCountEl.textContent = `${visibleCount} ${visibleCount === 1 ? "look" : "looks"}`;
+    }
+    if (collectionsEmptyEl) {
+      collectionsEmptyEl.hidden = visibleCount > 0;
+    }
+  }
 
   function filterByCategory(category) {
     outfitCards.forEach((card) => {
@@ -1500,6 +1572,17 @@ if (document.body.classList.contains("page-collections")) {
       const isActive = opt.dataset.category === category;
       opt.classList.toggle("is-active", isActive);
       opt.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+
+    updateCollectionsVisibilityState();
+  }
+
+  if (resetCollectionsBtn) {
+    resetCollectionsBtn.addEventListener("click", () => {
+      document.querySelectorAll(".search-bar input").forEach((inp) => {
+        inp.value = "";
+      });
+      filterByCategory("all");
     });
   }
 
@@ -1642,6 +1725,20 @@ if (document.body.classList.contains("page-product")) {
     const relatedSection = document.querySelector(".related-products");
     if (relatedSection) relatedSection.style.display = "none";
   } else {
+    // Populate PDP breadcrumb
+    const breadcrumbEl = document.getElementById("pdpBreadcrumb");
+    if (breadcrumbEl) {
+      const cat = product.category || "all";
+      const catLabel = cat.charAt(0).toUpperCase() + cat.slice(1);
+      breadcrumbEl.innerHTML = `
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="shop.html?category=${encodeURIComponent(cat)}">${escapeHtml(catLabel)}</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="breadcrumb-current" aria-current="page">${escapeHtml(product.name)}</span>
+      `;
+    }
+
     // Populate PDP content and SEO metadata safely via text/attribute APIs
     const baseUrl = "https://nassim-dev1.github.io/findstyle-ecommerce/";
     const canonicalUrl = `${baseUrl}product.html?id=${encodeURIComponent(product.id)}`;
@@ -1915,6 +2012,8 @@ if (document.body.classList.contains("page-product")) {
           pill.addEventListener("click", function () {
             sizeSelect.value = size;
             sizeSelectorWrap.classList.remove("is-error-shake");
+            const selectedSizeEl = document.getElementById("selectedSizeValue");
+            if (selectedSizeEl) selectedSizeEl.textContent = size;
             pillsEl.querySelectorAll(".size-pill").forEach((b) => {
               const selected = b === pill;
               b.classList.toggle("is-selected", selected);
