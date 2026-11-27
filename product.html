@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -58,16 +58,22 @@
       </div>
     </header>
 
-    <nav class="mobile-nav" id="mobileNav">
-      <button class="nav-close" id="navClose" aria-label="Close menu">
-        <img src="img/icons/close.png" alt="Close menu" width="96" height="96" />
-      </button>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile Navigation">
+      <div class="mobile-nav-header">
+        <img src="img/general/logo.svg" alt="FindStyle" width="121" height="33" class="mobile-nav-logo" />
+        <button class="nav-close" id="navClose" aria-label="Close menu">
+          <img src="img/icons/close.png" alt="Close menu" width="96" height="96" />
+        </button>
+      </div>
       <ul>
         <li><a href="index.html">HOME</a></li>
         <li><a class="active" href="shop.html">SHOP</a></li>
         <li><a href="collections.html">COLLECTIONS</a></li>
         <li><a href="https://wa.me/213559959122">CONTACT</a></li>
       </ul>
+      <div class="mobile-nav-footer">
+        <p class="mobile-nav-tagline">Modern Menswear &amp; Curated Looks</p>
+      </div>
     </nav>
     <div class="nav-overlay" id="navOverlay"></div>
 
@@ -82,7 +88,9 @@
             <img src="img/icons/heart-outline.png" alt="Add to wishlist" width="256" height="256" />
           </button>
         </div>
+      </section>
 
+      <section class="desk-product-p2">
         <div class="product-info">
           <h1></h1>
           <div class="price-block">
@@ -94,9 +102,6 @@
             <span class="rating-count"></span>
           </div>
         </div>
-      </section>
-
-      <section class="desk-product-p2">
         <div class="product-details">
           <h3>More Details:</h3>
           <p class="short-desc"></p>
@@ -141,7 +146,7 @@
           <h3>HELP</h3>
           <ul>
             <li><a href="https://wa.me/213559959122">Order Status</a></li>
-            <li><a href="#">Shipping &amp; Returns</a></li>
+            <li><button type="button" class="footer-link-soon" data-label="Shipping &amp; Returns">Shipping &amp; Returns</button></li>
             <li><a href="https://wa.me/213559959122">Contact Us</a></li>
           </ul>
         </div>
@@ -149,7 +154,7 @@
           <h3>COMPANY</h3>
           <ul>
             <li><a href="https://wa.me/213559959122">About Us</a></li>
-            <li><a href="#">Careers</a></li>
+            <li><button type="button" class="footer-link-soon" data-label="Careers">Careers</button></li>
             <li><a href="https://wa.me/213559959122">Terms of Service</a></li>
           </ul>
         </div>

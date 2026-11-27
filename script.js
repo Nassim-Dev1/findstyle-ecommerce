@@ -261,6 +261,7 @@ document.addEventListener("click", function (e) {
   const productId = btn.dataset.id || getProductIdFromElement(btn);
   if (productId) {
     toggleWishlist(productId);
+    document.dispatchEvent(new CustomEvent("findstyle:wishlist-updated"));
   }
 });
 
@@ -338,6 +339,7 @@ function addToCart(productId, size, quantity = 1) {
     showToast("Unable to save cart (storage unavailable)", "error");
     return;
   }
+  renderCartDrawer();
   showToast("Added to cart!", "success");
 }
 
@@ -406,7 +408,103 @@ function updateCartCount() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   document.querySelectorAll(".cart-count").forEach((el) => {
     el.textContent = totalItems;
+    el.classList.toggle("is-empty", totalItems === 0);
   });
+}
+
+const FREE_SHIPPING_THRESHOLD = 60;
+
+function updateCartShippingBar(total) {
+  const cartDrawer = document.getElementById("cartDrawer");
+  const cartItemsEl = document.getElementById("cartItems");
+  if (!cartDrawer || !cartItemsEl) return;
+
+  let bar = document.getElementById("cartShippingBar");
+  if (!bar) {
+    bar = document.createElement("div");
+    bar.id = "cartShippingBar";
+    bar.className = "cart-shipping-bar";
+    cartDrawer.insertBefore(bar, cartItemsEl);
+  }
+
+  const pct = Math.min(100, Math.round((total / FREE_SHIPPING_THRESHOLD) * 100));
+  const remaining = Math.max(0, FREE_SHIPPING_THRESHOLD - total);
+  const unlocked = total >= FREE_SHIPPING_THRESHOLD;
+
+  bar.classList.toggle("is-unlocked", unlocked);
+  bar.innerHTML = `
+    <p class="cart-shipping-text">
+      ${unlocked
+        ? '<span aria-hidden="true">✓</span> You\'ve unlocked <strong>Free Shipping</strong>!'
+        : total === 0
+          ? `Free shipping on orders over <strong>$${FREE_SHIPPING_THRESHOLD}</strong>`
+          : `Add <strong>$${remaining}</strong> more for <strong>Free Shipping</strong>`}
+    </p>
+    <div class="cart-shipping-track" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Free shipping progress">
+      <div class="cart-shipping-fill" style="width: ${pct}%"></div>
+    </div>
+  `;
+}
+
+function updateCartUpsells(cart) {
+  const cartDrawer = document.getElementById("cartDrawer");
+  const cartFooter = cartDrawer ? cartDrawer.querySelector(".cart-footer") : null;
+  if (!cartDrawer || !cartFooter) return;
+
+  let upsellsEl = document.getElementById("cartUpsells");
+  if (!cart || cart.length === 0 || typeof CACHED_PRODUCTS === "undefined") {
+    if (upsellsEl) upsellsEl.remove();
+    return;
+  }
+
+  const inCartIds = new Set(cart.map((item) => String(item.productId)));
+  const suggestions = CACHED_PRODUCTS
+    .filter((p) => !inCartIds.has(String(p.id)))
+    .sort((a, b) => (b.bestSeller ? 1 : 0) - (a.bestSeller ? 1 : 0) || b.rating - a.rating)
+    .slice(0, 3);
+
+  if (suggestions.length === 0) {
+    if (upsellsEl) upsellsEl.remove();
+    return;
+  }
+
+  const wasOpen = upsellsEl ? upsellsEl.classList.contains("is-open") : false;
+
+  if (!upsellsEl) {
+    upsellsEl = document.createElement("div");
+    upsellsEl.id = "cartUpsells";
+    upsellsEl.className = "cart-upsells";
+    cartDrawer.insertBefore(upsellsEl, cartFooter);
+  }
+
+  upsellsEl.classList.toggle("is-open", wasOpen);
+  upsellsEl.innerHTML = `
+    <button type="button" class="cart-upsells-toggle" aria-expanded="${wasOpen ? "true" : "false"}" aria-controls="cartUpsellsList">
+      <span class="cart-upsells-title">Complete Your Look <span class="cart-upsells-count">(${suggestions.length})</span></span>
+      <span class="cart-upsells-chevron" aria-hidden="true">${wasOpen ? "▴" : "▾"}</span>
+    </button>
+    <div class="cart-upsells-list" id="cartUpsellsList"${wasOpen ? "" : " hidden"}>
+      ${suggestions.map((p) => {
+        const sizes = Array.isArray(p.sizes) && p.sizes.length ? p.sizes : ["M"];
+        const sizeOpts = sizes.map((s) => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join("");
+        return `
+          <div class="cart-upsell-item">
+            <a href="product.html?id=${p.id}" class="cart-upsell-thumb">
+              <img src="${p.images[0]}" alt="${escapeHtml(p.name)}" width="48" height="48" loading="lazy" decoding="async">
+            </a>
+            <div class="cart-upsell-info">
+              <a href="product.html?id=${p.id}" class="cart-upsell-name">${escapeHtml(p.name)}</a>
+              <span class="cart-upsell-price">$${p.priceNow}</span>
+            </div>
+            <div class="cart-upsell-actions">
+              <select class="cart-upsell-size" aria-label="Select size for ${escapeHtml(p.name)}">${sizeOpts}</select>
+              <button type="button" class="cart-upsell-add" data-id="${escapeHtml(p.id)}">+ Add</button>
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
 }
 
 function renderCartDrawer() {
@@ -421,7 +519,9 @@ function renderCartDrawer() {
   cartItemsEl.innerHTML = "";
 
   if (cart.length === 0) {
-    cartItemsEl.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+    updateCartShippingBar(0);
+    updateCartUpsells([]);
+    cartItemsEl.innerHTML = '<div class="cart-empty"><p>Your cart is empty.</p><a href="shop.html" class="btn-browse-shop" onclick="closeCartDrawer()">Browse Collection</a></div>';
     cartTotalEl.textContent = "$0";
     if (checkoutBtn) {
       checkoutBtn.removeAttribute("href");
@@ -467,7 +567,9 @@ function renderCartDrawer() {
   });
 
   if (cartItemsEl.children.length === 0) {
-    cartItemsEl.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+    updateCartShippingBar(0);
+    updateCartUpsells([]);
+    cartItemsEl.innerHTML = '<div class="cart-empty"><p>Your cart is empty.</p><a href="shop.html" class="btn-browse-shop" onclick="closeCartDrawer()">Browse Collection</a></div>';
     cartTotalEl.textContent = "$0";
     if (checkoutBtn) {
       checkoutBtn.removeAttribute("href");
@@ -481,6 +583,8 @@ function renderCartDrawer() {
     return;
   }
 
+  updateCartShippingBar(total);
+  updateCartUpsells(cart);
   cartTotalEl.textContent = `$${total}`;
 
   if (clearCartBtn) {
@@ -519,6 +623,57 @@ document.addEventListener("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
     removeFromCart(removeBtn.dataset.id, removeBtn.dataset.size);
+    return;
+  }
+
+  const upsellToggle = e.target.closest(".cart-upsells-toggle");
+  if (upsellToggle) {
+    e.preventDefault();
+    e.stopPropagation();
+    const wrap = upsellToggle.closest(".cart-upsells");
+    const list = wrap ? wrap.querySelector(".cart-upsells-list") : null;
+    const chevron = upsellToggle.querySelector(".cart-upsells-chevron");
+    if (wrap && list) {
+      const nextOpen = !wrap.classList.contains("is-open");
+      wrap.classList.toggle("is-open", nextOpen);
+      list.hidden = !nextOpen;
+      upsellToggle.setAttribute("aria-expanded", nextOpen ? "true" : "false");
+      if (chevron) chevron.textContent = nextOpen ? "▴" : "▾";
+    }
+    return;
+  }
+
+  const upsellBtn = e.target.closest(".cart-upsell-add");
+  if (upsellBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+    const row = upsellBtn.closest(".cart-upsell-item");
+    const sizeSelect = row ? row.querySelector(".cart-upsell-size") : null;
+    const chosenSize = sizeSelect ? sizeSelect.value : "M";
+    addToCart(upsellBtn.dataset.id, chosenSize);
+    return;
+  }
+
+  const quickSizeBtn = e.target.closest(".quick-size-btn");
+  if (quickSizeBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+    const id = quickSizeBtn.dataset.id;
+    const size = quickSizeBtn.dataset.size;
+    if (!id || !size) return;
+    addToCart(id, size);
+    triggerCartFlyAnimation(quickSizeBtn);
+    if (!quickSizeBtn.dataset.busy) {
+      quickSizeBtn.dataset.busy = "1";
+      const orig = quickSizeBtn.textContent;
+      quickSizeBtn.textContent = "✓";
+      quickSizeBtn.classList.add("is-added");
+      setTimeout(function () {
+        quickSizeBtn.textContent = orig;
+        quickSizeBtn.classList.remove("is-added");
+        delete quickSizeBtn.dataset.busy;
+      }, 1000);
+    }
     return;
   }
 });
@@ -750,6 +905,7 @@ updateCartCount();
 initLiveSearch();
 initWishlistButtons();
 // Global Mobile Navigation Drawer Initialization (accessible on all pages)
+let closeMobileNavDrawer = null;
 function initMobileNav() {
   const menuToggle = document.getElementById("menuToggle");
   const navClose = document.getElementById("navClose");
@@ -758,19 +914,43 @@ function initMobileNav() {
 
   if (!menuToggle || !mobileNav) return;
 
+  menuToggle.setAttribute("aria-controls", "mobileNav");
+  menuToggle.setAttribute("aria-expanded", "false");
+
   function openNav() {
     mobileNav.classList.add("is-open");
     if (navOverlay) navOverlay.classList.add("is-visible");
+    menuToggle.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+    if (navClose) {
+      requestAnimationFrame(() => navClose.focus());
+    }
   }
 
   function closeNav() {
+    if (!mobileNav.classList.contains("is-open")) return;
     mobileNav.classList.remove("is-open");
     if (navOverlay) navOverlay.classList.remove("is-visible");
+    menuToggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+    if (mobileNav.contains(document.activeElement)) {
+      menuToggle.focus();
+    }
   }
 
+  closeMobileNavDrawer = closeNav;
   menuToggle.addEventListener("click", openNav);
   if (navClose) navClose.addEventListener("click", closeNav);
   if (navOverlay) navOverlay.addEventListener("click", closeNav);
+  if (window.matchMedia) {
+    const desktopMq = window.matchMedia("(min-width: 900px)");
+    const handleDesktopMq = (ev) => {
+      if (ev.matches) closeNav();
+    };
+    if (desktopMq.addEventListener) {
+      desktopMq.addEventListener("change", handleDesktopMq);
+    }
+  }
 }
 initMobileNav();
 
@@ -899,11 +1079,8 @@ document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     closeCart();
 
-    const mobileNav = document.getElementById("mobileNav");
-    const navOverlay = document.getElementById("navOverlay");
-    if (mobileNav && mobileNav.classList.contains("is-open")) {
-      mobileNav.classList.remove("is-open");
-      if (navOverlay) navOverlay.classList.remove("is-visible");
+    if (closeMobileNavDrawer) {
+      closeMobileNavDrawer();
     }
 
     const outfitPanal = document.getElementById("outfitPanal");
@@ -962,6 +1139,56 @@ updateActiveNavLinks();
 // 6. PAGE: HOME (index.html)
 // ==========================================================================
 
+/**
+ * Shared product card builder with Quick-Add size pills and wishlist toggle.
+ * @param {Object} product
+ * @param {Set<string>} wishlistSet
+ * @param {boolean} eager - Load image eagerly when above the fold
+ * @returns {HTMLElement}
+ */
+function createProductCard(product, wishlistSet, eager = false) {
+  const card = document.createElement("article");
+  card.className = "product-card";
+  const active = wishlistSet.has(String(product.id));
+  const loadingAttr = eager ? "" : ' loading="lazy"';
+  const sizes = Array.isArray(product.sizes) ? product.sizes : [];
+  const quickSizesHtml = sizes.length
+    ? `<div class="quick-add-bar" role="group" aria-label="Quick add size for ${escapeHtml(product.name)}">
+        <span class="quick-add-label">Quick Add:</span>
+        <div class="quick-add-sizes">
+          ${sizes.map((s) => `<button type="button" class="quick-size-btn" data-id="${escapeHtml(product.id)}" data-size="${escapeHtml(s)}" aria-label="Add ${escapeHtml(product.name)} size ${escapeHtml(s)} to cart">${escapeHtml(s)}</button>`).join("")}
+        </div>
+      </div>`
+    : "";
+
+  const bestSellerBadge = product.bestSeller
+    ? '<span class="badge-bestseller">Best Seller</span>'
+    : "";
+  const priceHtml = product.priceWas && product.priceWas > product.priceNow
+    ? `<span class="price-group"><span class="price">$${product.priceNow}</span><s class="card-price-was">$${product.priceWas}</s></span>`
+    : `<span class="price">$${product.priceNow}</span>`;
+
+  card.innerHTML = `
+    <a href="product.html?id=${product.id}" class="product-link">
+      <div class="product-img">
+        <img src="${product.images[0]}" alt="${escapeHtml(product.name)}" width="400" height="460"${loadingAttr} decoding="async">
+        ${bestSellerBadge}
+        ${quickSizesHtml}
+      </div>
+      <h3>${escapeHtml(product.name)}</h3>
+      <div class="product-meta">
+        ${priceHtml}
+        <span class="rating"><span class="star">★</span> ${product.rating} (${product.reviewCount})</span>
+      </div>
+    </a>
+    <button type="button" class="wishlist-btn ${active ? "is-active" : ""}" data-id="${product.id}" aria-pressed="${active ? "true" : "false"}" aria-label="${active ? "Remove from wishlist" : "Add to wishlist"}">
+      <img src="${active ? "img/icons/heart-filled.png" : "img/icons/heart-outline.png"}" alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async">
+    </button>
+  `;
+
+  return card;
+}
+
 function renderProductRow(row, rowIndex = 0) {
   if (typeof products === "undefined") return;
 
@@ -983,28 +1210,7 @@ function renderProductRow(row, rowIndex = 0) {
   const fragment = document.createDocumentFragment();
 
   matchingProducts.forEach((product, idx) => {
-    const card = document.createElement("article");
-    card.className = "product-card";
-    const active = wishlistSet.has(String(product.id));
-    const loadingAttr = rowIndex === 0 && idx < 2 ? "" : ' loading="lazy"';
-
-    card.innerHTML = `
-      <a href="product.html?id=${product.id}" class="product-link">
-        <div class="product-img">
-          <img src="${product.images[0]}" alt="${escapeHtml(product.name)}" width="400" height="460"${loadingAttr} decoding="async">
-        </div>
-        <h3>${escapeHtml(product.name)}</h3>
-        <div class="product-meta">
-          <span class="price">$${product.priceNow}</span>
-          <span class="rating">★ ${product.rating} (${product.reviewCount})</span>
-        </div>
-      </a>
-      <button type="button" class="wishlist-btn ${active ? "is-active" : ""}" data-id="${product.id}" aria-pressed="${active ? "true" : "false"}" aria-label="${active ? "Remove from wishlist" : "Add to wishlist"}">
-        <img src="${active ? "img/icons/heart-filled.png" : "img/icons/heart-outline.png"}" alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async">
-      </button>
-    `;
-
-    fragment.appendChild(card);
+    fragment.appendChild(createProductCard(product, wishlistSet, rowIndex === 0 && idx < 2));
   });
 
   scrollContainer.appendChild(fragment);
@@ -1076,8 +1282,9 @@ if (document.body.classList.contains("page-home")) {
     heroDotsContainer.style.display = "none";
   }
 
-  // Community interactive bubbles
+  // Community layered ripple & tactile iPhone response
   const desktopCommunity = document.getElementById("desktopCommunity");
+  const iphoneContainer = desktopCommunity ? desktopCommunity.querySelector(".iphone-container") : null;
   const screenContent = document.querySelector(".screen-content");
 
   if (screenContent) {
@@ -1087,24 +1294,68 @@ if (document.body.classList.contains("page-home")) {
   }
 
   if (desktopCommunity) {
+    const brandRippleColors = ["#1F2E46", "#354A69", "#C99A2E", "#4F5D50"];
+    const prefersReducedMotionQuery = window.matchMedia
+      ? window.matchMedia("(prefers-reduced-motion: reduce)")
+      : { matches: false };
+    let colorIndex = 0;
+    let clickStreak = 0;
+    let lastClickTime = 0;
+    let pulseTimeout = null;
+    const MAX_ACTIVE_RIPPLES = 10;
+
     desktopCommunity.addEventListener("click", function (e) {
       if (e.target.closest(".screen-content")) return;
 
-      const bubble = document.createElement("div");
-      bubble.classList.add("bubble");
+      const now = Date.now();
+      clickStreak = now - lastClickTime < 1200 ? Math.min(clickStreak + 1, 8) : 1;
+      lastClickTime = now;
+
+      if (iphoneContainer) {
+        iphoneContainer.classList.add("is-pulsing");
+        clearTimeout(pulseTimeout);
+        pulseTimeout = setTimeout(() => {
+          iphoneContainer.classList.remove("is-pulsing");
+        }, 320);
+      }
+
+      if (prefersReducedMotionQuery.matches) return;
+
+      const activeRipples = desktopCommunity.querySelectorAll(".community-ripple");
+      if (activeRipples.length >= MAX_ACTIVE_RIPPLES) {
+        activeRipples[0].remove();
+      }
 
       const rect = desktopCommunity.getBoundingClientRect();
-      bubble.style.left = `${e.clientX - rect.left}px`;
-      bubble.style.top = `${e.clientY - rect.top}px`;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-      const randomHue = Math.floor(Math.random() * 360);
-      bubble.style.backgroundColor = `hsl(${randomHue}, 85%, 65%)`;
-      bubble.style.boxShadow = `0 0 15px hsl(${randomHue}, 85%, 65%)`;
+      const ripple = document.createElement("div");
+      ripple.className = clickStreak % 5 === 0
+        ? "community-ripple community-ripple--accent"
+        : "community-ripple";
+      ripple.setAttribute("aria-hidden", "true");
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      ripple.style.setProperty("--ripple-color", brandRippleColors[colorIndex % brandRippleColors.length]);
+      ripple.style.setProperty("--ripple-scale", String(1 + (clickStreak - 1) * 0.065));
+      colorIndex += 1;
 
-      desktopCommunity.append(bubble);
-      bubble.addEventListener("animationend", function () {
-        bubble.remove();
-      });
+      const core = document.createElement("span");
+      core.className = "community-ripple-core";
+      const ring = document.createElement("span");
+      ring.className = "community-ripple-ring";
+      const echo = document.createElement("span");
+      echo.className = "community-ripple-echo";
+
+      ripple.append(core, ring, echo);
+      desktopCommunity.appendChild(ripple);
+
+      const cleanup = () => {
+        if (ripple.isConnected) ripple.remove();
+      };
+      echo.addEventListener("animationend", cleanup, { once: true });
+      setTimeout(cleanup, 1250);
     });
   }
 }
@@ -1403,16 +1654,36 @@ if (document.body.classList.contains("page-product")) {
     const titleEl = document.querySelector(".product-info h1");
     if (titleEl) titleEl.textContent = product.name;
 
+    const hasDiscount = Boolean(product.priceWas && product.priceWas > product.priceNow);
     const priceNowEl = document.querySelector(".price-now");
-    if (priceNowEl) priceNowEl.textContent = `NOW $${product.priceNow}`;
+    if (priceNowEl) {
+      priceNowEl.textContent = hasDiscount ? `NOW $${product.priceNow}` : `$${product.priceNow}`;
+    }
 
     const priceWasEl = document.querySelector(".price-was");
     if (priceWasEl) {
-      if (product.priceWas) {
+      if (hasDiscount) {
         priceWasEl.textContent = `Was $${product.priceWas}`;
         priceWasEl.style.display = "";
       } else {
         priceWasEl.style.display = "none";
+      }
+    }
+
+    const priceBlock = document.querySelector(".price-block");
+    if (priceBlock) {
+      let discountBadge = priceBlock.querySelector(".price-discount-badge");
+      if (hasDiscount) {
+        const pct = Math.round(((product.priceWas - product.priceNow) / product.priceWas) * 100);
+        if (!discountBadge) {
+          discountBadge = document.createElement("span");
+          discountBadge.className = "price-discount-badge";
+          priceBlock.appendChild(discountBadge);
+        }
+        discountBadge.textContent = `-${pct}%`;
+        discountBadge.style.display = "";
+      } else if (discountBadge) {
+        discountBadge.style.display = "none";
       }
     }
 
@@ -1478,6 +1749,45 @@ if (document.body.classList.contains("page-product")) {
       galleryDots.appendChild(dotsFrag);
 
       initGallerySlider();
+
+      // Lightbox zoom on product image click
+      galleryTrack.addEventListener("click", function (e) {
+        const clickedImg = e.target.closest("img");
+        if (!clickedImg) return;
+        let lightbox = document.getElementById("pdpLightbox");
+        if (!lightbox) {
+          lightbox = document.createElement("div");
+          lightbox.id = "pdpLightbox";
+          lightbox.className = "pdp-lightbox";
+          lightbox.setAttribute("role", "dialog");
+          lightbox.setAttribute("aria-modal", "true");
+          lightbox.setAttribute("aria-label", "Product image zoom");
+          lightbox.innerHTML = `
+            <button type="button" class="pdp-lightbox-close" aria-label="Close image zoom">&times;</button>
+            <img class="pdp-lightbox-img" src="" alt="" />
+          `;
+          document.body.appendChild(lightbox);
+
+          const closeLightbox = () => {
+            lightbox.classList.remove("is-open");
+            document.body.classList.remove("modal-open");
+          };
+          lightbox.querySelector(".pdp-lightbox-close").addEventListener("click", closeLightbox);
+          lightbox.addEventListener("click", function (ev) {
+            if (ev.target === lightbox) closeLightbox();
+          });
+          document.addEventListener("keydown", function (ev) {
+            if (ev.key === "Escape" && lightbox.classList.contains("is-open")) {
+              closeLightbox();
+            }
+          });
+        }
+        const lbImg = lightbox.querySelector(".pdp-lightbox-img");
+        lbImg.src = clickedImg.src;
+        lbImg.alt = clickedImg.alt || product.name;
+        lightbox.classList.add("is-open");
+        document.body.classList.add("modal-open");
+      });
     }
 
     const shortDescElement = document.querySelector(".product-details .short-desc");
@@ -1513,6 +1823,40 @@ if (document.body.classList.contains("page-product")) {
         option.textContent = size;
         sizeSelect.appendChild(option);
       });
+
+      // Enhance native select with tactile size pills
+      const sizeSelectorWrap = sizeSelect.closest(".size-selector");
+      if (sizeSelectorWrap) {
+        sizeSelect.classList.add("is-enhanced-select");
+        let pillsEl = sizeSelectorWrap.querySelector(".size-pills");
+        if (!pillsEl) {
+          pillsEl = document.createElement("div");
+          pillsEl.className = "size-pills";
+          pillsEl.setAttribute("role", "radiogroup");
+          pillsEl.setAttribute("aria-label", "Select size");
+          sizeSelectorWrap.appendChild(pillsEl);
+        }
+        pillsEl.innerHTML = "";
+        product.sizes.forEach((size) => {
+          const pill = document.createElement("button");
+          pill.type = "button";
+          pill.className = "size-pill";
+          pill.textContent = size;
+          pill.dataset.size = size;
+          pill.setAttribute("role", "radio");
+          pill.setAttribute("aria-checked", "false");
+          pill.addEventListener("click", function () {
+            sizeSelect.value = size;
+            sizeSelectorWrap.classList.remove("is-error-shake");
+            pillsEl.querySelectorAll(".size-pill").forEach((b) => {
+              const selected = b === pill;
+              b.classList.toggle("is-selected", selected);
+              b.setAttribute("aria-checked", selected ? "true" : "false");
+            });
+          });
+          pillsEl.appendChild(pill);
+        });
+      }
     }
 
     // Related products grid
@@ -1526,30 +1870,49 @@ if (document.body.classList.contains("page-product")) {
       const relatedFrag = document.createDocumentFragment();
 
       relatedProducts.forEach((p) => {
-        const card = document.createElement("article");
-        card.className = "product-card";
-        const active = wishlistSet.has(String(p.id));
-
-        card.innerHTML = `
-          <a href="product.html?id=${p.id}" class="product-link">
-            <div class="product-img">
-              <img src="${p.images[0]}" alt="${escapeHtml(p.name)}" width="400" height="460" loading="lazy" decoding="async">
-            </div>
-            <h3>${escapeHtml(p.name)}</h3>
-            <div class="product-meta">
-              <span class="price">$${p.priceNow}</span>
-              <span class="rating"><span class="star">★</span> ${p.rating} (${p.reviewCount})</span>
-            </div>
-          </a>
-          <button type="button" class="wishlist-btn ${active ? "is-active" : ""}" data-id="${p.id}" aria-pressed="${active ? "true" : "false"}" aria-label="${active ? "Remove from wishlist" : "Add to wishlist"}">
-            <img src="${active ? "img/icons/heart-filled.png" : "img/icons/heart-outline.png"}" alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async">
-          </button>
-        `;
-
-        relatedFrag.appendChild(card);
+        relatedFrag.appendChild(createProductCard(p, wishlistSet, false));
       });
 
       relatedGrid.appendChild(relatedFrag);
+    }
+
+    // Recently viewed products persistence & strip
+    const RECENT_KEY = "findstyle_recently_viewed";
+    let recentIds = [];
+    try {
+      const raw = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
+      if (Array.isArray(raw)) recentIds = raw.map(String);
+    } catch {}
+
+    const otherRecent = recentIds
+      .filter((id) => id !== String(productId))
+      .map((id) => (typeof products !== "undefined" ? products[id] : null))
+      .filter(Boolean)
+      .slice(0, 4);
+
+    // Save current product at the front
+    const updatedRecent = [String(productId), ...recentIds.filter((id) => id !== String(productId))].slice(0, 6);
+    try {
+      localStorage.setItem(RECENT_KEY, JSON.stringify(updatedRecent));
+    } catch {}
+
+    const relatedSection = document.querySelector(".related-products");
+    if (relatedSection && otherRecent.length > 0) {
+      let recentSection = document.querySelector(".recently-viewed-products");
+      if (!recentSection) {
+        recentSection = document.createElement("section");
+        recentSection.className = "related-products recently-viewed-products";
+        recentSection.innerHTML = `<h2>RECENTLY VIEWED</h2><div class="related-grid"></div>`;
+        relatedSection.insertAdjacentElement("afterend", recentSection);
+      }
+      const recentGrid = recentSection.querySelector(".related-grid");
+      if (recentGrid) {
+        recentGrid.innerHTML = "";
+        const wishlistSet = new Set(getWishlist());
+        const frag = document.createDocumentFragment();
+        otherRecent.forEach((p) => frag.appendChild(createProductCard(p, wishlistSet, false)));
+        recentGrid.appendChild(frag);
+      }
     }
   }
 
@@ -1620,12 +1983,68 @@ if (document.body.classList.contains("page-product")) {
       const selectedSize = sizeSelect ? sizeSelect.value : "";
 
       if (!selectedSize) {
+        const sizeSelectorWrap = sizeSelect ? sizeSelect.closest(".size-selector") : null;
+        if (sizeSelectorWrap) {
+          sizeSelectorWrap.classList.remove("is-error-shake");
+          void sizeSelectorWrap.offsetWidth;
+          sizeSelectorWrap.classList.add("is-error-shake");
+          sizeSelectorWrap.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
         showToast("Please select a size first", "warning");
         return;
       }
 
       addToCart(product.id, selectedSize);
+
+      // Satisfaction feedback: button text + pulse animation
+      if (!addToCartBtn.dataset.busy) {
+        addToCartBtn.dataset.busy = "1";
+        const originalText = addToCartBtn.textContent;
+        addToCartBtn.textContent = "Added ✓";
+        addToCartBtn.classList.add("is-added");
+        setTimeout(function () {
+          addToCartBtn.textContent = originalText;
+          addToCartBtn.classList.remove("is-added");
+          delete addToCartBtn.dataset.busy;
+        }, 1200);
+      }
+
+      // Fly-to-cart particle
+      triggerCartFlyAnimation(addToCartBtn);
     });
+
+    // Sticky mobile buy bar when #addToCartBtn scrolls out of view
+    if (product && "IntersectionObserver" in window) {
+      const stickyBar = document.createElement("div");
+      stickyBar.className = "sticky-buy-bar";
+      stickyBar.setAttribute("aria-hidden", "true");
+      stickyBar.innerHTML = `
+        <div class="sticky-buy-info">
+          <span class="sticky-buy-title">${escapeHtml(product.name)}</span>
+          <span class="sticky-buy-price">$${product.priceNow}</span>
+        </div>
+        <button type="button" class="sticky-buy-btn">ADD TO CART</button>
+      `;
+      document.body.appendChild(stickyBar);
+
+      const stickyBtn = stickyBar.querySelector(".sticky-buy-btn");
+      if (stickyBtn) {
+        stickyBtn.addEventListener("click", function () {
+          addToCartBtn.click();
+        });
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const isVisible = entries[0].isIntersecting;
+          const show = !isVisible && window.innerWidth < 900;
+          stickyBar.classList.toggle("is-visible", show);
+          stickyBar.setAttribute("aria-hidden", show ? "false" : "true");
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(addToCartBtn);
+    }
   }
 }
 
@@ -1645,7 +2064,7 @@ if (document.body.classList.contains("page-shop")) {
     });
   }
 
-  const SHOP_CATEGORIES = new Set(["all", "bestsellers", "shoes", "pants", "jackets", "T-shirts", "shirts"]);
+  const SHOP_CATEGORIES = new Set(["all", "bestsellers", "saved", "shoes", "pants", "jackets", "T-shirts", "shirts"]);
   const SHOP_SORTS = new Set(["featured", "price-asc", "price-desc", "rating-desc"]);
 
   const shopTitle = document.getElementById("shopTitle");
@@ -1661,7 +2080,8 @@ if (document.body.classList.contains("page-shop")) {
     jackets: "Jackets",
     "T-shirts": "T-shirts",
     shirts: "Shirts",
-    bestsellers: "Bestsellers"
+    bestsellers: "Bestsellers",
+    saved: "Saved Items"
   };
 
   const shopState = {
@@ -1726,9 +2146,13 @@ if (document.body.classList.contains("page-shop")) {
   function getFilteredAndSortedProducts() {
     if (typeof products === "undefined") return [];
 
+    const wishlistSet = shopState.category === "saved" ? new Set(getWishlist()) : null;
+
     let list = CACHED_PRODUCTS.filter((p) => {
       if (shopState.category === "bestsellers") {
         if (!p.bestSeller) return false;
+      } else if (shopState.category === "saved") {
+        if (!wishlistSet.has(String(p.id))) return false;
       } else if (shopState.category !== "all") {
         if (p.category !== shopState.category) return false;
       }
@@ -1763,9 +2187,12 @@ if (document.body.classList.contains("page-shop")) {
     if (matching.length === 0) {
       const emptyEl = document.createElement("div");
       emptyEl.className = "shop-empty-state";
+      const emptyMsg = shopState.category === "saved"
+        ? "You haven't saved any items yet. Tap the heart icon on any product to save it here."
+        : "No products match your current search or filters.";
       emptyEl.innerHTML = `
-        <p>No products match your current search or filters.</p>
-        <button type="button" class="btn-reset-filters" id="resetShopFiltersBtn">Reset Filters</button>
+        <p>${emptyMsg}</p>
+        <button type="button" class="btn-reset-filters" id="resetShopFiltersBtn">${shopState.category === "saved" ? "Browse All Products" : "Reset Filters"}</button>
       `;
       shopGrid.appendChild(emptyEl);
 
@@ -1783,28 +2210,7 @@ if (document.body.classList.contains("page-shop")) {
       const wishlistSet = new Set(getWishlist());
       const shopFrag = document.createDocumentFragment();
       matching.forEach((product, idx) => {
-        const card = document.createElement("article");
-        card.className = "product-card";
-        const active = wishlistSet.has(String(product.id));
-        const loadingAttr = idx < 4 ? "" : ' loading="lazy"';
-
-        card.innerHTML = `
-          <a href="product.html?id=${product.id}" class="product-link">
-            <div class="product-img">
-              <img src="${product.images[0]}" alt="${escapeHtml(product.name)}" width="400" height="460"${loadingAttr} decoding="async">
-            </div>
-            <h3>${escapeHtml(product.name)}</h3>
-            <div class="product-meta">
-              <span class="price">$${product.priceNow}</span>
-              <span class="rating"><span class="star">★</span> ${product.rating} (${product.reviewCount})</span>
-            </div>
-          </a>
-          <button type="button" class="wishlist-btn ${active ? "is-active" : ""}" data-id="${product.id}" aria-pressed="${active ? "true" : "false"}" aria-label="${active ? "Remove from wishlist" : "Add to wishlist"}">
-            <img src="${active ? "img/icons/heart-filled.png" : "img/icons/heart-outline.png"}" alt="" aria-hidden="true" width="24" height="24" loading="lazy" decoding="async">
-          </button>
-        `;
-
-        shopFrag.appendChild(card);
+        shopFrag.appendChild(createProductCard(product, wishlistSet, idx < 4));
       });
       shopGrid.appendChild(shopFrag);
     }
@@ -1861,6 +2267,181 @@ if (document.body.classList.contains("page-shop")) {
     applyShopState();
   });
 
+  document.addEventListener("findstyle:wishlist-updated", function () {
+    if (shopState.category === "saved") {
+      applyShopState();
+    }
+  });
+
   readShopStateFromUrl();
   applyShopState();
 }
+
+// ==========================================================================
+// 10. STAGE 9b: UX ENHANCEMENTS
+// - Footer "not available" toast handler
+// - Social "coming soon" handler
+// - Add-to-cart fly animation
+// - Product-scroll arrow buttons
+// ==========================================================================
+
+// ── A. Footer "not available" + social "coming soon" ───────────────────────
+document.addEventListener("click", function (e) {
+  // Footer dead-links → "coming soon" toast
+  const soonBtn = e.target.closest(".footer-link-soon");
+  if (soonBtn) {
+    e.preventDefault();
+    const label = soonBtn.dataset.label || soonBtn.textContent.trim();
+    showToast(
+      label + " — not available yet. This is a portfolio project.",
+      "info",
+      4000
+    );
+    return;
+  }
+
+  // Social links with data-soon → "coming soon" toast
+  const socialLink = e.target.closest("[data-soon]");
+  if (socialLink) {
+    e.preventDefault();
+    const platform =
+      socialLink.dataset.soon.charAt(0).toUpperCase() +
+      socialLink.dataset.soon.slice(1);
+    showToast(
+      "Our " + platform + " page isn't live yet — stay tuned!",
+      "info",
+      4000
+    );
+  }
+});
+
+// ── B. Close-cart helper used by browse-collection link ───────────────────
+function closeCartDrawer() {
+  const cartDrawer = document.getElementById("cartDrawer");
+  const cartOverlay = document.getElementById("cartOverlay");
+  if (cartDrawer) cartDrawer.classList.remove("is-open");
+  if (cartOverlay) cartOverlay.classList.remove("is-open");
+  document.body.classList.remove("cart-open");
+}
+
+// ── C. Fly-to-cart particle animation ─────────────────────────────────────
+function triggerCartFlyAnimation(originEl) {
+  const cartIcon = document.querySelector(".cart-icon-btn") ||
+                   document.querySelector(".cart-btn");
+  if (!originEl || !cartIcon) return;
+
+  const dot = document.createElement("div");
+  dot.className = "cart-fly-dot";
+  document.body.appendChild(dot);
+
+  const originRect = originEl.getBoundingClientRect();
+  const cartRect = cartIcon.getBoundingClientRect();
+
+  const startX = originRect.left + originRect.width / 2;
+  const startY = originRect.top + originRect.height / 2;
+  const endX = cartRect.left + cartRect.width / 2;
+  const endY = cartRect.top + cartRect.height / 2;
+
+  dot.style.cssText = [
+    "position:fixed",
+    "z-index:9999",
+    "width:12px",
+    "height:12px",
+    "border-radius:50%",
+    "background:var(--color-accent)",
+    "pointer-events:none",
+    "left:" + startX + "px",
+    "top:" + startY + "px",
+    "transform:translate(-50%,-50%) scale(1)",
+    "transition:left 0.55s cubic-bezier(.4,0,.2,1),top 0.55s cubic-bezier(.4,0,.2,1),opacity 0.55s,transform 0.55s"
+  ].join(";");
+
+  // Force reflow
+  void dot.offsetWidth;
+
+  dot.style.left = endX + "px";
+  dot.style.top = endY + "px";
+  dot.style.transform = "translate(-50%,-50%) scale(0.3)";
+  dot.style.opacity = "0";
+
+  setTimeout(function () {
+    dot.remove();
+    // Bounce the cart icon
+    cartIcon.classList.add("cart-bounce");
+    setTimeout(function () { cartIcon.classList.remove("cart-bounce"); }, 500);
+  }, 600);
+}
+
+// ── D. Product-scroll arrow buttons ────────────────────────────────────────
+(function initScrollArrows() {
+  if (window.innerWidth < 900) return;
+
+  document.querySelectorAll(".product-scroll-wrapper").forEach(function (wrapper) {
+    const scroll = wrapper.querySelector(".product-scroll");
+    const prevBtn = wrapper.querySelector(".scroll-arrow-prev");
+    const nextBtn = wrapper.querySelector(".scroll-arrow-next");
+    if (!scroll || !prevBtn || !nextBtn) return;
+
+    function updateArrows() {
+      prevBtn.disabled = scroll.scrollLeft <= 4;
+      nextBtn.disabled = scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth - 4;
+    }
+
+    prevBtn.addEventListener("click", function () {
+      scroll.scrollBy({ left: -300, behavior: "smooth" });
+    });
+    nextBtn.addEventListener("click", function () {
+      scroll.scrollBy({ left: 300, behavior: "smooth" });
+    });
+
+    scroll.addEventListener("scroll", updateArrows, { passive: true });
+
+    // Initial state after products render (slight delay for JS-rendered cards)
+    setTimeout(updateArrows, 300);
+  });
+})();
+
+// ==========================================================================
+// 11. STAGE 11: BACK TO TOP & '/' SEARCH SHORTCUT
+// ==========================================================================
+
+(function initBackToTop() {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "back-to-top-btn";
+  btn.setAttribute("aria-label", "Back to top");
+  btn.innerHTML = '<span aria-hidden="true">↑</span>';
+  document.body.appendChild(btn);
+
+  function toggleVisibility() {
+    btn.classList.toggle("is-visible", window.scrollY > 400);
+  }
+
+  window.addEventListener("scroll", toggleVisibility, { passive: true });
+  toggleVisibility();
+
+  btn.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+})();
+
+document.addEventListener("keydown", function (e) {
+  if (e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey) return;
+  const active = document.activeElement;
+  if (
+    active &&
+    (active.tagName === "INPUT" ||
+      active.tagName === "TEXTAREA" ||
+      active.tagName === "SELECT" ||
+      active.isContentEditable)
+  ) {
+    return;
+  }
+
+  const searchInputs = Array.from(document.querySelectorAll(".search-bar input"));
+  const visibleInput = searchInputs.find((inp) => inp.offsetParent !== null);
+  if (visibleInput) {
+    e.preventDefault();
+    visibleInput.focus();
+  }
+});
