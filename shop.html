@@ -3,78 +3,114 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description">
-    <title>Findstyle — Find Your Style</title>
+    <meta name="description" content="Browse the complete FindStyle collection. High-quality jeans, tailored trousers, jackets, shirts, and footwear built for everyday comfort and style." />
+    <title>Shop All Products — FindStyle</title>
+    <link rel="canonical" href="https://nassim-dev1.github.io/findstyle-ecommerce/shop.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FindStyle" />
+    <meta property="og:title" content="Shop All Products — FindStyle" />
+    <meta property="og:description" content="Browse the complete FindStyle collection. High-quality jeans, tailored trousers, jackets, shirts, and footwear built for everyday comfort and style." />
+    <meta property="og:url" content="https://nassim-dev1.github.io/findstyle-ecommerce/shop.html" />
+    <meta property="og:image" content="https://nassim-dev1.github.io/findstyle-ecommerce/img/hero/desktopHero.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Shop All Products — FindStyle" />
+    <meta name="twitter:description" content="Browse the complete FindStyle collection. High-quality jeans, tailored trousers, jackets, shirts, and footwear built for everyday comfort and style." />
+    <meta name="twitter:image" content="https://nassim-dev1.github.io/findstyle-ecommerce/img/hero/desktopHero.webp" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="favicon.png" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
 
   <body class="page-shop">
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
     <header class="header">
-      <button class="back-btn" id="backBtn" aria-label="Go back">
-        <img src="img/icons/left-arrow.png" alt="Back" />
-      </button>
-      <a href="index.html" class="logo"><img src="img/general/logo.svg" alt="Findstyle" /></a>
+      <div class="header-left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" focusable="false">
+            <rect x="2" y="5.5" width="18" height="1.75" rx="1" fill="currentColor"/>
+            <rect x="2" y="10.125" width="18" height="1.75" rx="1" fill="currentColor"/>
+            <rect x="2" y="14.75" width="18" height="1.75" rx="1" fill="currentColor"/>
+          </svg>
+        </button>
+        <button class="back-btn" id="backBtn" aria-label="Go back">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" focusable="false">
+            <path d="M13.5 5L7 11l6.5 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <a href="index.html" class="logo"><img src="img/general/logo.svg" alt="Findstyle" width="121" height="33" /></a>
 
-      <div class="desktop-nav">
-        <div class="desktop-nav-links">
-          <ul>
-            <li><a class="active" href="index.html">HOME</a></li>
-            <li><a href="shop.html">SHOP</a></li>
-            <li><a href="collections.html">COLLECTIONS</a></li>
-            <li><a href="https://wa.me/213559959122">CONTACT</a></li>
-          </ul>
-        </div>
+      <div class="header-right">
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <div class="desktop-nav-links">
+            <ul>
+              <li><a href="index.html">HOME</a></li>
+              <li><a class="active" aria-current="page" href="shop.html">SHOP</a></li>
+              <li><a href="collections.html">COLLECTIONS</a></li>
+              <li><a href="https://wa.me/213559959122" rel="noopener noreferrer">CONTACT</a></li>
+            </ul>
+          </div>
+        </nav>
 
-        <button class="cart-btn" id="cartBtn" aria-label="Cart">
-          <img src="img/icons/cart.png" alt="Cart" />
+        <button class="cart-btn" id="cartBtn" aria-label="Shopping Cart" aria-expanded="false" aria-controls="cartDrawer">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" focusable="false">
+            <path d="M2 2h2.2l1.6 8.5a2 2 0 0 0 2 1.5h7.4a2 2 0 0 0 1.96-1.6L18 5H5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="8.5" cy="18" r="1.3" fill="currentColor"/>
+            <circle cx="15.5" cy="18" r="1.3" fill="currentColor"/>
+          </svg>
           <span class="cart-count" id="cartCount">0</span>
         </button>
       </div>
     </header>
 
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile Navigation">
+      <div class="mobile-nav-header">
+        <img src="img/general/logo.svg" alt="FindStyle" width="121" height="33" class="mobile-nav-logo" />
+        <button class="nav-close" id="navClose" aria-label="Close menu">
+          <img src="img/icons/close.png" alt="Close menu" width="96" height="96" />
+        </button>
+      </div>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a class="active" href="shop.html">SHOP</a></li>
+        <li><a href="collections.html">COLLECTIONS</a></li>
+        <li><a href="https://wa.me/213559959122">CONTACT</a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <p class="mobile-nav-tagline">Modern Menswear &amp; Curated Looks</p>
+      </div>
+    </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <main id="mainContent" tabindex="-1">
+
     <section class="search-bar search-bar-col">
       <img
         src="img/icons/search-interface-symbol.png"
         class="search-icon"
-        alt="Search"
-      />
+        alt="Search" width="96" height="96" />
       <input
-        type="search"
+        type="search" aria-label="Search for products, brands and more"
         placeholder="Search for products, brands and more ..."
       />
       <button class="filter-btn" id="filterBtn" aria-label="Filter">
-        <img src="img/icons/slideBar.png" class="filter-icon" alt="Filter" />
+        <img src="img/icons/slideBar.png" class="filter-icon" alt="Filter" width="96" height="96" />
       </button>
       <div class="filter-dropdown" id="filterDropdown">
         <ul>
-          <li>
-            <button class="filter-option" data-category="all">All</button>
-          </li>
-          <li>
-            <button class="filter-option" data-category="shoes">Shoes</button>
-          </li>
-          <li>
-            <button class="filter-option" data-category="pants">Pants</button>
-          </li>
-          <li>
-            <button class="filter-option" data-category="jackets">
-              Jackets
-            </button>
-          </li>
-          <li>
-            <button class="filter-option" data-category="T-shirts">
-              T-shirts
-            </button>
-          </li>
-          <li>
-            <button class="filter-option" data-category="shirts">Shirts</button>
-          </li>
+          <li><button type="button" class="filter-option" data-category="all">All</button></li>
+          <li><button type="button" class="filter-option" data-category="bestsellers">Bestsellers</button></li>
+          <li><button type="button" class="filter-option" data-category="saved">Saved &#9829;</button></li>
+          <li><button type="button" class="filter-option" data-category="shoes">Shoes</button></li>
+          <li><button type="button" class="filter-option" data-category="pants">Pants</button></li>
+          <li><button type="button" class="filter-option" data-category="jackets">Jackets</button></li>
+          <li><button type="button" class="filter-option" data-category="T-shirts">T-shirts</button></li>
+          <li><button type="button" class="filter-option" data-category="shirts">Shirts</button></li>
         </ul>
       </div>
     </section>
@@ -84,37 +120,55 @@
         <img
           src="img/icons/search-interface-symbol.png"
           class="search-icon"
-          alt="Search"
-        />
+          alt="Search" width="96" height="96" />
         <input
-          type="search"
+          type="search" aria-label="Search for products, brands and more"
           placeholder="Search for products, brands and more ..."
         />
       </div>
 
       <div class="desk-catego">
-        <button class="filter-option" data-category="all">All</button>
-        <button class="filter-option" data-category="jackets">Jackets</button>
-        <button class="filter-option" data-category="T-shirts">T-shirts</button>
-        <button class="filter-option" data-category="pants">Pants</button>
-        <button class="filter-option" data-category="shirts">shirts</button>
-        <button class="filter-option" data-category="shoes">Shoes</button>
+        <button type="button" class="filter-option" data-category="all">All</button>
+        <button type="button" class="filter-option" data-category="bestsellers">Bestsellers</button>
+        <button type="button" class="filter-option" data-category="saved">Saved &#9829;</button>
+        <button type="button" class="filter-option" data-category="jackets">Jackets</button>
+        <button type="button" class="filter-option" data-category="T-shirts">T-shirts</button>
+        <button type="button" class="filter-option" data-category="pants">Pants</button>
+        <button type="button" class="filter-option" data-category="shirts">Shirts</button>
+        <button type="button" class="filter-option" data-category="shoes">Shoes</button>
       </div>
     </section>
 
-    <h2 class="shop-title" id="shopTitle">Shop</h2>
+    <div class="shop-toolbar">
+      <div class="shop-heading-group">
+        <h1 class="shop-title" id="shopTitle">Shop</h1>
+        <span class="shop-result-count" id="shopResultCount" aria-live="polite"></span>
+      </div>
+      <div class="shop-sort">
+        <label for="shopSort">Sort by:</label>
+        <select id="shopSort" name="sort">
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating-desc">Top Rated</option>
+        </select>
+      </div>
+    </div>
 
     <div class="shop-grid" id="shopGrid">
       <!-- filled dynamically by JS -->
     </div>
+    </main>
 
     <footer class="site-footer">
       <div class="newsletter">
+        <span class="newsletter-eyebrow">FindStyle Club</span>
         <h2>Get 15% off your first order</h2>
-        <form class="newsletter-form">
-          <input type="email" placeholder="Enter your email address" required />
+        <form class="newsletter-form" novalidate>
+          <input type="email" aria-label="Email address for 15% off first order" placeholder="Enter your email address" required />
           <button type="submit">JOIN</button>
         </form>
+        <p class="newsletter-feedback" role="status" aria-live="polite"></p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
@@ -128,23 +182,23 @@
         <div class="footer-col">
           <h3>HELP</h3>
           <ul>
-            <li><a href="https://wa.me/213559959122">Order Status</a></li>
-            <li><a href="#">Shipping &amp; Returns</a></li>
-            <li><a href="https://wa.me/213559959122">Contact Us</a></li>
+            <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">Order Status</a></li>
+            <li><button type="button" class="footer-link-soon" data-label="Shipping &amp; Returns">Shipping &amp; Returns</button></li>
+            <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">Contact Us</a></li>
           </ul>
         </div>
         <div class="footer-col desktop-footer-col">
           <h3>COMPANY</h3>
           <ul>
-            <li><a href="https://wa.me/213559959122">About Us</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="https://wa.me/213559959122">Terms of Service</a></li>
+            <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">About Us</a></li>
+            <li><button type="button" class="footer-link-soon" data-label="Careers">Careers</button></li>
+            <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">Terms of Service</a></li>
           </ul>
         </div>
         <div class="desktop-payment">
-          <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob">
-          <img src="img/general/paypal.png" alt="PayPal" class="paypal">
-          <img src="img/general/visa.png" alt="Visa" class="visa">
+          <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob" width="96" height="96" loading="lazy" decoding="async">
+          <img src="img/general/paypal.png" alt="PayPal" class="paypal" width="97" height="96" loading="lazy" decoding="async">
+          <img src="img/general/visa.png" alt="Visa" class="visa" width="171" height="96" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="footer-foot">
@@ -169,17 +223,21 @@
           <span>Total:</span>
           <span id="cartTotal">$0</span>
         </div>
-        <a
-          href="https://wa.me/213559959122"
-          class="btn-checkout"
-          id="checkoutBtn"
-          target="_blank"
-          >Order via WhatsApp</a
-        >
+        <div class="cart-footer-actions">
+          <button type="button" class="btn-clear-cart" id="clearCartBtn">Clear Cart</button>
+          <a
+            href="https://wa.me/213559959122"
+            class="btn-checkout"
+            id="checkoutBtn"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Order via WhatsApp</a
+          >
+        </div>
       </div>
     </div>
 
-    <script src="products.js"></script>
-    <script src="script.js"></script>
+    <script src="products.js" defer></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

@@ -1,157 +1,195 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description">
-    <title>Findstyle — Find Your Style</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preload" as="image" href="img/hero/desktopHero.webp">
-    <link rel="icon" href="favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  
-  <body class="page-home">
-    <header class="header">
-      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-        <img src="img/icons/menu.png" alt="Menu" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Discover modern, curated menswear at FindStyle. Explore premium denim, tailored pants, casual essentials, and complete styled outfits with instant WhatsApp ordering." />
+  <title>FindStyle â€” Modern Menswear & Curated Outfits</title>
+  <link rel="canonical" href="https://nassim-dev1.github.io/findstyle-ecommerce/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="FindStyle" />
+  <meta property="og:title" content="FindStyle â€” Modern Menswear & Curated Outfits" />
+  <meta property="og:description"
+    content="Discover modern, curated menswear at FindStyle. Explore premium denim, tailored pants, casual essentials, and complete styled outfits with instant WhatsApp ordering." />
+  <meta property="og:url" content="https://nassim-dev1.github.io/findstyle-ecommerce/" />
+  <meta property="og:image" content="https://nassim-dev1.github.io/findstyle-ecommerce/img/hero/desktopHero.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FindStyle â€” Modern Menswear & Curated Outfits" />
+  <meta name="twitter:description"
+    content="Discover modern, curated menswear at FindStyle. Explore premium denim, tailored pants, casual essentials, and complete styled outfits with instant WhatsApp ordering." />
+  <meta name="twitter:image" content="https://nassim-dev1.github.io/findstyle-ecommerce/img/hero/desktopHero.webp" />
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "name": "FindStyle",
+            "url": "https://nassim-dev1.github.io/findstyle-ecommerce/",
+            "logo": "https://nassim-dev1.github.io/findstyle-ecommerce/img/general/logo.svg"
+          },
+          {
+            "@type": "WebSite",
+            "name": "FindStyle",
+            "url": "https://nassim-dev1.github.io/findstyle-ecommerce/"
+          }
+        ]
+      }
+    </script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" as="image" href="img/hero/desktopHero.webp" fetchpriority="high" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body class="page-home">
+  <a href="#mainContent" class="skip-link">Skip to main content</a>
+  <header class="header">
+    <div class="header-left">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" focusable="false">
+          <rect x="2" y="5.5" width="18" height="1.75" rx="1" fill="currentColor"/>
+          <rect x="2" y="10.125" width="18" height="1.75" rx="1" fill="currentColor"/>
+          <rect x="2" y="14.75" width="18" height="1.75" rx="1" fill="currentColor"/>
+        </svg>
       </button>
-      <a href="index.html" class="logo">
-        <img src="img/general/logo.svg" alt="Findstyle" />
-      </a>
-      <div class="desktop-nav">
+    </div>
+    <a href="index.html" class="logo">
+      <img src="img/general/logo.svg" alt="Findstyle" width="121" height="33" />
+    </a>
+    <div class="header-right">
+      <nav class="desktop-nav" aria-label="Main Navigation">
         <div class="desktop-nav-links">
           <ul>
-            <li><a class="active" href="index.html">HOME</a></li>
+            <li><a class="active" aria-current="page" href="index.html">HOME</a></li>
             <li><a href="shop.html">SHOP</a></li>
             <li><a href="collections.html">COLLECTIONS</a></li>
-            <li><a href="https://wa.me/213559959122">CONTACT</a></li>
+            <li><a href="https://wa.me/213559959122" rel="noopener noreferrer">CONTACT</a></li>
           </ul>
         </div>
-        <button class="cart-btn" id="cartBtn" aria-label="Cart">
-          <img src="img/icons/cart.png" alt="Cart" />
-          <span class="cart-count" id="cartCount">0</span>
-        </button>
-      </div>
-    </header>
-
-    <nav class="mobile-nav" id="mobileNav">
-      <button class="nav-close" id="navClose" aria-label="Close menu">
-        <img src="img/icons/close.png" alt="Close menu" />
+      </nav>
+      <button class="cart-btn" id="cartBtn" aria-label="Shopping Cart" aria-expanded="false" aria-controls="cartDrawer">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" focusable="false">
+          <path d="M2 2h2.2l1.6 8.5a2 2 0 0 0 2 1.5h7.4a2 2 0 0 0 1.96-1.6L18 5H5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="8.5" cy="18" r="1.3" fill="currentColor"/>
+          <circle cx="15.5" cy="18" r="1.3" fill="currentColor"/>
+        </svg>
+        <span class="cart-count" id="cartCount">0</span>
       </button>
-      <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="shop.html">SHOP</a></li>
-        <li><a href="collections.html">COLLECTIONS</a></li>
-        <li><a href="https://wa.me/213559959122">CONTACT</a></li>
-      </ul>
-    </nav>
-    <div class="nav-overlay" id="navOverlay"></div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile Navigation">
+    <div class="mobile-nav-header">
+      <img src="img/general/logo.svg" alt="FindStyle" width="121" height="33" class="mobile-nav-logo" />
+      <button class="nav-close" id="navClose" aria-label="Close menu">
+        <img src="img/icons/close.png" alt="Close menu" width="96" height="96" />
+      </button>
+    </div>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="shop.html">SHOP</a></li>
+      <li><a href="collections.html">COLLECTIONS</a></li>
+      <li><a href="https://wa.me/213559959122">CONTACT</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <p class="mobile-nav-tagline">Modern Menswear &amp; Curated Looks</p>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <main id="mainContent" tabindex="-1">
 
     <section class="hero">
       <div class="hero-track-mobile" id="heroTrackMobile">
-        <div
-          class="hero-slide"
-          style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.45) 100%), url(&quot;img/hero/desktopHero.webp&quot;)"
-        ></div>
+        <div class="hero-slide"
+        >
+        </div>
       </div>
       <div class="hero-content">
-        <h1>Find Your Style</h1>
-        <p>Good look, Good mood</p>
-        <a href="shop.html" class="hero-btn">Shop Now</a>
+        <span class="hero-eyebrow">Curated Menswear</span>
+        <h1>Sharp Cut. <span class="hero-line-accent">Quiet Confidence.</span></h1>
+        <p>Tailored pieces and everyday essentials, composed for effortless wear.</p>
+        <a href="shop.html" class="hero-btn">Explore Collection</a>
       </div>
       <div class="hero-dots" id="heroDots">
-        <button
-          class="dot is-active"
-          data-index="0"
-          aria-label="Slide 1"
-        ></button>
+        <button class="dot is-active" data-index="0" aria-label="Slide 1"></button>
       </div>
     </section>
 
-    <section class="collection">
+    <section class="collection" aria-labelledby="collection-heading">
       <div class="collection-header">
-        <h2>Welcome to our store</h2>
-        <p>Which collection do you prefer</p>
+        <h2 id="collection-heading">Two Worlds. One Wardrobe.</h2>
+        <p>Choose your aesthetic and explore the full collection.</p>
       </div>
       <div class="collection-div">
-        <article class="collection-card">
-          <img src="img/general/classic1.webp" alt="classic outfit" />
-          <div class="card-content classic-content">
-            <h3>Classic collection</h3>
-            <p>Luxe &amp; Effortless</p>
-            <a
-              href="collections.html?category=classic"
-              class="collection-btn"
-              style="background: #313148"
-              >Classic Shop</a
-            >
-          </div>
+        <article class="collection-card collection-card--reveal">
+          <a href="collections.html?category=classic" class="collection-card-link" aria-label="Shop the Classic Collection — tailored menswear in navy tones">
+            <img src="img/general/classic1.webp" alt="Classic Collection — tailored menswear in structured navy tones" width="2560" height="1429" decoding="async" />
+            <div class="card-content classic-content">
+              <h3>Classic Collection</h3>
+              <p>Luxe &amp; Effortless</p>
+              <span class="collection-btn collection-btn--classic">
+                Shop Classic
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
         </article>
-        <article class="collection-card">
-          <img src="img/general/casual1.webp" alt="casual outfit" />
-          <div class="card-content casual-content">
-            <h3>Casual collection</h3>
-            <p>Trendy &amp; Comfortable</p>
-            <a
-              href="collections.html?category=casual"
-              class="collection-btn"
-              style="background: #6a796b"
-              >Casual Shop</a
-            >
-          </div>
+        <article class="collection-card collection-card--reveal">
+          <a href="collections.html?category=casual" class="collection-card-link" aria-label="Shop the Casual Collection — relaxed and contemporary everyday wear">
+            <img src="img/general/casual1.webp" alt="Casual Collection — relaxed contemporary everyday menswear" width="2560" height="1368" decoding="async" />
+            <div class="card-content casual-content">
+              <h3>Casual Collection</h3>
+              <p>Trendy &amp; Comfortable</p>
+              <span class="collection-btn collection-btn--casual">
+                Shop Casual
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
         </article>
       </div>
     </section>
 
     <section class="search-bar">
-      <img
-        src="img/icons/search-interface-symbol.png"
-        class="search-icon"
-        alt="Search"
-      />
-      <input
-        type="search"
-        placeholder="Search for products, brands and more ..."
-      />
+      <img src="img/icons/search-interface-symbol.png" class="search-icon" alt="Search" width="96" height="96" />
+      <input type="search" aria-label="Search for products, brands and more"
+        placeholder="Search for products, brands and more ..." />
       <button class="filter-btn" id="filterBtn" aria-label="Filter">
-        <img src="img/icons/slideBar.png" class="filter-icon" alt="Filter" />
+        <img src="img/icons/slideBar.png" class="filter-icon" alt="Filter" width="96" height="96" />
       </button>
       <div class="filter-dropdown" id="filterDropdown">
         <ul>
-          <li><button class="filter-option" onclick="window.location.href='shop.html?category=all';">All</button></li>
-          <li><button class="filter-option" onclick="window.location.href='shop.html?category=jackets';">Jackets</button></li>
-          <li><button class="filter-option" onclick="window.location.href='shop.html?category=T-shirts';">T-shirts</button></li>
-          <li><button class="filter-option" onclick="window.location.href='shop.html?category=pants';">Pants</button></li>
-          <li><button class="filter-option" onclick="window.location.href='shop.html?category=shirts';">Shirts</button></li>
-          <li><button class="filter-option" onclick="window.location.href='shop.html?category=shoes';">Shoes</button></li>
+          <li><a href="shop.html?category=all" class="filter-option">All</a></li>
+          <li><a href="shop.html?category=jackets" class="filter-option">Jackets</a></li>
+          <li><a href="shop.html?category=T-shirts" class="filter-option">T-shirts</a></li>
+          <li><a href="shop.html?category=pants" class="filter-option">Pants</a></li>
+          <li><a href="shop.html?category=shirts" class="filter-option">Shirts</a></li>
+          <li><a href="shop.html?category=shoes" class="filter-option">Shoes</a></li>
         </ul>
       </div>
     </section>
 
     <section class="desk-search-div">
       <div class="search-bar">
-        <img
-          src="img/icons/search-interface-symbol.png"
-          class="search-icon"
-          alt="Search"
-        />
-        <input
-          type="search"
-          placeholder="Search for products, brands and more ..."
-        />
+        <img src="img/icons/search-interface-symbol.png" class="search-icon" alt="Search" width="96" height="96" />
+        <input type="search" aria-label="Search for products, brands and more"
+          placeholder="Search for products, brands and more ..." />
       </div>
       <div class="desk-catego">
-        <button class="filter-option" data-category="all" onclick="window.location.href='shop.html?category=all';">All</button>
-        <button class="filter-option" data-category="jackets" onclick="window.location.href='shop.html?category=jackets';">Jackets</button>
-        <button class="filter-option" data-category="T-shirts" onclick="window.location.href='shop.html?category=T-shirts';">T-shirts</button>
-        <button class="filter-option" data-category="pants" onclick="window.location.href='shop.html?category=pants';">Pants</button>
-        <button class="filter-option" data-category="shirts" onclick="window.location.href='shop.html?category=shirts';">Shirts</button>
-        <button class="filter-option" data-category="shoes" onclick="window.location.href='shop.html?category=shoes';">Shoes</button>
+        <a href="shop.html?category=all" class="filter-option" data-category="all">All</a>
+        <a href="shop.html?category=jackets" class="filter-option" data-category="jackets">Jackets</a>
+        <a href="shop.html?category=T-shirts" class="filter-option" data-category="T-shirts">T-shirts</a>
+        <a href="shop.html?category=pants" class="filter-option" data-category="pants">Pants</a>
+        <a href="shop.html?category=shirts" class="filter-option" data-category="shirts">Shirts</a>
+        <a href="shop.html?category=shoes" class="filter-option" data-category="shoes">Shoes</a>
       </div>
     </section>
 
@@ -160,7 +198,11 @@
         <h2>Best Sellers</h2>
         <a href="shop.html?category=bestsellers" class="view-all">View All</a>
       </div>
-      <div class="product-scroll"></div>
+      <div class="product-scroll-wrapper"><button type="button" class="scroll-arrow scroll-arrow-prev"
+          aria-label="Scroll left">&#8249;</button>
+        <div class="product-scroll"></div><button type="button" class="scroll-arrow scroll-arrow-next"
+          aria-label="Scroll right">&#8250;</button>
+      </div>
     </section>
 
     <section class="category-row" data-category="shoes">
@@ -168,7 +210,11 @@
         <h2>Shoes</h2>
         <a href="shop.html?category=shoes" class="view-all">View All</a>
       </div>
-      <div class="product-scroll"></div>
+      <div class="product-scroll-wrapper"><button type="button" class="scroll-arrow scroll-arrow-prev"
+          aria-label="Scroll left">&#8249;</button>
+        <div class="product-scroll"></div><button type="button" class="scroll-arrow scroll-arrow-next"
+          aria-label="Scroll right">&#8250;</button>
+      </div>
     </section>
 
     <section class="category-row" data-category="T-shirts">
@@ -176,7 +222,11 @@
         <h2>T-shirts</h2>
         <a href="shop.html?category=T-shirts" class="view-all">View All</a>
       </div>
-      <div class="product-scroll"></div>
+      <div class="product-scroll-wrapper"><button type="button" class="scroll-arrow scroll-arrow-prev"
+          aria-label="Scroll left">&#8249;</button>
+        <div class="product-scroll"></div><button type="button" class="scroll-arrow scroll-arrow-next"
+          aria-label="Scroll right">&#8250;</button>
+      </div>
     </section>
 
     <section class="category-row" data-category="pants">
@@ -184,7 +234,11 @@
         <h2>Pants</h2>
         <a href="shop.html?category=pants" class="view-all">View All</a>
       </div>
-      <div class="product-scroll"></div>
+      <div class="product-scroll-wrapper"><button type="button" class="scroll-arrow scroll-arrow-prev"
+          aria-label="Scroll left">&#8249;</button>
+        <div class="product-scroll"></div><button type="button" class="scroll-arrow scroll-arrow-next"
+          aria-label="Scroll right">&#8250;</button>
+      </div>
     </section>
 
     <section class="category-row" data-category="jackets">
@@ -192,7 +246,11 @@
         <h2>Jackets</h2>
         <a href="shop.html?category=jackets" class="view-all">View All</a>
       </div>
-      <div class="product-scroll"></div>
+      <div class="product-scroll-wrapper"><button type="button" class="scroll-arrow scroll-arrow-prev"
+          aria-label="Scroll left">&#8249;</button>
+        <div class="product-scroll"></div><button type="button" class="scroll-arrow scroll-arrow-next"
+          aria-label="Scroll right">&#8250;</button>
+      </div>
     </section>
 
     <section class="category-row" data-category="shirts">
@@ -200,119 +258,169 @@
         <h2>Shirts</h2>
         <a href="shop.html?category=shirts" class="view-all">View All</a>
       </div>
-      <div class="product-scroll"></div>
+      <div class="product-scroll-wrapper"><button type="button" class="scroll-arrow scroll-arrow-prev"
+          aria-label="Scroll left">&#8249;</button>
+        <div class="product-scroll"></div><button type="button" class="scroll-arrow scroll-arrow-next"
+          aria-label="Scroll right">&#8250;</button>
+      </div>
     </section>
 
-    <section class="desktop-community" id="desktopCommunity">
+    <section class="desktop-community" id="desktopCommunity" aria-labelledby="community-heading">
       <div class="iphone-container">
         <div class="dynamic-island"></div>
         <div class="iphone-screen">
           <div class="screen-content">
-            <h2>Join Our Community</h2>
+            <span class="community-eyebrow">FindStyle Club</span>
+            <h2 id="community-heading">Join Our Community</h2>
             <p>Follow us for behind-the-scenes and exclusive drops.</p>
             <div class="social-links">
-              <a href="#myinsta" target="_blank" aria-label="Instagram" class="social-btn"><img src="img/icons/instagram.png" alt="Instagram"></a>
-              <a href="#mydisco" target="_blank" aria-label="Discord" class="social-btn"><img src="img/icons/discord.png" alt="Discord"></a>
-              <a href="#mytelegram" target="_blank" aria-label="telegram" class="social-btn"><img src="img/icons/telegram.png" alt="Telegram"></a>
+              <!-- Instagram -->
+              <a href="#" data-soon="instagram" rel="noopener noreferrer" aria-label="Instagram" class="social-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8"/>
+                  <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
+                  <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/>
+                </svg>
+              </a>
+              <!-- Discord -->
+              <a href="#" data-soon="discord" rel="noopener noreferrer" aria-label="Discord" class="social-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                  <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" fill="currentColor"/>
+                </svg>
+              </a>
+              <!-- Telegram -->
+              <a href="#" data-soon="telegram" rel="noopener noreferrer" aria-label="Telegram" class="social-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                  <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.93 6.657-1.774 8.36c-.134.593-.48.737-.975.459l-2.699-1.989-1.302 1.254c-.144.144-.264.264-.541.264l.193-2.74 4.985-4.504c.217-.193-.047-.3-.335-.107L7.573 14.547l-2.656-.83c-.577-.18-.59-.577.12-.855l10.37-3.998c.48-.174.9.108.747.793z" fill="currentColor"/>
+                </svg>
+              </a>
             </div>
           </div>
+          <div class="iphone-home-bar" aria-hidden="true"></div>
         </div>
       </div>
     </section>
 
-    <section class="featurs">
+    <section class="featurs" aria-label="Store benefits">
       <article class="feature-card">
-        <img src="img/icons/transport.png" alt="Free shipping" />
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false">
+            <path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="5.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="18.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
         <h3>Free Shipping</h3>
         <p>On orders over $60</p>
       </article>
       <article class="feature-card">
-        <img src="img/icons/suport.png" alt="24/7 support" />
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v5zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
         <h3>24/7 Support</h3>
         <p>We are here to help</p>
       </article>
       <article class="feature-card">
-        <img src="img/icons/security.png" alt="Secure payment" />
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
         <h3>Security</h3>
-        <p>%100 protected</p>
+        <p>100% protected</p>
       </article>
       <article class="feature-card">
-        <img src="img/icons/box.png" alt="Easy returns" />
+        <span class="feature-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" focusable="false">
+            <path d="M3 7v6h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
         <h3>Easy Returns</h3>
         <p>30-day returns</p>
       </article>
     </section>
+  </main>
 
-    <footer class="site-footer">
-      <div class="newsletter">
-        <h2>Get 15% off your first order</h2>
-        <form class="newsletter-form">
-          <input type="email" placeholder="Enter your email address" required />
-          <button type="submit">JOIN</button>
-        </form>
+  <footer class="site-footer">
+    <div class="newsletter">
+      <span class="newsletter-eyebrow">FindStyle Club</span>
+      <h2>Get 15% off your first order</h2>
+      <form class="newsletter-form" novalidate>
+        <input type="email" aria-label="Email address for 15% off first order" placeholder="Enter your email address"
+          required />
+        <button type="submit">JOIN</button>
+      </form>
+      <p class="newsletter-feedback" role="status" aria-live="polite"></p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h3>SHOP</h3>
+        <ul>
+          <li><a href="shop.html?category=all">New Arrivals</a></li>
+          <li><a href="collections.html">Trending Outfits</a></li>
+          <li><a href="shop.html?category=shoes">Footwear</a></li>
+        </ul>
       </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <h3>SHOP</h3>
-          <ul>
-            <li><a href="shop.html?category=all">New Arrivals</a></li>
-            <li><a href="collections.html">Trending Outfits</a></li>
-            <li><a href="shop.html?category=shoes">Footwear</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>HELP</h3>
-          <ul>
-            <li><a href="https://wa.me/213559959122">Order Status</a></li>
-            <li><a href="#">Shipping &amp; Returns</a></li>
-            <li><a href="https://wa.me/213559959122">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="footer-col desktop-footer-col">
-          <h3>COMPANY</h3>
-          <ul>
-            <li><a href="https://wa.me/213559959122">About Us</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="https://wa.me/213559959122">Terms of Service</a></li>
-          </ul>
-        </div>
-        <div class="desktop-payment">
-          <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob">
-          <img src="img/general/paypal.png" alt="PayPal" class="paypal">
-          <img src="img/general/visa.png" alt="Visa" class="visa">
-        </div>
+      <div class="footer-col">
+        <h3>HELP</h3>
+        <ul>
+          <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">Order Status</a></li>
+          <li><button type="button" class="footer-link-soon" data-label="Shipping &amp; Returns">Shipping &amp;
+              Returns</button></li>
+          <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">Contact Us</a></li>
+        </ul>
       </div>
-      <div class="footer-foot">
-        <p class="footer-copyright">
-          &copy; 2026 Findstyle, Inc. All rights reserved
-        </p>
+      <div class="footer-col desktop-footer-col">
+        <h3>COMPANY</h3>
+        <ul>
+          <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">About Us</a></li>
+          <li><button type="button" class="footer-link-soon" data-label="Careers">Careers</button></li>
+          <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">Terms of Service</a></li>
+        </ul>
       </div>
-    </footer>
-
-    <div class="cart-overlay" id="cartOverlay"></div>
-
-    <div class="cart-drawer" id="cartDrawer">
-      <div class="cart-drawer-header">
-        <h3>Your Cart</h3>
-        <button class="cart-drawer-close" id="cartDrawerClose" aria-label="Close cart">&times;</button>
-      </div>
-      <div class="cart-items" id="cartItems"></div>
-      <div class="cart-footer">
-        <div class="cart-total">
-          <span>Total:</span>
-          <span id="cartTotal">$0</span>
-        </div>
-        <a
-          href="https://wa.me/213559959122"
-          class="btn-checkout"
-          id="checkoutBtn"
-          target="_blank"
-          >Order via WhatsApp
-        </a>
+      <div class="desktop-payment">
+        <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob" width="96" height="96" loading="lazy"
+          decoding="async">
+        <img src="img/general/paypal.png" alt="PayPal" class="paypal" width="97" height="96" loading="lazy"
+          decoding="async">
+        <img src="img/general/visa.png" alt="Visa" class="visa" width="171" height="96" loading="lazy" decoding="async">
       </div>
     </div>
+    <div class="footer-foot">
+      <p class="footer-copyright">
+        &copy; 2026 Findstyle, Inc. All rights reserved
+      </p>
+    </div>
+  </footer>
 
-    <script src="products.js"></script>
-    <script src="script.js"></script>
-  </body>
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3>Your Cart</h3>
+      <button class="cart-drawer-close" id="cartDrawerClose" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">$0</span>
+      </div>
+      <div class="cart-footer-actions">
+        <button type="button" class="btn-clear-cart" id="clearCartBtn">Clear Cart</button>
+        <a href="https://wa.me/213559959122" class="btn-checkout" id="checkoutBtn" target="_blank"
+          rel="noopener noreferrer">Order via WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="products.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+
 </html>

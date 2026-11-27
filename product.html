@@ -3,51 +3,105 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description">
-    <title>Findstyle — Find Your Style</title>
+    <meta name="description" content="View product specifications, sizing, premium fabric features, and customer reviews on FindStyle. Fast ordering and reliable delivery." />
+    <title>Product Details — FindStyle</title>
+    <link rel="canonical" href="https://nassim-dev1.github.io/findstyle-ecommerce/product.html" />
+    <meta property="og:type" content="product" />
+    <meta property="og:site_name" content="FindStyle" />
+    <meta property="og:title" content="Product Details — FindStyle" />
+    <meta property="og:description" content="View product specifications, sizing, premium fabric features, and customer reviews on FindStyle. Fast ordering and reliable delivery." />
+    <meta property="og:url" content="https://nassim-dev1.github.io/findstyle-ecommerce/product.html" />
+    <meta property="og:image" content="https://nassim-dev1.github.io/findstyle-ecommerce/img/hero/desktopHero.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Product Details — FindStyle" />
+    <meta name="twitter:description" content="View product specifications, sizing, premium fabric features, and customer reviews on FindStyle. Fast ordering and reliable delivery." />
+    <meta name="twitter:image" content="https://nassim-dev1.github.io/findstyle-ecommerce/img/hero/desktopHero.webp" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="favicon.png" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
 
   <body class="page-product">
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
     <header class="header">
-      <button class="back-btn" id="backBtn" aria-label="Go back">
-        <img src="img/icons/left-arrow.png" alt="Back" />
-      </button>
-      <a href="index.html" class="logo"><img src="img/general/logo.svg" alt="Findstyle" /></a>
+      <div class="header-left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" focusable="false">
+            <rect x="2" y="5.5" width="18" height="1.75" rx="1" fill="currentColor"/>
+            <rect x="2" y="10.125" width="18" height="1.75" rx="1" fill="currentColor"/>
+            <rect x="2" y="14.75" width="18" height="1.75" rx="1" fill="currentColor"/>
+          </svg>
+        </button>
+        <button class="back-btn" id="backBtn" aria-label="Go back">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" focusable="false">
+            <path d="M13.5 5L7 11l6.5 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <a href="index.html" class="logo"><img src="img/general/logo.svg" alt="Findstyle" width="121" height="33" /></a>
 
-      <div class="desktop-nav">
-        <div class="desktop-nav-links">
-          <ul>
-            <li><a class="active" href="index.html">HOME</a></li>
-            <li><a href="shop.html">SHOP</a></li>
-            <li><a href="collections.html">COLLECTIONS</a></li>
-            <li><a href="https://wa.me/213559959122">CONTACT</a></li>
-          </ul>
-        </div>
+      <div class="header-right">
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <div class="desktop-nav-links">
+            <ul>
+              <li><a href="index.html">HOME</a></li>
+              <li><a class="active" aria-current="page" href="shop.html">SHOP</a></li>
+              <li><a href="collections.html">COLLECTIONS</a></li>
+              <li><a href="https://wa.me/213559959122" rel="noopener noreferrer">CONTACT</a></li>
+            </ul>
+          </div>
+        </nav>
 
-        <button class="cart-btn" id="cartBtn" aria-label="Cart">
-          <img src="img/icons/cart.png" alt="Cart" />
+        <button class="cart-btn" id="cartBtn" aria-label="Shopping Cart" aria-expanded="false" aria-controls="cartDrawer">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" focusable="false">
+            <path d="M2 2h2.2l1.6 8.5a2 2 0 0 0 2 1.5h7.4a2 2 0 0 0 1.96-1.6L18 5H5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="8.5" cy="18" r="1.3" fill="currentColor"/>
+            <circle cx="15.5" cy="18" r="1.3" fill="currentColor"/>
+          </svg>
           <span class="cart-count" id="cartCount">0</span>
         </button>
       </div>
     </header>
 
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile Navigation">
+      <div class="mobile-nav-header">
+        <img src="img/general/logo.svg" alt="FindStyle" width="121" height="33" class="mobile-nav-logo" />
+        <button class="nav-close" id="navClose" aria-label="Close menu">
+          <img src="img/icons/close.png" alt="Close menu" width="96" height="96" />
+        </button>
+      </div>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a class="active" href="shop.html">SHOP</a></li>
+        <li><a href="collections.html">COLLECTIONS</a></li>
+        <li><a href="https://wa.me/213559959122" rel="noopener noreferrer">CONTACT</a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <p class="mobile-nav-tagline">Modern Menswear &amp; Curated Looks</p>
+      </div>
+    </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <main id="mainContent" tabindex="-1">
+
+    <nav class="pdp-breadcrumb" id="pdpBreadcrumb" aria-label="Breadcrumb"></nav>
     <section class="desk-product">
       <section class="desk-product-p1">
         <div class="pdp-gallery">
           <div class="gallery-track" id="galleryTrack"></div>
           <div class="gallery-dots" id="galleryDots"></div>
-          <button class="wishlist-btn wishlist-btn-pdp" aria-label="Add to wishlist">
-            <img src="img/icons/heart-outline.png" alt="Add to wishlist" />
+          <button class="wishlist-btn wishlist-btn-pdp" aria-label="Add to wishlist" aria-pressed="false">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
+      </section>
 
+      <section class="desk-product-p2">
         <div class="product-info">
           <h1></h1>
           <div class="price-block">
@@ -55,13 +109,10 @@
             <s class="price-was"></s>
           </div>
           <div class="rating">
-            <span class="stars">★★★★★</span>
+            <span class="stars" aria-hidden="true">★★★★★</span>
             <span class="rating-count"></span>
           </div>
         </div>
-      </section>
-
-      <section class="desk-product-p2">
         <div class="product-details">
           <h3>More Details:</h3>
           <p class="short-desc"></p>
@@ -69,16 +120,14 @@
         </div>
 
         <div class="size-selector">
-          <label for="sizeSelect">Size:</label>
+          <label for="sizeSelect">Size: <span class="selected-size-value" id="selectedSizeValue"></span></label>
           <select name="size" id="sizeSelect"></select>
         </div>
 
         <div class="addTo-cart">
           <button class="addCart-btn" id="addToCartBtn">ADD TO CART</button>
-          <button class="show-cart" id="cartToggle" aria-label="View cart">
-            <img src="img/icons/cart.png" alt="Cart" />
-          </button>
         </div>
+        <p class="pdp-trust-note">Free shipping over $60 &middot; 30-day returns &middot; Instant WhatsApp checkout</p>
       </section>
     </section>
 
@@ -86,14 +135,17 @@
       <h2>RELATED PRODUCTS</h2>
       <div class="related-grid"></div>
     </section>
+    </main>
 
     <footer class="site-footer">
       <div class="newsletter">
+        <span class="newsletter-eyebrow">FindStyle Club</span>
         <h2>Get 15% off your first order</h2>
-        <form class="newsletter-form">
-          <input type="email" placeholder="Enter your email address" required />
+        <form class="newsletter-form" novalidate>
+          <input type="email" aria-label="Email address for 15% off first order" placeholder="Enter your email address" required />
           <button type="submit">JOIN</button>
         </form>
+        <p class="newsletter-feedback" role="status" aria-live="polite"></p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
@@ -107,23 +159,23 @@
         <div class="footer-col">
           <h3>HELP</h3>
           <ul>
-            <li><a href="https://wa.me/213559959122">Order Status</a></li>
-            <li><a href="#">Shipping &amp; Returns</a></li>
-            <li><a href="https://wa.me/213559959122">Contact Us</a></li>
+            <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">Order Status</a></li>
+            <li><button type="button" class="footer-link-soon" data-label="Shipping &amp; Returns">Shipping &amp; Returns</button></li>
+            <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">Contact Us</a></li>
           </ul>
         </div>
         <div class="footer-col desktop-footer-col">
           <h3>COMPANY</h3>
           <ul>
-            <li><a href="https://wa.me/213559959122">About Us</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="https://wa.me/213559959122">Terms of Service</a></li>
+            <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">About Us</a></li>
+            <li><button type="button" class="footer-link-soon" data-label="Careers">Careers</button></li>
+            <li><a href="https://wa.me/213559959122" target="_blank" rel="noopener noreferrer">Terms of Service</a></li>
           </ul>
         </div>
         <div class="desktop-payment">
-          <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob">
-          <img src="img/general/paypal.png" alt="PayPal" class="paypal">
-          <img src="img/general/visa.png" alt="Visa" class="visa">
+          <img src="img/general/baridimob.png" alt="BaridiMob" class="baridimob" width="96" height="96" loading="lazy" decoding="async">
+          <img src="img/general/paypal.png" alt="PayPal" class="paypal" width="97" height="96" loading="lazy" decoding="async">
+          <img src="img/general/visa.png" alt="Visa" class="visa" width="171" height="96" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="footer-foot">
@@ -146,17 +198,21 @@
           <span>Total:</span>
           <span id="cartTotal">$0</span>
         </div>
-        <a
-          href="https://wa.me/213559959122"
-          class="btn-checkout"
-          id="checkoutBtn"
-          target="_blank"
-          >Order via WhatsApp</a
-        >
+        <div class="cart-footer-actions">
+          <button type="button" class="btn-clear-cart" id="clearCartBtn">Clear Cart</button>
+          <a
+            href="https://wa.me/213559959122"
+            class="btn-checkout"
+            id="checkoutBtn"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Order via WhatsApp</a
+          >
+        </div>
       </div>
     </div>
 
-    <script src="products.js"></script>
-    <script src="script.js"></script>
+    <script src="products.js" defer></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

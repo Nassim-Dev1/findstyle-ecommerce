@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nassim-dev1.github.io/findstyle-ecommerce/sitemap.xml
